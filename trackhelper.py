@@ -20,7 +20,7 @@ while True:
 		print("[<y>es], [<n>o]");
 		if command[0] == "y":
 			Filefunc.LoadData();
-	elif command[0] == "r":
+	elif command[0] == "s":
 		Filefunc.SaveData();
 	elif command[0] == "q":
 		print("Sure?");
