@@ -18,6 +18,7 @@ while True:
 	elif command[0] == "r":
 		print("Sure?");
 		print("[<y>es], [<n>o]");
+		command = raw_input();
 		if command[0] == "y":
 			Filefunc.LoadData();
 	elif command[0] == "s":
@@ -25,5 +26,6 @@ while True:
 	elif command[0] == "q":
 		print("Sure?");
 		print("[<y>es], [<n>o]");
+		command = raw_input();
 		if command[0] == "y":
 			break;
