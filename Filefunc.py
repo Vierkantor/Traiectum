@@ -33,12 +33,12 @@ def LoadData():
 			version = int(version.group(1));
 			
 		# remove old data
-		nodes = {};
-		places = {};
-		links = {};
-		services = {};
-		trainCompositions = {};
-		trains = {};
+		Data.nodes = {};
+		Data.places = {};
+		Data.links = {};
+		Data.services = {};
+		Data.trainCompositions = {};
+		Data.trains = {};
 		
 		section = re.match("\s*(\w+):\s*", text);
 		while section != None:
