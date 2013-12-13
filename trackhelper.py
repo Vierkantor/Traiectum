@@ -6,15 +6,33 @@ import Filefunc;
 
 Filefunc.LoadData();
 
+commands = "[<h>elp] [<?>], [<l>ink], [<u>nlink], [<r>eload], [<s>ave], [<q>uit]";
+
 print("Enter command:");
-print("[<h>elp] [<?>], [<s>plit] link, [<q>uit]");
+print(commands);
 
 while True:
 	command = raw_input();
 	print(command);
 	if command[0] == "h" or command[0] == "?":
 		print("Commands:");
-		print("[<h>elp] [<?>], [<r>eload], [<s>ave], [<q>uit]");
+		print(commands);
+	elif command[0] == "l":
+		print("Node 1:");
+		begin = int(raw_input());
+		print("Node 2:");
+		end = int(raw_input());
+		Data.AddLink(begin, end);
+	elif command[0] == "u":
+		print("Node 1:");
+		begin = int(raw_input());
+		print("Node 2:");
+		end = int(raw_input());
+		try:
+			Data.links[begin].remove(end);
+			Data.links[end].remove(begin);
+		except KeyError:
+			pass;
 	elif command[0] == "r":
 		print("Sure?");
 		print("[<y>es], [<n>o]");
