@@ -26,7 +26,7 @@ def FindRoute(begin, end):
 		if current[0] == end:
 			return MakePath(begin, end, dirs);
 		
-		for next in Data.links[current[0]]:
+		for next in Data.GetLinks(current[0]):
 			skip = False;
 			g = current[1] + Distance(Data.nodes[current[0]], Data.nodes[next]);
 			for closedNode in closed:

@@ -22,6 +22,12 @@ def UpdateTime():
 
 	clock.tick(30);
 
+def GetLinks(node):
+	if node in links:
+		return links[node];
+	else:
+		return [];
+
 nodes = {};
 places = {};
 links = {};
@@ -75,6 +81,8 @@ class Train:
 			
 			if self.path == []:
 				self.path = Path.FindRoute(self.service[self.order][1], self.service[self.order + 1][1]);
+			elif self.path == False: # no way to continue
+				return;
 			elif len(self.path) == 1:
 				self.v = 0;
 				self.distance = 0;
@@ -101,7 +109,7 @@ class Train:
 					del self.path[0];
 					self.distance -= lineDistance;
 		except:
-			print(self.path[0], self.distance, self.path[1]);
+			print(self.serviceName, self.path, self.service, self.order);
 			raise;
 	
 	def Draw(self, screen):
