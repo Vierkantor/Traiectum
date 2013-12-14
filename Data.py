@@ -5,6 +5,8 @@ import Graphics;
 import Path;
 
 def Time(hr = 0, min = 0, sec = 0):
+	if hr < 2:
+		hr += 24;
 	return hr * 60 + min + sec / 60;
 
 clock = pygame.time.Clock();

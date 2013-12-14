@@ -144,6 +144,8 @@ def LoadData():
 									text = text[timeData.end(0):];
 								else:
 									raise Exception("Syntax error near " + text);
+						
+						Data.services[name].sort(key=lambda x: x[0])
 						continue;
 			
 			if section.group(1) == "trains":
