@@ -119,7 +119,9 @@ def LoadData():
 					serviceName = re.match("\s*([^:]+)\:\s*", text);
 					if serviceName != None:
 						name = serviceName.group(1);
-						Data.services[name] = [];
+						if name not in Data.services:
+							Data.services[name] = [];
+						
 						text = text[serviceName.end(0):];
 						while True:
 							endMark = re.match("\s*\:end", text);
@@ -127,7 +129,7 @@ def LoadData():
 								text = text[endMark.end(0):];
 								break;
 							
-							timeData = re.match("\s*(\d+)\s*,\s*(\d+)\s*,\s*(.+)", text);
+							timeData = re.match("\s*0*(\d+)\s*[,:]\s*0*(\d+)\s*,\s*(.+)", text);
 							if timeData != None:
 								if version == 1:
 									Data.services[name].append((Data.Time(int(timeData.group(1)), int(timeData.group(2))), int(timeData.group(3))));
@@ -160,7 +162,10 @@ def LoadData():
 						while True:
 							endMark = re.match("\s*\:end", text);
 							if endMark != None:
-								Data.trains[name] = Data.Train(name, trainData, Data.Join(trainData));
+								if name in Data.trains:
+									Data.trains[name].serviceName.extend(trainData);
+								else:
+									Data.trains[name] = Data.Train(name, trainData, Data.Join(trainData));
 								text = text[endMark.end(0):];
 								break;
 							
