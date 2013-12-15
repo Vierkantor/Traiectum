@@ -6,7 +6,7 @@ import Filefunc;
 
 Filefunc.LoadData();
 
-commands = "[<h>elp] [<?>], [<l>ink], [<u>nlink], [<r>eload], [<s>ave], [<q>uit]";
+commands = "[<h>elp] [<?>], [<l>ink], [<u>nlink], [<i>nsert node], [<r>eload], [<s>ave], [<q>uit]";
 
 print("Enter command:");
 print(commands);
@@ -31,6 +31,22 @@ while True:
 		try:
 			Data.links[begin].remove(end);
 			Data.links[end].remove(begin);
+		except KeyError:
+			pass;
+	elif command[0] == "i":
+		print("Node 1:");
+		begin = int(raw_input());
+		print("Node 2:");
+		end = int(raw_input());
+		print("New node:");
+		new = int(raw_input());
+		try:
+			Data.links[begin].remove(end);
+			Data.links[end].remove(begin);
+			Data.links[begin].append(new);
+			Data.links[new].append(begin);
+			Data.links[new].append(end);
+			Data.links[end].append(new);
 		except KeyError:
 			pass;
 	elif command[0] == "r":
