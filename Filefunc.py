@@ -89,7 +89,7 @@ def LoadServices():
 									Data.services[name].append((Data.Time(int(timeData.group(1)), int(timeData.group(2))), Data.places[timeData.group(3)]));									
 									text = text[timeData.end(0):];
 								else:
-									raise Exception("Syntax error near " + text);
+									raise Exception("Syntax error near " + (text[:100]));
 						
 						Data.services[name].sort(key=lambda x: x[0])
 						continue;
@@ -124,7 +124,7 @@ def LoadServices():
 								text = text[serviceData.end(0):];
 								continue;
 							
-							raise Exception("Syntax error near " + text);
+							raise Exception("Syntax error near " + (text[:100]));
 	
 			section = re.match("\s*(\w+):", text);
 
@@ -176,7 +176,7 @@ def LoadData():
 						
 						text = text[linkData.end(0):];
 						continue;
-					raise Exception("Invalid syntax near {}".format(text));
+					raise Exception("Invalid syntax near {}".format(text[:100]));
 	
 			if section.group(1) == "nodes":
 				while True:
@@ -200,7 +200,7 @@ def LoadData():
 						text = text[nodeData.end(0):];
 						continue;
 					
-					raise Exception("Syntax error near {0}".format(text));
+					raise Exception("Syntax error near {0}".format(text[:100]));
 				
 			section = re.match("\s*(\w+):", text);
 		LoadServices();
