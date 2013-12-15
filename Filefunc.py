@@ -22,6 +22,112 @@ def sort_nicely(l):
     """
     return sorted(l, key=lambda x: alphanum_key(x[0]))
 
+def LoadServices():
+	with open("servicedata.txt") as data:
+		text = data.read();
+		version = re.match("\s*version:\s*(\d+)", text);
+		if version == None or int(version.group(1)) > 2:
+			raise Exception("Data file is of an invalid version! (Expected [1, 2], received {})".format(version.group(1)));
+		else:
+			text = text[version.end(0):];
+			version = int(version.group(1));
+			
+		# remove old data
+		Data.services = {};
+		Data.trainCompositions = {};
+		Data.trains = {};
+		
+		section = re.match("\s*(\w+):\s*", text);
+		while section != None:
+			text = text[section.end(0):];
+			
+			if section.group(1) == "services":
+				while True:
+					endMark = re.match("\s*\:end", text);
+					if endMark != None:
+						text = text[endMark.end(0):];
+						break;
+
+					addService = re.match("\s*([^:]+)\:\s*[Aa][Dd][Dd]\s*\(\s*(\d+)\s*\,\s*([^\:\)]+)\s*\)", text);
+					if addService != None:
+						name = addService.group(1);
+						time = int(addService.group(2));
+						to = addService.group(3);
+						Data.services[name] = Data.Add(time, Data.services[to]);
+						
+						text = text[addService.end(0):];
+						continue;
+					
+					serviceName = re.match("\s*([^:]+)\:\s*", text);
+					if serviceName != None:
+						name = serviceName.group(1);
+						if name not in Data.services:
+							Data.services[name] = [];
+						
+						text = text[serviceName.end(0):];
+						while True:
+							endMark = re.match("\s*\:end", text);
+							if endMark != None:
+								text = text[endMark.end(0):];
+								break;
+							
+							timeData = re.match("\s*0*(\d+)\s*[,:]\s*0*(\d+)\s*,\s*(.+)", text);
+							if timeData != None:
+								try:
+									if version == 1:
+										Data.services[name].append((Data.Time(int(timeData.group(1)), int(timeData.group(2))), int(timeData.group(3))));
+									else:
+										Data.services[name].append((Data.Time(int(timeData.group(1)), int(timeData.group(2))), Data.places[timeData.group(3)]));	
+								except:
+									print(timeData.group(1), timeData.group(2));
+									raise;								
+								
+								text = text[timeData.end(0):];
+							else:
+								timeData = re.match("\s*\(\s*Time\s*\(\s*(\d+)\s*,\s*(\d+)\s*\)\s*,\s*\"(.+)\"\s*\)\s*\,", text);
+								if timeData != None:
+									Data.services[name].append((Data.Time(int(timeData.group(1)), int(timeData.group(2))), Data.places[timeData.group(3)]));									
+									text = text[timeData.end(0):];
+								else:
+									raise Exception("Syntax error near " + text);
+						
+						Data.services[name].sort(key=lambda x: x[0])
+						continue;
+			
+			if section.group(1) == "trains":
+				while True:
+					endMark = re.match("\s*\:end", text);
+					if endMark != None:
+						text = text[endMark.end(0):];
+						break;
+					
+					trainName = re.match("\s*([^:]+)\:\s*", text);
+					if trainName != None:
+						name = trainName.group(1);
+						
+						trainData = [];
+						text = text[trainName.end(0):];
+						while True:
+							endMark = re.match("\s*\:end", text);
+							if endMark != None:
+								if name in Data.trains:
+									Data.trains[name].serviceName.extend(trainData);
+								else:
+									Data.trains[name] = Data.Train(name, trainData, Data.Join(trainData));
+								text = text[endMark.end(0):];
+								break;
+							
+							serviceData = re.match("\s*([^:\s]+)", text);
+							if serviceData != None:
+								trainData.append(serviceData.group(1));
+								
+								text = text[serviceData.end(0):];
+								continue;
+							
+							raise Exception("Syntax error near " + text);
+	
+			section = re.match("\s*(\w+):", text);
+
 def LoadData():
 	with open("data.txt") as data:
 		text = data.read();
@@ -36,9 +142,6 @@ def LoadData():
 		Data.nodes = {};
 		Data.places = {};
 		Data.links = {};
-		Data.services = {};
-		Data.trainCompositions = {};
-		Data.trains = {};
 		
 		section = re.match("\s*(\w+):\s*", text);
 		while section != None:
@@ -98,89 +201,9 @@ def LoadData():
 						continue;
 					
 					raise Exception("Syntax error near {0}".format(text));
-	
-			if section.group(1) == "services":
-				while True:
-					endMark = re.match("\s*\:end", text);
-					if endMark != None:
-						text = text[endMark.end(0):];
-						break;
-
-					addService = re.match("\s*([^:]+)\:\s*[Aa][Dd][Dd]\s*\(\s*(\d+)\s*\,\s*([^\:\)]+)\s*\)", text);
-					if addService != None:
-						name = addService.group(1);
-						time = int(addService.group(2));
-						to = addService.group(3);
-						Data.services[name] = Data.Add(time, Data.services[to]);
-						
-						text = text[addService.end(0):];
-						continue;
-					
-					serviceName = re.match("\s*([^:]+)\:\s*", text);
-					if serviceName != None:
-						name = serviceName.group(1);
-						if name not in Data.services:
-							Data.services[name] = [];
-						
-						text = text[serviceName.end(0):];
-						while True:
-							endMark = re.match("\s*\:end", text);
-							if endMark != None:
-								text = text[endMark.end(0):];
-								break;
-							
-							timeData = re.match("\s*0*(\d+)\s*[,:]\s*0*(\d+)\s*,\s*(.+)", text);
-							if timeData != None:
-								if version == 1:
-									Data.services[name].append((Data.Time(int(timeData.group(1)), int(timeData.group(2))), int(timeData.group(3))));
-								else:
-									Data.services[name].append((Data.Time(int(timeData.group(1)), int(timeData.group(2))), Data.places[timeData.group(3)]));									
-								
-								text = text[timeData.end(0):];
-							else:
-								timeData = re.match("\s*\(\s*Time\s*\(\s*(\d+)\s*,\s*(\d+)\s*\)\s*,\s*\"(.+)\"\s*\)\s*\,", text);
-								if timeData != None:
-									Data.services[name].append((Data.Time(int(timeData.group(1)), int(timeData.group(2))), Data.places[timeData.group(3)]));									
-									text = text[timeData.end(0):];
-								else:
-									raise Exception("Syntax error near " + text);
-						
-						Data.services[name].sort(key=lambda x: x[0])
-						continue;
-			
-			if section.group(1) == "trains":
-				while True:
-					endMark = re.match("\s*\:end", text);
-					if endMark != None:
-						text = text[endMark.end(0):];
-						break;
-					
-					trainName = re.match("\s*([^:]+)\:\s*", text);
-					if trainName != None:
-						name = trainName.group(1);
-						
-						trainData = [];
-						text = text[trainName.end(0):];
-						while True:
-							endMark = re.match("\s*\:end", text);
-							if endMark != None:
-								if name in Data.trains:
-									Data.trains[name].serviceName.extend(trainData);
-								else:
-									Data.trains[name] = Data.Train(name, trainData, Data.Join(trainData));
-								text = text[endMark.end(0):];
-								break;
-							
-							serviceData = re.match("\s*([^:\s]+)", text);
-							if serviceData != None:
-								trainData.append(serviceData.group(1));
-								
-								text = text[serviceData.end(0):];
-								continue;
-							
-							raise Exception("Syntax error near " + text);
-	
+				
 			section = re.match("\s*(\w+):", text);
+		LoadServices();
 
 def SaveData():
 	with open("data.txt", "w") as data:
@@ -201,6 +224,9 @@ def SaveData():
 		for place in sort_nicely(Data.places.items()):
 			data.write("\t{0} -> {1}\n".format(place[0], place[1]));
 		data.write(":end\n\n");
+		
+	with open("servicedata.txt", "w") as data:
+		data.write("version: 2\n");
 		
 		data.write("services:\n");
 		inversePlaces = dict((v, k) for k, v in Data.places.items());
