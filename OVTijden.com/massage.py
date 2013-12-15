@@ -21,7 +21,7 @@ def mergeService(train, service):
 trains = {};
 services = {};
 
-files = ["ac", "apn", "atn", "bsk", "gd", "ut", "wad", "wadn"];
+files = ["ac", "apn", "atn", "bsk", "gd", "ut", "wad", "wadn", "wd"];
 
 for fileName in files:
 	with open("{}.txt".format(fileName)) as data:
