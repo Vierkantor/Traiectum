@@ -21,7 +21,7 @@ def mergeService(train, service):
 trains = {};
 services = {};
 
-files = ["ut", "apn"];
+files = ["ac", "apn", "atn", "bsk", "gd", "ut", "wad", "wadn"];
 
 for fileName in files:
 	with open("{}.txt".format(fileName)) as data:
@@ -39,7 +39,10 @@ for fileName in files:
 			mergeService(contents[9] + " " + contents[0], contents[0]);
 		except IndexError:
 			print("Manual massaging needed:");
+			print("File: {}.txt".format(fileName));
 			print(row);
+
+print("version: 2");
 
 print("services:");
 for service in services:
