@@ -14,6 +14,9 @@ screen = pygame.display.set_mode(size);
 def GetPos(pos):
 	return Transform((pos[1], -pos[0]));
 
+def SVGPos(pos):
+	return (pos[1] * 1000, pos[0] * -1000);
+
 def Transform(pos):
 	return (int((pos[0] + center[0]) * scale + 512), int((pos[1] + center[1]) * scale + 384));
 

@@ -4,9 +4,11 @@ import Data;
 import Graphics;
 import Filefunc;
 
+import svgwrite;
+
 Filefunc.LoadData();
 
-commands = "[<h>elp] [<?>], [<l>ink], [<u>nlink], [<i>nsert node], [<r>eload], [<s>ave], [<q>uit]";
+commands = "[<h>elp] [<?>], [<l>ink], [<u>nlink], [<i>nsert node], [<r>eload], [<s>ave], [<e>xport to SVG], [<q>uit]";
 
 print("Enter command:");
 print(commands);
@@ -57,6 +59,18 @@ while True:
 			Filefunc.LoadData();
 	elif command[0] == "s":
 		Filefunc.SaveData();
+	elif command[0] == "e":
+		drawing = svgwrite.Drawing("track.svg", profile="full");
+		for begin in Data.links:
+			for end in Data.links[begin]:
+				if begin < end:
+					path = drawing.path();
+					path.push("M");
+					path.push(Graphics.SVGPos(Data.nodes[begin]));
+					path.push(Graphics.SVGPos(Data.nodes[end]));
+					drawing.add(path.stroke('black', width=0.01));
+		drawing.save();
+		print("Done.");
 	elif command[0] == "q":
 		print("Sure?");
 		print("[<y>es], [<n>o]");
