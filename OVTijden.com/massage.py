@@ -21,10 +21,11 @@ def mergeService(train, service):
 trains = {};
 services = {};
 
-files = ["ac", "apn", "atn", "bsk", "gd", "ut", "wad", "wadn", "wd"];
+files = ["ac", "apn", "atn", "bsk", "gd", "gvc", "ut", "wad", "wadn", "wd"];
 
 for fileName in files:
 	with open("{}.txt".format(fileName)) as data:
+		havePlatforms = (data.readline() == "has platforms\n");
 		text = data.read();
 
 	rows = getRows(text);
@@ -35,7 +36,10 @@ for fileName in files:
 			contents.append(''.join(column.findAll(text=True)));
 	
 		try:
-			mergeOrder(contents[0], (contents[1], fileName[0].upper() + fileName[1:], contents[5]));
+			if havePlatforms:
+				mergeOrder(contents[0], (contents[1], fileName[0].upper() + fileName[1:], contents[5]));
+			else:
+				mergeOrder(contents[0], (contents[1], fileName[0].upper() + fileName[1:]));
 			mergeService(contents[9] + " " + contents[0], contents[0]);
 		except IndexError:
 			print("Manual massaging needed:");
@@ -48,7 +52,10 @@ print("services:");
 for service in services:
 	print("\t{}:".format(service));
 	for order in services[service]:
-		print("\t\t{}, {}S{}".format(order[0], order[1], order[2]));
+		if len(order) >= 3:
+			print("\t\t{}, {}S{}".format(order[0], order[1], order[2]));
+		else:
+			print("\t\t{}, {}".format(order[0], order[1]));
 	print("\t:end");
 print(":end");
 
