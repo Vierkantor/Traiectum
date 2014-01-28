@@ -1,5 +1,7 @@
 #!/usr/bin/python3
+import os;
 import re;
+
 from bs4 import BeautifulSoup;
 
 def getRows(htmldoc):
@@ -21,10 +23,13 @@ def mergeService(train, service):
 trains = {};
 services = {};
 
-files = ["ac", "apn", "atn", "bsk", "gd", "gvc", "ut", "wad", "wadn", "wd"];
-
-for fileName in files:
-	with open("{}.txt".format(fileName)) as data:
+for fileName in os.listdir("."):
+	if not fileName.endswith(".txt"):
+		continue;
+	
+	stationName = fileName.partition(".")[0];
+	
+	with open(fileName) as data:
 		havePlatforms = (data.readline() == "has platforms\n");
 		text = data.read();
 
@@ -37,13 +42,13 @@ for fileName in files:
 	
 		try:
 			if havePlatforms:
-				mergeOrder(contents[0], (contents[1], fileName[0].upper() + fileName[1:], contents[5]));
+				mergeOrder(contents[0], (contents[1], stationName[0].upper() + stationName[1:], contents[5]));
 			else:
-				mergeOrder(contents[0], (contents[1], fileName[0].upper() + fileName[1:]));
+				mergeOrder(contents[0], (contents[1], stationName[0].upper() + stationName[1:]));
 			mergeService(contents[9] + " " + contents[0], contents[0]);
 		except IndexError:
 			print("Manual massaging needed:");
-			print("File: {}.txt".format(fileName));
+			print("File: {}".format(fileName));
 			print(row);
 
 print("version: 2");
