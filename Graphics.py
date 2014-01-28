@@ -34,13 +34,13 @@ def Draw():
 		pos = GetPos(Data.nodes[Data.places[place]]);
 		pygame.draw.circle(screen, (0, 0, 0), pos, 3, 0);
 		text = font.render(str(place), 1, (0, 0, 0));
-		textpos = text.get_rect().move(pos);
+		textpos = text.get_rect().move((pos[0], pos[1] - 12));
 		screen.blit(text, textpos);
 	
 	for node in Data.links:
 		pos = GetPos(Data.nodes[node]);
 		text = font.render(str(node), 1, (0, 0, 0));
-		textpos = text.get_rect().move((pos[0], pos[1] + 12));
+		textpos = text.get_rect().move((pos[0], pos[1]));
 		screen.blit(text, textpos);
 		for link in Data.links[node]:
 			pygame.draw.line(screen, (0, 0, 0), pos, GetPos(Data.nodes[link]), 1);
