@@ -39,7 +39,14 @@ for fileName in os.listdir("."):
 		columns = row.findAll('td');
 		for column in columns:
 			contents.append(''.join(column.findAll(text=True)));
-	
+		
+		if len(contents) != 10:
+			print("Manual massaging needed:");
+			print("File: {}".format(fileName));
+			print(row);
+			
+			continue;
+		
 		try:
 			if havePlatforms:
 				mergeOrder(contents[0], (contents[1], stationName[0].upper() + stationName[1:], contents[5]));
