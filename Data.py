@@ -79,8 +79,6 @@ class Train:
 	
 	def Update(self):
 		try:
-			oldPath = self.path;
-			
 			if self.path == []:
 				self.path = Path.FindRoute(self.service[self.order][1], self.service[self.order + 1][1]);
 			elif self.path == False: # no way to continue
