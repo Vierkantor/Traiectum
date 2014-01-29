@@ -55,3 +55,6 @@ while 1:
 			raise;
 
 	Graphics.Draw();
+	
+	# make sure the log gets updated
+	sys.stdout.flush();
