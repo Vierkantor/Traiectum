@@ -52,4 +52,8 @@ def Draw():
 	textpos = text.get_rect();
 	screen.blit(text, textpos);
 	
+	text = font.render(str(Data.clock.get_fps()), 1, (0, 0, 0));
+	textpos = text.get_rect().move((0, 12));
+	screen.blit(text, textpos);
+	
 	pygame.display.flip();
