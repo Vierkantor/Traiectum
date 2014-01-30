@@ -1,4 +1,5 @@
 from __future__ import division;
+import math;
 import pygame;
 
 import Data;
@@ -7,28 +8,40 @@ pygame.init();
 
 size = width, height = 1024, 768;
 scale = 8;
-center = (0, 50);
+center = (50, 0);
 font = pygame.font.Font(None, 14);
 screen = pygame.display.set_mode(size);
 
+# move standard parallel to about 50 degrees
+parallelCorrection = math.cos(50 / 180 * math.pi);
+
 def GetPos(pos):
-	return Transform((pos[1], -pos[0]));
+	pos = Transform(pos);
+	return (pos[1] + 512, (-pos[0]) + 384);
 
 def SVGPos(pos):
 	return (pos[1] * 1000, pos[0] * -1000);
 
 def Transform(pos):
-	return (int((pos[0] + center[0]) * scale + 512), int((pos[1] + center[1]) * scale + 384));
+	return (int((pos[0] - center[0]) * scale * parallelCorrection), int((pos[1] - center[1]) * scale));
 
 def InvTransform(pos):
-	return ((pos[0] - 512) / scale - center[0], (pos[1] - 384) / scale - center[1]);
+	print(pos);
+	return (pos[0] / scale / parallelCorrection + center[0], pos[1] / scale + center[1]);
 
 def GetWorldPos(pos):
-	pos = InvTransform(pos);
-	return (-pos[1], pos[0]);
+	return InvTransform((-(pos[1] - 384), pos[0] - 512));
+
+# centers the camera on a thing
+following = None;
 
 def Draw():
+	global following, center;
+
 	screen.fill((255, 255, 255));
+	
+	if following != None:
+		center = following.pos;
 	
 	for place in Data.places:
 		pos = GetPos(Data.nodes[Data.places[place]]);

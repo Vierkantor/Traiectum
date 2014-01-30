@@ -8,8 +8,9 @@ import sys;
 import pygame;
 
 import Data;
-import Graphics;
 import Filefunc;
+import Graphics;
+import Path;
 
 def Add(time, service):
 	return map(lambda x: (x[0] + time, x[1]), services[service]);
@@ -22,20 +23,38 @@ while 1:
 	keys = pygame.key.get_pressed();
 		
 	if keys[pygame.K_LEFT]:
-		Graphics.center = (Graphics.center[0] + 100 / Graphics.scale, Graphics.center[1]);
-	if keys[pygame.K_RIGHT]:
-		Graphics.center = (Graphics.center[0] - 100 / Graphics.scale, Graphics.center[1]);
-	if keys[pygame.K_UP]:
-		Graphics.center = (Graphics.center[0], Graphics.center[1] + 100 / Graphics.scale);
-	if keys[pygame.K_DOWN]:
 		Graphics.center = (Graphics.center[0], Graphics.center[1] - 100 / Graphics.scale);
-	
+		Graphics.following = None;
+	if keys[pygame.K_RIGHT]:
+		Graphics.center = (Graphics.center[0], Graphics.center[1] + 100 / Graphics.scale);
+		Graphics.following = None;
+	if keys[pygame.K_UP]:
+		Graphics.center = (Graphics.center[0] + 100 / Graphics.scale, Graphics.center[1]);
+		Graphics.following = None;
+	if keys[pygame.K_DOWN]:
+		Graphics.center = (Graphics.center[0] - 100 / Graphics.scale, Graphics.center[1]);
+		Graphics.following = None;
+		
 	for event in pygame.event.get():
 		if event.type == pygame.QUIT:
 			Filefunc.SaveData();
 			sys.exit();
 		elif event.type == pygame.MOUSEBUTTONDOWN:
-			if event.button == 4:
+			if event.button == 1: # center on a train
+				worldPos = Graphics.GetWorldPos(pygame.mouse.get_pos());
+				smallestDistance = 0.01;
+				
+				# check all trains
+				for trainID in Data.trains:
+					train = Data.trains[trainID];
+					
+					# if the distance is the shortest
+					distance = Path.Distance(train.pos, worldPos);
+					if distance < smallestDistance:
+						# center on that train
+						Graphics.following = train;
+						smallestDistance = distance;
+			elif event.button == 4:
 				Graphics.scale = Graphics.scale * 2;
 			elif event.button == 5:
 				Graphics.scale = Graphics.scale / 2;
