@@ -13,7 +13,7 @@ font = pygame.font.Font(None, 14);
 screen = pygame.display.set_mode(size);
 
 # move standard parallel to about 50 degrees
-parallelCorrection = math.cos(50 / 180 * math.pi);
+parallelCorrection = math.cos(center[0] / 180 * math.pi);
 
 def GetPos(pos):
 	pos = Transform(pos);
@@ -36,7 +36,10 @@ def GetWorldPos(pos):
 following = None;
 
 def Draw():
-	global following, center;
+	global following, center, parallelCorrection;
+	
+	# make the center of the screen look right
+	parallelCorrection = math.cos(center[0] / 180 * math.pi);
 
 	screen.fill((255, 255, 255));
 	
