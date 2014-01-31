@@ -68,8 +68,3 @@ In data.txt, locations are listed under places: as a named node id. To help manu
 Links represent a route trains can travel on. They are generally two-directional (so a link from node 1 to 2 also makes a link between 2 and 1). A planned feature is to prevent this explicitly somewhere, but this is not yet implemented.
 
 In data.txt, links are listed under links: as a pair of nodes. When reading this, train.py automagically adds in the opposite direction of this link if it doesn't exist yet.
-=======
-Traiectum
-=========
-
-A train simulator made with pygame. It kinda works!
