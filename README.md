@@ -1,17 +1,19 @@
-Train Simulator
-===============
+TRAIECTUM
+=========
 
-Train Simulator is a realistic* simulation** of trains***. It is meant to show a large-scale picture of a real train network, instead of the smaller-scale model railroad-type affairs.
+Traiectum is a realistic* simulation** of trains***. It is meant to show a large-scale picture of a real train network, instead of the smaller-scale model railroad-type affairs.
+
+Traiectum was (besides as an acronym for Not An Acronym For This Train Simulator) named after the Latin name for Utrecht, railway hub for the Netherlands and also the city of my university (cleverly named Utrecht University).
 
 \* Not if you live outside the Netherlands or have any ideas how trains really work.
 
-\*\* Except it doesn't represent reality much.
+\*\* Simulating the wrong things mostly.
 
 \*\*\* Dots that move over lines.
 
 # Running
 
-Find a nice version of [pygame](http://pygame.org) for your computer. Run train.py to start the simulation. After the data has been loaded, you will see a white (world) map with black lines and dots. Use the scroll wheel to zoom in or out and arrow keys to move.
+Find a nice version of [pygame](http://pygame.org) for your computer. Run train.py to start the simulation. After the data has been loaded, you will see a white (world) map with black lines and dots. Use the scroll wheel to zoom in or out and arrow keys (or WASD) to move.
 
 # Data files
 
