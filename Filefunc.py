@@ -37,96 +37,102 @@ def LoadServices():
 		Data.trainCompositions = {};
 		Data.trains = {};
 		
-		section = re.match("\s*(\w+):\s*", text);
-		while section != None:
-			text = text[section.end(0):];
+		try:
+			section = re.match("\s*(\w+):\s*", text);
+			while section != None:
+				text = text[section.end(0):];
 			
-			if section.group(1) == "services":
-				while True:
-					endMark = re.match("\s*\:end", text);
-					if endMark != None:
-						text = text[endMark.end(0):];
-						break;
+				if section.group(1) == "services":
+					while True:
+						endMark = re.match("\s*\:end", text);
+						if endMark != None:
+							text = text[endMark.end(0):];
+							break;
 
-					addService = re.match("\s*([^:]+)\:\s*[Aa][Dd][Dd]\s*\(\s*(\d+)\s*\,\s*([^\:\)]+)\s*\)", text);
-					if addService != None:
-						name = addService.group(1);
-						time = int(addService.group(2));
-						to = addService.group(3);
-						Data.services[name] = Data.Add(time, Data.services[to]);
+						addService = re.match("\s*([^:]+)\:\s*[Aa][Dd][Dd]\s*\(\s*(\d+)\s*\,\s*([^\:\)]+)\s*\)", text);
+						if addService != None:
+							name = addService.group(1);
+							time = int(addService.group(2));
+							to = addService.group(3);
+							Data.services[name] = Data.Add(time, Data.services[to]);
 						
-						text = text[addService.end(0):];
-						continue;
+							text = text[addService.end(0):];
+							continue;
 					
-					serviceName = re.match("\s*([^:]+)\:\s*", text);
-					if serviceName != None:
-						name = serviceName.group(1);
-						if name not in Data.services:
-							Data.services[name] = [];
+						serviceName = re.match("\s*([^:]+)\:\s*", text);
+						if serviceName != None:
+							name = serviceName.group(1);
+							if name not in Data.services:
+								Data.services[name] = [];
 						
-						text = text[serviceName.end(0):];
-						while True:
-							endMark = re.match("\s*\:end", text);
-							if endMark != None:
-								text = text[endMark.end(0):];
-								break;
+							text = text[serviceName.end(0):];
+							while True:
+								endMark = re.match("\s*\:end", text);
+								if endMark != None:
+									text = text[endMark.end(0):];
+									break;
 							
-							timeData = re.match("\s*0*(\d+)\s*[,:]\s*0*(\d+)\s*,\s*(.+)", text);
-							if timeData != None:
-								try:
-									if version == 1:
-										Data.services[name].append((Data.Time(int(timeData.group(1)), int(timeData.group(2))), int(timeData.group(3))));
-									else:
-										Data.services[name].append((Data.Time(int(timeData.group(1)), int(timeData.group(2))), Data.places[timeData.group(3)]));	
-								except:
-									print(timeData.group(1), timeData.group(2));
-									raise;								
-								
-								text = text[timeData.end(0):];
-							else:
-								timeData = re.match("\s*\(\s*Time\s*\(\s*(\d+)\s*,\s*(\d+)\s*\)\s*,\s*\"(.+)\"\s*\)\s*\,", text);
+								timeData = re.match("\s*0*(\d+)\s*[,:]\s*0*(\d+)\s*,\s*(.+)", text);
 								if timeData != None:
-									Data.services[name].append((Data.Time(int(timeData.group(1)), int(timeData.group(2))), Data.places[timeData.group(3)]));									
+									try:
+										if version == 1:
+											Data.services[name].append((Data.Time(int(timeData.group(1)), int(timeData.group(2))), int(timeData.group(3))));
+										else:
+											Data.services[name].append((Data.Time(int(timeData.group(1)), int(timeData.group(2))), Data.places[timeData.group(3)]));	
+									except:
+										print(timeData.group(1), timeData.group(2));
+										raise;								
+								
 									text = text[timeData.end(0):];
 								else:
-									raise Exception("Syntax error near " + (text[:100]));
+									timeData = re.match("\s*\(\s*Time\s*\(\s*(\d+)\s*,\s*(\d+)\s*\)\s*,\s*\"(.+)\"\s*\)\s*\,", text);
+									if timeData != None:
+										Data.services[name].append((Data.Time(int(timeData.group(1)), int(timeData.group(2))), Data.places[timeData.group(3)]));									
+										text = text[timeData.end(0):];
+									else:
+										raise Exception("Syntax error in service data.");
 						
-						Data.services[name].sort(key=lambda x: x[0])
-						continue;
+							Data.services[name].sort(key=lambda x: x[0])
+							continue;
 			
-			if section.group(1) == "trains":
-				while True:
-					endMark = re.match("\s*\:end", text);
-					if endMark != None:
-						text = text[endMark.end(0):];
-						break;
+				if section.group(1) == "trains":
+					while True:
+						endMark = re.match("\s*\:end", text);
+						if endMark != None:
+							text = text[endMark.end(0):];
+							break;
 					
-					trainName = re.match("\s*([^:]+)\:\s*", text);
-					if trainName != None:
-						name = trainName.group(1);
+						trainName = re.match("\s*([^:]+)\:\s*", text);
+						if trainName != None:
+							name = trainName.group(1);
 						
-						trainData = [];
-						text = text[trainName.end(0):];
-						while True:
-							endMark = re.match("\s*\:end", text);
-							if endMark != None:
-								if name in Data.trains:
-									Data.trains[name].serviceName.extend(trainData);
-								else:
-									Data.trains[name] = Data.Train(name, trainData, Data.Join(trainData));
-								text = text[endMark.end(0):];
-								break;
+							trainData = [];
+							text = text[trainName.end(0):];
+							while True:
+								endMark = re.match("\s*\:end", text);
+								if endMark != None:
+									if name in Data.trains:
+										Data.trains[name].serviceName.extend(trainData);
+									else:
+										Data.trains[name] = Data.Train(name, trainData, Data.Join(trainData));
+									text = text[endMark.end(0):];
+									break;
 							
-							serviceData = re.match("\s*([^:\s]+)", text);
-							if serviceData != None:
-								trainData.append(serviceData.group(1));
+								serviceData = re.match("\s*([^:\s]+)", text);
+								if serviceData != None:
+									trainData.append(serviceData.group(1));
 								
-								text = text[serviceData.end(0):];
-								continue;
+									text = text[serviceData.end(0):];
+									continue;
 							
-							raise Exception("Syntax error near " + (text[:100]));
-	
-			section = re.match("\s*(\w+):", text);
+								raise Exception("Syntax error in train info.");
+		
+				section = re.match("\s*(\w+):", text);
+		
+		except:
+			print("In servicedata.txt, near:");
+			print(text[:100]);
+			raise;
 
 def LoadData():
 	with open("data.txt") as data:
