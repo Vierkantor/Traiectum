@@ -104,10 +104,10 @@ class Train:
 						self.v = 0;
 				else:
 					# if the velocity is too low, accelerate by about 6 m/s^2
-					if self.v <= 10:
+					if self.v <= 20:
 						self.v += 20000 * timeStep;
 					else:
-						self.v += timeStep * 200000 / self.v;
+						self.v += timeStep * 400000 / self.v;
 				
 				# move the train
 				self.distance += self.v * timeStep;
@@ -125,9 +125,9 @@ class Train:
 		screenPos = Graphics.GetPos(self.pos);
 		pygame.draw.circle(screen, (255, 0, 0), screenPos, 2, 0);
 		if self.service[self.order + 1][0] < frameTime - 1:
-			text = Graphics.font.render(str(self.composition) + " +" + str(int(frameTime - self.service[self.order + 1][0])), 1, (0, 0, 0));
+			text = Graphics.font.render("{} +{}".format(self.composition, int(frameTime - self.service[self.order + 1][0])), 1, (0, 0, 0));
 		else:
-			text = Graphics.font.render(str(self.composition), 1, (0, 0, 0));
+			text = Graphics.font.render("{}".format(self.composition), 1, (0, 0, 0));
 		textpos = text.get_rect().move((screenPos[0], screenPos[1]));
 		pygame.draw.rect(screen, (255, 255, 255), (screenPos[0], screenPos[1], 100, 12));
 		pygame.draw.rect(screen, (0, 0, 0), (screenPos[0], screenPos[1], 100, 12), 1);
