@@ -90,29 +90,18 @@ print(":end");
 
 print("trains:");
 index = 0;
-for service in servicesByTime:
-	# skip used services
-	if service == None:
-		newIndex += 1;
-		continue;
-	
+while len(servicesByTime) > 0:
 	# add this service to the new schedule
-	servicesByTime[index] = None;
-	schedule = [service];
+	schedule = [servicesByTime.pop(0)];
 	while True:
 		lastOrder = schedule[-1][-1];
 		newIndex = 0;
 		for newService in servicesByTime:
-			if newService == None:
-				newIndex += 1;
-				continue;
-			
 			firstOrder = newService[0];
 			
 			# if the new service starts later than this one in the same station with the same train
 			if firstOrder[1] > lastOrder[1] and firstOrder[2] == lastOrder[2] and firstOrder[3] == lastOrder[3]:
-				schedule.append(newService);
-				servicesByTime[newIndex] = None;
+				schedule.append(servicesByTime.pop(newIndex));
 				break;
 			
 			newIndex += 1;
