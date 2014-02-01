@@ -68,3 +68,7 @@ In data.txt, locations are listed under places: as a named node id. To help manu
 Links represent a route trains can travel on. They are generally two-directional (so a link from node 1 to 2 also makes a link between 2 and 1). A planned feature is to prevent this explicitly somewhere, but this is not yet implemented.
 
 In data.txt, links are listed under links: as a pair of nodes. When reading this, train.py automagically adds in the opposite direction of this link if it doesn't exist yet.
+
+# Pathfinding
+
+Every time a train gets a new destination, it finds a path towards it. This is done with the A* algorithm. If there is no connection to the start and end nodes, the train will search through all the nodes in the map before giving up, which will take quite a bit of time. If you notice lag spikes, make sure there is a connection between all the nodes in your map! To help you find the problem, a debug message is emitted when the route can't be found. (Also, you can see trains with a giant delay because they can't follow a non-existent route).

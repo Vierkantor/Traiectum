@@ -63,6 +63,8 @@ def FindRoute(begin, end):
 				open.append((next, g, g + Distance(Data.nodes[next], Data.nodes[end])));
 				dirs[next] = current[0];
 	
+	print("No path between {} and {}".format(begin, end));
+	
 	return False;
 
 def MakePath(begin, end, dirs):
