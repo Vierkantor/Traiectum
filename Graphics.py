@@ -48,6 +48,8 @@ def Draw():
 	
 	for place in Data.places:
 		pos = GetPos(Data.nodes[Data.places[place]]);
+		if pos[0] < 0 or pos[0] > width or pos[1] < 0 or pos[1] > height:
+			continue;
 		pygame.draw.circle(screen, (0, 0, 0), pos, 3, 0);
 		text = font.render(str(place), 1, (0, 0, 0));
 		textpos = text.get_rect().move((pos[0], pos[1] - 12));
