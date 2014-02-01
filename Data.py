@@ -85,6 +85,11 @@ class Train:
 			elif self.path == False: # no way to continue
 				return;
 			elif len(self.path) == 1:
+				# we arrived at the destination
+				# warn if we're too late
+				if self.service[self.order + 1][0] < frameTime - 1:
+					print("{} arrived +{} at {}".format(self.composition, int(frameTime - self.service[self.order + 1][0]), self.path[0]));
+				
 				self.v = 0;
 				self.distance = 0;
 				self.pos = nodes[self.path[0]];
