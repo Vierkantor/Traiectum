@@ -3,7 +3,7 @@ import pygame;
 
 import Graphics;
 import Path;
-
+	
 def Time(hr = 0, min = 0, sec = 0):
 	if hr < 2:
 		hr += 24;
@@ -12,6 +12,7 @@ def Time(hr = 0, min = 0, sec = 0):
 clock = pygame.time.Clock();
 frameTime = 120;
 
+# the time (in minutes) elapsing every tick
 timeStep = 30 / 1000;
 
 def UpdateTime():
@@ -92,19 +93,27 @@ class Train:
 					self.path = [];
 			else:
 				lineDistance = Path.Distance(nodes[self.path[0]], nodes[self.path[1]]);
-	
+				
+				# accelerate
 				if len(self.path) == 2 and self.v * (self.service[self.order + 1][0] - frameTime) > (lineDistance - self.distance):
-					if self.v > 0.001:
-						self.v -= 0.1 * timeStep;
+					# brake for an upcoming station
+					if self.v > 100:
+						# decelerate by about 6 m/s^2
+						self.v -= 20000 * timeStep;
 					if self.v <= 0:
 						self.v = 0;
 				else:
-					if self.v <= 0:
-						self.v = 0.001;
-					self.v += timeStep * 0.00005 / self.v;
+					# if the velocity is too low, accelerate by about 6 m/s^2
+					if self.v <= 10:
+						self.v += 20000 * timeStep;
+					else:
+						self.v += timeStep * 200000 / self.v;
 				
+				# move the train
 				self.distance += self.v * timeStep;
-				self.pos = Path.Average(nodes[self.path[1]], nodes[self.path[0]], self.distance / lineDistance);
+				self.pos = Path.Move(nodes[self.path[1]], nodes[self.path[0]], self.distance / lineDistance);
+				
+				# move to the next line segment if we pass the end of this one
 				if self.distance > lineDistance:
 					del self.path[0];
 					self.distance -= lineDistance;

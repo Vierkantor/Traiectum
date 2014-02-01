@@ -3,10 +3,32 @@ import math;
 
 import Data;
 
+# distance (in m) between the begin and end points (as coordinates)
 def Distance(begin, end):
-	return math.sqrt((begin[0] - end[0]) ** 2 + (begin[1] - end[1]) ** 2);
+	if begin == end:
+		return 0;
+	
+	begin = (begin[0] / 180 * math.pi, begin[1] / 180 * math.pi);
+	end = (end[0] / 180 * math.pi, end[1] / 180 * math.pi);
 
-def Average(a, b, weight = 0.5):
+	# begin and end points as coordinates in R^3 (with ||begin|| = ||end|| = 1)
+	by = math.sin(begin[0]);
+	ey = math.sin(end[0]);
+	
+	bx = math.cos(begin[0]) * math.cos(begin[1]);
+	ex = math.cos(end[0]) * math.cos(end[1]);
+	
+	bz = math.cos(begin[0]) * math.sin(begin[1]);
+	ez = math.cos(end[0]) * math.sin(end[1]);
+	
+	try:
+		# the angle between two points is acos(dot product / length product (= 1) ), multiply by sphere radius for actual distance
+		return 6400000 * math.acos(bx * ex + by * ey + bz * ez);
+	except ValueError as e:
+		print(bx, by, bz, ex, ey, ez, begin, end);
+		raise e;
+
+def Move(a, b, weight = 0.5):
 	return (a[0] * weight + b[0] * (1 - weight), a[1] * weight + b[1] * (1 - weight));
 
 def FindRoute(begin, end):

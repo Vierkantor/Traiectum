@@ -42,7 +42,7 @@ while 1:
 		elif event.type == pygame.MOUSEBUTTONDOWN:
 			if event.button == 1: # center on a train
 				worldPos = Graphics.GetWorldPos(pygame.mouse.get_pos());
-				smallestDistance = 0.01;
+				smallestDistance = 1000;
 				
 				# check all trains
 				for trainID in Data.trains:
