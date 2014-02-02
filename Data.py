@@ -67,13 +67,24 @@ def Join(list):
 	result.append((1560, result[-1][1]));
 	return result;
 
+class Node:
+	def __init__(self, name, pos):
+		self.name = name;
+		self.pos = pos;
+	
+	def Draw(self, screen):
+		screenPos = Graphics.GetPos(self.pos);
+		text = Graphics.font.render(str(self.name), 1, (0, 0, 0));
+		textpos = text.get_rect().move(screenPos);
+		screen.blit(text, textpos);
+
 class Train:
 	def __init__(self, composition, serviceName, service):
 		self.composition = composition;
 		self.serviceName = serviceName;
 		self.service = service;
 		self.order = 0;
-		self.pos = nodes[self.service[self.order][1]];
+		self.pos = nodes[self.service[self.order][1]].pos;
 		self.v = 0;
 		self.distance = 0;
 		self.path = Path.FindRoute(self.service[self.order][1], self.service[self.order + 1][1]);
@@ -92,12 +103,12 @@ class Train:
 				
 				self.v = 0;
 				self.distance = 0;
-				self.pos = nodes[self.path[0]];
+				self.pos = nodes[self.path[0]].pos;
 				if self.service[self.order + 1][0] < frameTime:
 					self.order += 1;
 					self.path = [];
 			else:
-				lineDistance = Path.Distance(nodes[self.path[0]], nodes[self.path[1]]);
+				lineDistance = Path.Distance(nodes[self.path[0]].pos, nodes[self.path[1]].pos);
 				
 				# move the train
 				self.distance += self.v * timeStep;
@@ -125,7 +136,7 @@ class Train:
 				
 				# apply the acceleration too
 				self.distance += 0.5 * a * timeStep * timeStep;
-				self.pos = Path.Move(nodes[self.path[1]], nodes[self.path[0]], self.distance / lineDistance);
+				self.pos = Path.Move(nodes[self.path[1]].pos, nodes[self.path[0]].pos, self.distance / lineDistance);
 				
 				# move to the next line segment if we pass the end of this one
 				if self.distance > lineDistance:

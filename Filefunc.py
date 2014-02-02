@@ -193,7 +193,7 @@ def LoadData():
 					
 					nodeData = re.match("\s*(\w+)\s*->\s*(\d+)\s*->\s*(\-?[\d\.]+)\s*,\s*(\-?[\d\.]+)", text);
 					if nodeData != None:
-						Data.nodes[int(nodeData.group(2))] = (float(nodeData.group(3)), float(nodeData.group(4)));
+						Data.nodes[int(nodeData.group(2))] = Data.Node(int(nodeData.group(2)), (float(nodeData.group(3)), float(nodeData.group(4))));
 						Data.places[nodeData.group(1)] = int(nodeData.group(2));
 						
 						text = text[nodeData.end(0):];
@@ -201,7 +201,7 @@ def LoadData():
 					
 					nodeData = re.match("\s*(\d+)\s*->\s*(\-?[\d\.]+)\s*,\s*(\-?[\d\.]+)", text);
 					if nodeData != None:
-						Data.nodes[int(nodeData.group(1))] = (float(nodeData.group(2)), float(nodeData.group(3)));
+						Data.nodes[int(nodeData.group(1))] = Data.Node(int(nodeData.group(1)), (float(nodeData.group(2)), float(nodeData.group(3))));
 						
 						text = text[nodeData.end(0):];
 						continue;
