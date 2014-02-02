@@ -99,23 +99,32 @@ class Train:
 			else:
 				lineDistance = Path.Distance(nodes[self.path[0]], nodes[self.path[1]]);
 				
-				# accelerate
+				# move the train
+				self.distance += self.v * timeStep;
+				
+				# determine our movement
+				a = 0;
 				if len(self.path) == 2 and self.v * (self.service[self.order + 1][0] - frameTime) > (lineDistance - self.distance):
 					# brake for an upcoming station
 					if self.v > 100:
 						# decelerate by about 6 m/s^2
-						self.v -= 20000 * timeStep;
-					if self.v <= 0:
-						self.v = 0;
+						a = -20000;
 				else:
 					# if the velocity is too low, accelerate by about 6 m/s^2
 					if self.v <= 20:
-						self.v += 20000 * timeStep;
+						a = 20000;
 					else:
-						self.v += timeStep * 400000 / self.v;
+						a = 400000 / self.v;
 				
-				# move the train
-				self.distance += self.v * timeStep;
+				# accelerate how we want
+				self.v += a * timeStep;
+				
+				# round off the speed
+				if self.v <= 0:
+					self.v = 0;
+				
+				# apply the acceleration too
+				self.distance += 0.5 * a * timeStep * timeStep;
 				self.pos = Path.Move(nodes[self.path[1]], nodes[self.path[0]], self.distance / lineDistance);
 				
 				# move to the next line segment if we pass the end of this one
