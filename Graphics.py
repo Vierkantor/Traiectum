@@ -66,7 +66,7 @@ def Draw():
 	for train in Data.trains:
 		Data.trains[train].Draw(screen);
 	
-	text = font.render(str(int(Data.frameTime // 60)) + ":" + str(int(Data.frameTime % 60)), 1, (0, 0, 0));
+	text = font.render(str(int(Data.frameTime // 60)).zfill(2) + ":" + str(int(Data.frameTime % 60)).zfill(2), 1, (0, 0, 0));
 	textpos = text.get_rect();
 	screen.blit(text, textpos);
 	
