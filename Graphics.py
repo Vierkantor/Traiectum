@@ -23,11 +23,11 @@ def SVGPos(pos):
 	return (pos[1] * 1000, pos[0] * -1000);
 
 def Transform(pos):
-	return (int((pos[0] - center[0]) * scale * parallelCorrection), int((pos[1] - center[1]) * scale));
+	return (int((pos[0] - center[0]) * scale), int((pos[1] - center[1]) * scale * parallelCorrection));
 
 def InvTransform(pos):
 	print(pos);
-	return (pos[0] / scale / parallelCorrection + center[0], pos[1] / scale + center[1]);
+	return (pos[0] / scale + center[0], pos[1] / scale / parallelCorrection + center[1]);
 
 def GetWorldPos(pos):
 	return InvTransform((-(pos[1] - 384), pos[0] - 512));
