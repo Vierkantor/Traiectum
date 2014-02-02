@@ -217,7 +217,7 @@ def SaveData():
 		
 		data.write("nodes:\n");
 		for node in sort_nicely(Data.nodes.items()):
-			data.write("\t{0} -> {1}, {2}\n".format(node[0], node[1][0], node[1][1]));
+			data.write("\t{0} -> {1}, {2}\n".format(node[0], node[1].pos[0], node[1].pos[1]));
 		data.write(":end\n\n");
 		
 		data.write("links:\n");
