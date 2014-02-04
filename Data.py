@@ -12,8 +12,8 @@ def Time(hr = 0, min = 0, sec = 0):
 clock = pygame.time.Clock();
 frameTime = 120;
 
-# the time (in minutes) elapsing every tick
-timeStep = 30 / 1000;
+# the time (in minutes) elapsing every tick (= 1/30s)
+timeStep = 0.5 / 30;
 
 def UpdateTime():
 	global frameTime;
