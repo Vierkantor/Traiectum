@@ -35,7 +35,7 @@ def FindRoute(begin, end):
 	if begin == end:
 		return [end];
 
-	closed = [];
+	closed = {};
 	open = [(begin, 0, Distance(Data.nodes[begin].pos, Data.nodes[end].pos))];
 	dirs = {};
 	
@@ -43,7 +43,7 @@ def FindRoute(begin, end):
 		open = sorted(open, key = lambda x: x[2]);
 		current = open[0];
 		open = open[1:];
-		closed.append(current);
+		closed[current[0]] = current;
 		
 		if current[0] == end:
 			return MakePath(begin, end, dirs);
@@ -51,13 +51,11 @@ def FindRoute(begin, end):
 		for next in Data.GetLinks(current[0]):
 			skip = False;
 			g = current[1] + Distance(Data.nodes[current[0]].pos, Data.nodes[next].pos);
-			for closedNode in closed:
-				if closedNode[0] == next:
-					if g < closedNode[1]:
-						closed.remove(closedNode);
-					else:
-						skip = True;
-					break;			
+			if next in closed:
+				if g < closed[next][1]:
+					del closed[next];
+				else:
+					skip = True;		
 			
 			if not skip:
 				open.append((next, g, g + Distance(Data.nodes[next].pos, Data.nodes[end].pos)));
