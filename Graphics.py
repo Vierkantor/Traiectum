@@ -46,20 +46,22 @@ def Draw():
 	if following != None:
 		center = following.pos;
 	
-	for place in Data.places:
-		pos = GetPos(Data.nodes[Data.places[place]].pos);
-		if pos[0] < 0 or pos[0] > width or pos[1] < 0 or pos[1] > height:
-			continue;
-		pygame.draw.circle(screen, (0, 0, 0), pos, 3, 0);
-		text = font.render(str(place), 1, (0, 0, 0));
-		textpos = text.get_rect().move((pos[0], pos[1] - 12));
-		screen.blit(text, textpos);
+	if scale > 256:
+		for place in Data.places:
+			pos = GetPos(Data.nodes[Data.places[place]].pos);
+			if pos[0] < 0 or pos[0] > width or pos[1] < 0 or pos[1] > height:
+				continue;
+			pygame.draw.circle(screen, (0, 0, 0), pos, 3, 0);
+			text = font.render(str(place), 1, (0, 0, 0));
+			textpos = text.get_rect().move((pos[0], pos[1] - 12));
+			screen.blit(text, textpos);
 	
 	for node in Data.links:
 		Data.nodes[node].Draw(screen);
-		for link in Data.links[node]:
-			pygame.draw.line(screen, (0, 0, 0), GetPos(Data.nodes[node].pos), GetPos(Data.nodes[link].pos), 1);
-	
+		if scale > 4096:
+			for link in Data.links[node]:
+				pygame.draw.line(screen, (0, 0, 0), GetPos(Data.nodes[node].pos), GetPos(Data.nodes[link].pos), 1);
+
 	for train in Data.trains:
 		Data.trains[train].Draw(screen);
 	
