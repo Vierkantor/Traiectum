@@ -46,7 +46,7 @@ def Draw():
 	if following != None:
 		center = following.pos;
 	
-	if scale > 256:
+	if scale > 1024:
 		for place in Data.places:
 			pos = GetPos(Data.nodes[Data.places[place]].pos);
 			if pos[0] < 0 or pos[0] > width or pos[1] < 0 or pos[1] > height:
@@ -57,7 +57,7 @@ def Draw():
 			screen.blit(text, textpos);
 	
 	for node in Data.links:
-		if scale > 4096:
+		if scale > 65536:
 			Data.nodes[node].Draw(screen);
 		for link in Data.links[node]:
 			pygame.draw.line(screen, (0, 0, 0), GetPos(Data.nodes[node].pos), GetPos(Data.nodes[link].pos), 1);
