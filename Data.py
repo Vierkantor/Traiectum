@@ -121,7 +121,7 @@ class Train:
 						self.passengers.remove(passenger);
 						
 						if not passenger.destination.HasPlatform(self.path[0]):
-							passenger.pos = self.path[0];
+							passenger.pos = nodes[self.path[0]].station;
 							passenger.destination.passengers.append(passenger);
 				
 				self.v = 0;
