@@ -191,7 +191,7 @@ def LoadData():
 					
 					placeData = re.match("\s*(\w+)\s*->\s*(\w+)", text);
 					if placeData != None:
-						if placeData.group(1) not in Data.stations:
+						if placeData.group(1) not in Station.stations:
 							Station.stations[placeData.group(1)] = Station.Station(placeData.group(1));
 					
 						Station.stations[placeData.group(1)].AddPlatform(placeData.group(2));
