@@ -97,6 +97,8 @@ class Train:
 		self.v = 0;
 		self.distance = 0;
 		self.path = Path.FindRoute(self.service[self.order][1], self.service[self.order + 1][1]);
+		
+		self.passengers = 0;
 	
 	def Update(self):
 		try:
@@ -113,6 +115,11 @@ class Train:
 				self.v = 0;
 				self.distance = 0;
 				self.pos = nodes[self.path[0]].pos;
+				
+				# take in passengers
+				self.passengers = nodes[self.path[0]].passengers;
+				nodes[self.path[0]].passengers = 0;
+				
 				if self.service[self.order + 1][0] < frameTime:
 					self.order += 1;
 					self.path = [];
@@ -159,9 +166,9 @@ class Train:
 		screenPos = Graphics.GetPos(self.pos);
 		pygame.draw.circle(screen, (255, 0, 0), screenPos, 2, 0);
 		if self.service[self.order + 1][0] < frameTime - 1:
-			text = Graphics.font.render("{} +{}".format(self.composition, int(frameTime - self.service[self.order + 1][0])), 1, (0, 0, 0));
+			text = Graphics.font.render("{} +{} (p: {})".format(self.composition, int(frameTime - self.service[self.order + 1][0]), self.passengers), 1, (0, 0, 0));
 		else:
-			text = Graphics.font.render("{}".format(self.composition), 1, (0, 0, 0));
+			text = Graphics.font.render("{} (p: {})".format(self.composition, self.passengers), 1, (0, 0, 0));
 		textpos = text.get_rect().move((screenPos[0], screenPos[1]));
 		pygame.draw.rect(screen, (255, 255, 255), (screenPos[0], screenPos[1], 100, 12));
 		pygame.draw.rect(screen, (0, 0, 0), (screenPos[0], screenPos[1], 100, 12), 1);
