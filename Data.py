@@ -1,5 +1,7 @@
 from __future__ import division;
+import math;
 import pygame;
+import random;
 
 import Graphics;
 import Path;
@@ -71,10 +73,17 @@ class Node:
 	def __init__(self, name, pos):
 		self.name = name;
 		self.pos = pos;
+		self.passengers = 0;
+	
+	def Update(self):
+		passengersPerTick = timeStep / 10;
+		
+		if random.random() < (passengersPerTick - math.floor(passengersPerTick)):
+			self.passengers += math.ceil(passengersPerTick);
 	
 	def Draw(self, screen):
 		screenPos = Graphics.GetPos(self.pos);
-		text = Graphics.font.render(str(self.name), 1, (0, 0, 0));
+		text = Graphics.font.render(str(self.name) + " " + str(self.passengers), 1, (0, 0, 0));
 		textpos = text.get_rect().move(screenPos);
 		screen.blit(text, textpos);
 

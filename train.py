@@ -72,6 +72,13 @@ while 1:
 		except:
 			print(train);
 			raise;
+	
+	for node in Data.nodes:
+		try:
+			Data.nodes[node].Update();
+		except:
+			print(node);
+			raise;
 
 	Graphics.Draw();
 	
