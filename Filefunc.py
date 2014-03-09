@@ -1,4 +1,5 @@
 import re;
+import sys;
 
 import Data;
 
@@ -43,10 +44,20 @@ def LoadServices():
 				text = text[section.end(0):];
 			
 				if section.group(1) == "services":
+					sys.stdout.write("Parsing services.");
+					sys.stdout.flush();
+					parseCount = 0;
+					
 					while True:
+						parseCount += 1;
+						if parseCount % 100 == 0:
+							sys.stdout.write(".");
+							sys.stdout.flush();
+						
 						endMark = re.match("\s*\:end", text);
 						if endMark != None:
 							text = text[endMark.end(0):];
+							print("");
 							break;
 
 						addService = re.match("\s*([^:]+)\:\s*[Aa][Dd][Dd]\s*\(\s*(\d+)\s*\,\s*([^\:\)]+)\s*\)", text);
@@ -96,6 +107,7 @@ def LoadServices():
 							continue;
 			
 				if section.group(1) == "trains":
+					print("Parsing trains...");
 					while True:
 						endMark = re.match("\s*\:end", text);
 						if endMark != None:
@@ -154,6 +166,7 @@ def LoadData():
 			text = text[section.end(0):];
 			
 			if section.group(1) == "places":
+				print("Parsing places...");
 				while True:
 					endMark = re.match("\s*\:end", text);
 					if endMark != None:
@@ -168,6 +181,7 @@ def LoadData():
 						continue;
 	
 			if section.group(1) == "links":
+				print("Parsing links...");
 				while True:
 					endMark = re.match("\s*\:end", text);
 					if endMark != None:
@@ -185,6 +199,7 @@ def LoadData():
 					raise Exception("Invalid syntax near {}".format(text[:100]));
 	
 			if section.group(1) == "nodes":
+				print("Parsing nodes...");
 				while True:
 					endMark = re.match("\s*\:end", text);
 					if endMark != None:
