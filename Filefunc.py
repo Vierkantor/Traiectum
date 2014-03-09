@@ -2,6 +2,7 @@ import re;
 import sys;
 
 import Data;
+import Station;
 
 def tryint(s):
     try:
@@ -179,6 +180,24 @@ def LoadData():
 						
 						text = text[placeData.end(0):];
 						continue;
+			
+			if section.group(1) == "stations":
+				print("Parsing stations...");
+				while True:
+					endMark = re.match("\s*\:end", text);
+					if endMark != None:
+						text = text[endMark.end(0):];
+						break;
+					
+					placeData = re.match("\s*(\w+)\s*->\s*(\w+)", text);
+					if placeData != None:
+						if placeData.group(1) not in Data.stations:
+							Station.stations[placeData.group(1)] = Station.Station(placeData.group(1));
+					
+						Station.stations[placeData.group(1)].AddPlatform(placeData.group(2));
+						
+						text = text[placeData.end(0):];
+						continue;
 	
 			if section.group(1) == "links":
 				print("Parsing links...");
@@ -244,6 +263,12 @@ def SaveData():
 		data.write("places:\n");
 		for place in sort_nicely(Data.places.items()):
 			data.write("\t{0} -> {1}\n".format(place[0], place[1]));
+		data.write(":end\n\n");
+		
+		data.write("stations:\n");
+		for place in sort_nicely(Station.stations.items()):
+			for platform in sort_nicely(place[1].platforms):
+				data.write("\t{0} -> {1}\n".format(place[1].name, platform));
 		data.write(":end\n\n");
 		
 	with open("servicedata.txt", "w") as data:
