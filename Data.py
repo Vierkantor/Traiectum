@@ -5,6 +5,7 @@ import random;
 
 import Graphics;
 import Path;
+import Passenger;
 	
 def Time(hr = 0, min = 0, sec = 0):
 	if hr < 2:
@@ -57,6 +58,14 @@ def AddLink(begin, end):
 def Add(time, service):
 	return map(lambda x: (x[0] + time, x[1]), service);
 
+# find name of node if it exists, else return its number
+def NodeName(node):
+	for place in places:
+		if places[place] == node:
+			return place;
+	
+	return node;
+
 # joins a list of orders together
 def Join(list):
 	result = [(0, services[list[0]][0][1])];
@@ -73,17 +82,11 @@ class Node:
 	def __init__(self, name, pos):
 		self.name = name;
 		self.pos = pos;
-		self.passengers = 0;
-	
-	def Update(self):
-		passengersPerTick = timeStep / 10;
-		
-		if random.random() < (passengersPerTick - math.floor(passengersPerTick)):
-			self.passengers += math.ceil(passengersPerTick);
+		self.station = None;
 	
 	def Draw(self, screen):
 		screenPos = Graphics.GetPos(self.pos);
-		text = Graphics.font.render(str(self.name) + " " + str(self.passengers), 1, (0, 0, 0));
+		text = Graphics.font.render(str(self.name), 1, (0, 0, 0));
 		textpos = text.get_rect().move(screenPos);
 		screen.blit(text, textpos);
 
@@ -98,7 +101,7 @@ class Train:
 		self.distance = 0;
 		self.path = Path.FindRoute(self.service[self.order][1], self.service[self.order + 1][1]);
 		
-		self.passengers = 0;
+		self.passengers = [];
 	
 	def Update(self):
 		try:
@@ -112,15 +115,30 @@ class Train:
 				if self.service[self.order + 1][0] < frameTime - 1:
 					print("{} arrived +{} at {}".format(self.composition, int(frameTime - self.service[self.order + 1][0]), self.path[0]));
 				
+				for passenger in self.passengers:
+					if passenger.ShouldDisembark(self.path[0]):
+						print("Passenger to {} left {} at {}".format(passenger.destination.name, self.composition, NodeName(self.path[0])));
+						self.passengers.remove(passenger);
+						
+						if not passenger.destination.HasPlatform(self.path[0]):
+							passenger.pos = self.path[0];
+							passenger.destination.passengers.append(passenger);
+				
 				self.v = 0;
 				self.distance = 0;
 				self.pos = nodes[self.path[0]].pos;
 				
-				# take in passengers
-				self.passengers = nodes[self.path[0]].passengers;
-				nodes[self.path[0]].passengers = 0;
-				
 				if self.service[self.order + 1][0] < frameTime:
+					if nodes[self.path[0]].station != None:
+						# take in passengers
+						for passenger in nodes[self.path[0]].station.passengers:
+							if passenger.ShouldEmbark(self):
+								print("Passenger to {} boarded {}".format(passenger.destination.name, self.composition));
+								passenger.pos = None;
+								passenger.route = passenger.route[1:];
+								self.passengers.append(passenger);
+								nodes[self.path[0]].station.passengers.remove(passenger);
+					
 					self.order += 1;
 					self.path = [];
 			else:
@@ -165,14 +183,15 @@ class Train:
 	def Draw(self, screen):
 		screenPos = Graphics.GetPos(self.pos);
 		pygame.draw.circle(screen, (255, 0, 0), screenPos, 2, 0);
-		if self.service[self.order + 1][0] < frameTime - 1:
-			text = Graphics.font.render("{} +{} (p: {})".format(self.composition, int(frameTime - self.service[self.order + 1][0]), self.passengers), 1, (0, 0, 0));
-		else:
-			text = Graphics.font.render("{} (p: {})".format(self.composition, self.passengers), 1, (0, 0, 0));
-		textpos = text.get_rect().move((screenPos[0], screenPos[1]));
-		pygame.draw.rect(screen, (255, 255, 255), (screenPos[0], screenPos[1], 100, 12));
-		pygame.draw.rect(screen, (0, 0, 0), (screenPos[0], screenPos[1], 100, 12), 1);
-		screen.blit(text, textpos);
+		if Graphics.scale > 1024:
+			if self.service[self.order + 1][0] < frameTime - 1:
+				text = Graphics.font.render("{} +{} (p: {})".format(self.composition, int(frameTime - self.service[self.order + 1][0]), len(self.passengers)), 1, (0, 0, 0));
+			else:
+				text = Graphics.font.render("{} (p: {})".format(self.composition, len(self.passengers)), 1, (0, 0, 0));
+			textpos = text.get_rect().move((screenPos[0], screenPos[1]));
+			pygame.draw.rect(screen, (255, 255, 255), (screenPos[0], screenPos[1], 100, 12));
+			pygame.draw.rect(screen, (0, 0, 0), (screenPos[0], screenPos[1], 100, 12), 1);
+			screen.blit(text, textpos);
 	
 	def __str__(self):
 		return "Data.Train, composition={0}, serviceName={1}, service={2}".format(str(self.composition), str(self.serviceName), str(self.service));

@@ -61,7 +61,7 @@ def Draw():
 			Data.nodes[node].Draw(screen);
 		for link in Data.links[node]:
 			pygame.draw.line(screen, (0, 0, 0), GetPos(Data.nodes[node].pos), GetPos(Data.nodes[link].pos), 1);
-
+	
 	for train in Data.trains:
 		Data.trains[train].Draw(screen);
 	

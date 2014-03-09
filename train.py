@@ -11,6 +11,7 @@ import Data;
 import Filefunc;
 import Graphics;
 import Path;
+import Station;
 
 def Add(time, service):
 	return map(lambda x: (x[0] + time, x[1]), services[service]);
@@ -73,11 +74,11 @@ while 1:
 			print(train);
 			raise;
 	
-	for node in Data.nodes:
+	for station in Station.stations:
 		try:
-			Data.nodes[node].Update();
+			Station.stations[station].Update();
 		except:
-			print(node);
+			print(station);
 			raise;
 
 	Graphics.Draw();

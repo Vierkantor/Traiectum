@@ -61,7 +61,7 @@ def FindRoute(begin, end):
 				open.append((next, g, g + Distance(Data.nodes[next].pos, Data.nodes[end].pos)));
 				dirs[next] = current[0];
 	
-	print("No path between {} and {}".format(begin, end));
+	print("No path between {} and {}".format(Data.NodeName(begin), Data.NodeName(end)));
 	
 	return False;
 
