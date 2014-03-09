@@ -57,10 +57,10 @@ def Draw():
 			screen.blit(text, textpos);
 	
 	for node in Data.links:
-		Data.nodes[node].Draw(screen);
 		if scale > 4096:
-			for link in Data.links[node]:
-				pygame.draw.line(screen, (0, 0, 0), GetPos(Data.nodes[node].pos), GetPos(Data.nodes[link].pos), 1);
+			Data.nodes[node].Draw(screen);
+		for link in Data.links[node]:
+			pygame.draw.line(screen, (0, 0, 0), GetPos(Data.nodes[node].pos), GetPos(Data.nodes[link].pos), 1);
 
 	for train in Data.trains:
 		Data.trains[train].Draw(screen);
