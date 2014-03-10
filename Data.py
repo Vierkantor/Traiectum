@@ -120,9 +120,9 @@ class Train:
 						print("Passenger left {} at {}".format(self.composition, NodeName(self.path[0])));
 						self.passengers.remove(passenger);
 						
-						if not passenger.destination.HasPlatform(self.path[0]):
+						if len(passenger.route) > 1:
 							passenger.pos = nodes[self.path[0]].station;
-							passenger.destination.passengers.append(passenger);
+							passenger.pos.passengers.append(passenger);
 				
 				self.v = 0;
 				self.distance = 0;
