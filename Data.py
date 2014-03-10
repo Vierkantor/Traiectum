@@ -117,7 +117,6 @@ class Train:
 				
 				for passenger in self.passengers:
 					if passenger.ShouldDisembark(self.path[0]):
-						print("Passenger left {} at {}".format(self.composition, NodeName(self.path[0])));
 						self.passengers.remove(passenger);
 						
 						if len(passenger.route) > 1:
@@ -133,7 +132,6 @@ class Train:
 						# take in passengers
 						for passenger in nodes[self.path[0]].station.passengers:
 							if passenger.ShouldEmbark(self):
-								print("Passenger boarded {}".format(self.composition));
 								passenger.pos = None;
 								passenger.route = passenger.route[1:];
 								self.passengers.append(passenger);
@@ -182,7 +180,7 @@ class Train:
 	
 	def Draw(self, screen):
 		screenPos = Graphics.GetPos(self.pos);
-		pygame.draw.circle(screen, (255, 0, 0), screenPos, 2, 0);
+		pygame.draw.circle(screen, (min(255, len(self.passengers)), max(0, 255 - len(self.passengers)), 0), screenPos, 2, 0);
 		if Graphics.scale > 1024:
 			if self.service[self.order + 1][0] < frameTime - 1:
 				text = Graphics.font.render("{} +{} (p: {})".format(self.composition, int(frameTime - self.service[self.order + 1][0]), len(self.passengers)), 1, (0, 0, 0));
