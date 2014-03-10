@@ -14,13 +14,20 @@ class Passenger:
 		self.MakeRoute();
 	
 	def AddStop(self):
+		# the previous stop
 		last = self.route[-1];
-		service = random.choice([last[1].DeparturesFrom(last[0])]);
+		
+		# find a new train
+		departures = [x for x in last[1].DeparturesFrom(last[0])];
+		if len(departures) < 1:
+			return;
+		
+		service = random.choice(departures);
 		
 		# find all the stops after we can board
 		stops = [];
 		boarded = False;
-		for stop in service:
+		for stop in Data.services[service]:
 			if last[1].HasPlatform(stop[1]):
 				boarded = True;
 			elif not boarded:
@@ -30,16 +37,16 @@ class Passenger:
 		
 		# if there are no stops after this, give up
 		if len(stops) < 1:
-			print("No stops");
 			return;
 		
 		# find a new station
 		new = random.choice(stops);
+		station = Data.nodes[new[1]].station;
 		# make sure we actually stop there
-		if new[1].station == None:
+		if station == None:
 			return;
 		
-		self.route.append((new[0], new[1].station));
+		self.route.append((new[0], station));
 	
 	def MakeRoute(self):
 		self.route = [(Data.frameTime, self.pos)];
@@ -48,8 +55,6 @@ class Passenger:
 		# about 4 stops (pos, next, approx 2 more)
 		while random.random() < 0.5:
 			self.AddStop();
-		
-		print(map(lambda x: "{}: {}".format(x[0], x[1].name), self.route))
 	
 	def ShouldEmbark(self, train):
 		if len(self.route) == 1:
