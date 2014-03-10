@@ -63,6 +63,12 @@ Locations are names for nodes. Multiple locations can point to the same node but
 
 In data.txt, locations are listed under places: as a named node id. To help manually inputting, they can also be added as a named node (which is still a named coordinate pair), in the nodes: section.
 
+# Stations
+
+Stations are groups of locations where passengers can transfer between trains.
+
+In data.txt, stations are listed under stations: as a named location name.
+
 # Links
 
 Links represent a route trains can travel on. They are generally two-directional (so a link from node 1 to 2 also makes a link between 2 and 1). A planned feature is to prevent this explicitly somewhere, but this is not yet implemented.
