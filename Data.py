@@ -117,7 +117,7 @@ class Train:
 				
 				for passenger in self.passengers:
 					if passenger.ShouldDisembark(self.path[0]):
-						print("Passenger to {} left {} at {}".format(passenger.destination.name, self.composition, NodeName(self.path[0])));
+						print("Passenger left {} at {}".format(self.composition, NodeName(self.path[0])));
 						self.passengers.remove(passenger);
 						
 						if not passenger.destination.HasPlatform(self.path[0]):
@@ -133,7 +133,7 @@ class Train:
 						# take in passengers
 						for passenger in nodes[self.path[0]].station.passengers:
 							if passenger.ShouldEmbark(self):
-								print("Passenger to {} boarded {}".format(passenger.destination.name, self.composition));
+								print("Passenger boarded {}".format(self.composition));
 								passenger.pos = None;
 								passenger.route = passenger.route[1:];
 								self.passengers.append(passenger);
