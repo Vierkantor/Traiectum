@@ -66,8 +66,8 @@ while True:
 				if begin < end:
 					path = drawing.path();
 					path.push("M");
-					path.push(Graphics.SVGPos(Data.nodes[begin]));
-					path.push(Graphics.SVGPos(Data.nodes[end]));
+					path.push(Graphics.SVGPos(Data.nodes[begin].pos));
+					path.push(Graphics.SVGPos(Data.nodes[end].pos));
 					drawing.add(path.stroke('black', width=0.01));
 		drawing.save();
 		print("Done.");
