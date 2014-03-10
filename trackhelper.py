@@ -16,7 +16,7 @@ print(commands);
 while True:
 	command = raw_input();
 	print(command);
-	if command[0] == "h" or command[0] == "?":
+	if command == "" or command[0] == "h" or command[0] == "?":
 		print("Commands:");
 		print(commands);
 	elif command[0] == "l":
