@@ -37,5 +37,3 @@ class Station:
 				if stop[0] > time and stop[1] in self.nodes:
 					yield service;
 					break;
-	
-	

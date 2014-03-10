@@ -7,98 +7,67 @@ import Data;
 import Station;
 
 class Passenger:
-	def __init__(self, pos, destination = None):
-		if destination == None:
-			destination = random.choice(Station.stations.values());
-		
+	def __init__(self, pos):
 		self.pos = pos;
-		self.destination = destination;
+		self.route = [];
 		
-		self.route = None;
-		# where the route is calculated from
-		self.routePos = None;
+		self.MakeRoute();
 	
-	def MakePath(self, dirs):
-		try:
-			result = [(None, self.destination, None)];
-			while result[0][1] != self.pos:
-				result.insert(0, dirs[result[0][1]]);
+	def AddStop(self):
+		last = self.route[-1];
+		service = random.choice([last[1].DeparturesFrom(last[0])]);
 		
-			return result;
-		except KeyError:
-			print(dirs);
-			raise;
+		# find all the stops after we can board
+		stops = [];
+		boarded = False;
+		for stop in service:
+			if last[1].HasPlatform(stop[1]):
+				boarded = True;
+			elif not boarded:
+				continue;
+			else:
+				stops.append(stop);
+		
+		# if there are no stops after this, give up
+		if len(stops) < 1:
+			print("No stops");
+			return;
+		
+		# find a new station
+		new = random.choice(stops);
+		# make sure we actually stop there
+		if new[1].station == None:
+			return;
+		
+		self.route.append((new[0], new[1].station));
 	
-	# finds the quickest path between our position and our destination
-	# using Dijkstra's algorithm
 	def MakeRoute(self):
-		if self.pos == None or self.destination == None:
-			return None;
+		self.route = [(Data.frameTime, self.pos)];
+		self.AddStop();
 		
-		if self.pos == self.destination:
-			return [(None, self.destination)];
+		# about 4 stops (pos, next, approx 2 more)
+		while random.random() < 0.5:
+			self.AddStop();
 		
-		visited = set();
-		toVisit = collections.OrderedDict([(self.pos, Data.frameTime)]);
-		dirs = {self.pos: (None, self.pos, Data.frameTime)};
-	
-		while len(toVisit) > 0:
-			# get the next node with lowest distance
-			toVisit = collections.OrderedDict(sorted(toVisit.items(), key = lambda x: x[1], reverse = True));
-			current = toVisit.popitem();
-			visited.add(current[0]);
-			
-			# if we are done, stop
-			if current[0] == self.destination:
-				return self.MakePath(dirs);
-			
-			# find all the services we can get into
-			for service in current[0].DeparturesFrom(current[1] + 1):
-				# find all the stops we can get off at and add them
-				boarded = False;
-				for stop in Data.services[service]:
-					time = stop[0];
-					station = Data.nodes[stop[1]].station;
-					
-					# make sure the stop is at an actual station
-					if station == None:
-						continue;
-					
-					# make sure it's not before we get on the train
-					if not boarded and station != current[0]:
-						continue;
-					else:
-						boarded = True;
-					
-					# unless we've already reached them
-					if station in visited:
-						continue;
-					
-					# don't add it if we already have a quicker route to our node
-					if station in toVisit and toVisit[station] < time:
-						continue;
-					
-					# take a minute to exit the train
-					toVisit[station] = time;
-					# and save how we got here
-					dirs[station] = (service, current[0], time);
-		return None;
+		print(map(lambda x: "{}: {}".format(x[0], x[1].name), self.route))
 	
 	def ShouldEmbark(self, train):
-		if self.routePos != self.pos:
-			self.route = self.MakeRoute();
-			self.routePos = self.pos;
-			if self.route != None and len(self.route) > 1:
-				print(map(lambda x: "{}: {}".format(x[2], x[1].name), self.route))
-		
-		if self.route == None:
+		if len(self.route) == 1:
 			return False;
 		
-		return self.route[0][0] in train.serviceName;
+		boarded = False;
+		for stop in train.service:
+			if not (boarded or self.route[0][1].HasPlatform(stop[1])):
+				continue;
+			else:
+				boarded = True;
+			
+			if self.route[1][1].HasPlatform(stop[1]):
+				return True;
+		return False;
 	
 	def ShouldDisembark(self, node):
-		for stop in self.route:
-			if stop[1].HasPlatform(node):
-				return True;
+		if self.route[0][1].HasPlatform(node):
+			return True;
 		
 		return False;
