@@ -63,6 +63,9 @@ def Draw():
 			pygame.draw.line(screen, (0, 0, 0), GetPos(Data.nodes[node].pos), GetPos(Data.nodes[link].pos), 1);
 	
 	for train in Data.trains:
+		pos = GetPos(Data.trains[train]);
+		if pos[0] < 0 or pos[0] > width or pos[1] < 0 or pos[1] > height:
+			continue;
 		Data.trains[train].Draw(screen);
 	
 	text = font.render(str(int(Data.frameTime // 60)).zfill(2) + ":" + str(int(Data.frameTime % 60)).zfill(2), 1, (0, 0, 0));
