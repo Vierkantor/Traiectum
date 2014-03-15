@@ -57,8 +57,11 @@ class StringSlice:
 # returns a string, starting from the first non-whitespace character
 whitespace = " \t\n\r"
 def SkipWhitespace(text):
-	while text[0] in whitespace:
-		text = text[1:];
+	try:
+		while text[0] in whitespace:
+			text = text[1:];
+	except IndexError:
+		return "";
 	
 	return text;
 
@@ -78,26 +81,30 @@ def MatchInt(text, signed = True):
 	text = SkipWhitespace(text);
 	startText = text[:16];
 	
-	if signed:
-		# check if the int is negative
-		negative = False;
-		if text[0] == "+":
-			text = text[1:];
-		elif text[0] == "-":
-			text = text[1:];
-			negative = True;
-	else:
-		# it's always positive
-		negative = False;
-	
-	# actually make it into an int
-	number = 0;
 	length = 0;
-	while text[0] in '0123456789':
-		number *= 10;
-		number += int(text[0]);
-		text = text[1:];
-		length += 1;
+	try:
+		if signed:
+			# check if the int is negative
+			negative = False;
+			if text[0] == "+":
+				text = text[1:];
+			elif text[0] == "-":
+				text = text[1:];
+				negative = True;
+		else:
+			# it's always positive
+			negative = False;
+	
+		# actually make it into an int
+		number = 0;
+		while text[0] in '0123456789':
+			number *= 10;
+			number += int(text[0]);
+			text = text[1:];
+			length += 1;
+	except IndexError:
+		# end of file, so stop trying to parse
+		pass;
 	
 	# make sure there are digits
 	if length == 0:
@@ -124,9 +131,12 @@ def MatchFloat(text):
 def MatchName(text):
 	text = SkipWhitespace(text);
 	name = [];
-	while text[0] not in ":\n\r":
-		name.append(text[0]);
-		text = text[1:];
+	try:
+		while text[0] not in ":\n\r":
+			name.append(text[0]);
+			text = text[1:];
+	except IndexError:
+		pass;
 	
 	if name == []:
 		raise ParseError("Expected <name>, received {}".format(text[:16]));
