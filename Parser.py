@@ -37,3 +37,12 @@ def MatchFloat(text);
 	if match != None:
 		return (text[match.end(1):], float(match.group(1)));
 	raise ParseError("Expected <float>, received {}".format(text[:16]));
+
+# a name (used as key, so anything up to a ':')
+nameRegex = re.compile(r"([^\:]+)");
+def MatchName(text):
+	text = SkipWhitespace(text);
+	match = nameRegex.match(text);
+	if match != None:
+		return (text[match.end(1):], match.group(1));
+	raise ParseError("Expected <name>, received {}".format(text[:16]));
