@@ -57,7 +57,7 @@ oldStopSyntax = [
 	Parser.MatchText(")"), Parser.MatchText(","), # end of stop
 ];
 
-def LoadServices(filename = "servicedata.txt"):
+def LoadServices(filename = "servicedata.txt", loadIndicators = True):
 	with open(filename) as data:
 		text = data.read();
 		version = re.match("\s*version:\s*(\d+)", text);
@@ -78,13 +78,14 @@ def LoadServices(filename = "servicedata.txt"):
 				section = values[0];
 				
 				if section == "services":
-					sys.stdout.write("Parsing services.");
-					sys.stdout.flush();
+					if loadIndicators:
+						sys.stdout.write("Parsing services.");
+						sys.stdout.flush();
 					parseCount = 0;
 					
 					while True:
 						parseCount += 1;
-						if parseCount % 100 == 0:
+						if parseCount % 100 == 0 and loadIndicators:						
 							sys.stdout.write("\rParsing services." + "." * (parseCount // 100));
 							sys.stdout.flush();
 						
@@ -164,11 +165,14 @@ def LoadServices(filename = "servicedata.txt"):
 						
 						# make sure we hit an :end mark
 						text, _ = Parser.ParseFormat(text, endSyntax);
-						print("");
+						if loadIndicators:
+							print("");
 						break;
 			
 				if section == "trains":
-					print("Parsing trains...");
+					if loadIndicators:
+						print("Parsing trains...");
+					
 					while True:
 						# train:
 						try:
