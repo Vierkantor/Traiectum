@@ -56,7 +56,7 @@ def ParseFormat(text, syntax):
 	result = [];
 	
 	for element in syntax:
-		text, value = syntax.match(text);
+		text, value = element(text);
 		result.append(value);
 	
 	return text, result;
