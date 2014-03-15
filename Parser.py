@@ -59,4 +59,4 @@ def ParseFormat(text, syntax):
 		text, value = syntax.match(text);
 		result.append(value);
 	
-	return result;
+	return text, result;
