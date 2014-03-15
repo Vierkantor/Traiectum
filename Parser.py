@@ -35,7 +35,7 @@ def MatchInt(text):
 
 # checks that the text starts with a float (or integer)
 floatRegex = re.compile(r"\+?(\-?\d+(.\d*)?)");
-def MatchFloat(text);
+def MatchFloat(text):
 	text = SkipWhitespace(text);
 	match = floatRegex.match(text);
 	if match != None:
