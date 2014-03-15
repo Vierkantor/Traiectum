@@ -2,6 +2,7 @@ import re;
 import sys;
 
 import Data;
+import Parser;
 import Station;
 
 def tryint(s):
@@ -23,6 +24,33 @@ def sort_nicely(l):
     """ Sort the given list in the way that humans expect.
     """
     return sorted(l, key=lambda x: alphanum_key(x[0]))
+
+endSyntax = [
+	Parser.MatchText(":end")
+];
+
+addServiceSyntax = [
+	Parser.MatchName, Parser.MatchText(":"), # new service name
+	Parser.MatchText("Add"), Parser.MatchText("("), Parser.MatchInt, # minutes of difference
+	Parser.MatchText(","), Parser.MatchName, Parser.MatchText(")"), # old service
+];
+
+regularServiceSyntax = [
+	Parser.MatchName, Parser.MatchText(":"),
+];
+
+newStopSyntax = [
+	Parser.MatchInt, Parser.MatchText(","), Parser.MatchInt, Parser.MatchText(","), # time
+	Parser.MatchName, # place
+];
+
+oldStopSyntax = [
+	Parser.MatchText("("), Parser.MatchText("Time"), Parser.MatchText("("), # start of stop
+	Parser.MatchInt, Parser.MatchText(","), Parser.MatchInt, # time
+	Parser.MatchText(")"), Parser.MatchText(","), # end of time
+	Parser.MatchText('"'), Parser.MatchName, Parser.MatchText('"'), # name
+	Parser.MatchText(")"), Parser.MatchText(","), # end of stop
+];
 
 def LoadServices():
 	with open("servicedata.txt") as data:
@@ -52,60 +80,80 @@ def LoadServices():
 					while True:
 						parseCount += 1;
 						if parseCount % 100 == 0:
-							sys.stdout.write(".");
+							sys.stdout.write("\rParsing services." + "." * (parseCount // 100));
 							sys.stdout.flush();
 						
-						endMark = re.match("\s*\:end", text);
-						if endMark != None:
-							text = text[endMark.end(0):];
-							print("");
-							break;
-
-						addService = re.match("\s*([^:]+)\:\s*[Aa][Dd][Dd]\s*\(\s*(\d+)\s*\,\s*([^\:\)]+)\s*\)", text);
-						if addService != None:
-							name = addService.group(1);
-							time = int(addService.group(2));
-							to = addService.group(3);
+						# add a number of minutes to another service (handy for manual input of services)
+						try:
+							text, values = Parser.ParseFormat(text, addServiceSyntax);
+						except Parser.ParseError:
+							pass;
+						else:
+							name = values[0];
+							time = values[4];
+							to = values[6];
+							
 							Data.services[name] = Data.Add(time, Data.services[to]);
-						
-							text = text[addService.end(0):];
 							continue;
-					
-						serviceName = re.match("\s*([^:]+)\:\s*", text);
-						if serviceName != None:
-							name = serviceName.group(1);
+						
+						# define a service by all its stops and times
+						try:
+							text, values = Parser.ParseFormat(text, regularServiceSyntax);
+						except Parser.ParseError:
+							pass;
+						else:
+							name = values[0];
+							
+							# add a new service if this one hasn't been defined before (merging them otherwise)
 							if name not in Data.services:
 								Data.services[name] = [];
-						
-							text = text[serviceName.end(0):];
-							while True:
-								endMark = re.match("\s*\:end", text);
-								if endMark != None:
-									text = text[endMark.end(0):];
-									break;
 							
-								timeData = re.match("\s*0*(\d+)\s*[,:]\s*0*(\d+)\s*,\s*(.+)", text);
-								if timeData != None:
-									try:
-										if version == 1:
-											Data.services[name].append((Data.Time(int(timeData.group(1)), int(timeData.group(2))), int(timeData.group(3))));
-										else:
-											Data.services[name].append((Data.Time(int(timeData.group(1)), int(timeData.group(2))), Data.places[timeData.group(3)]));	
-									except:
-										print(timeData.group(1), timeData.group(2));
-										raise;								
+							# find all the stops in the service
+							while True:
 								
-									text = text[timeData.end(0):];
-								else:
-									timeData = re.match("\s*\(\s*Time\s*\(\s*(\d+)\s*,\s*(\d+)\s*\)\s*,\s*\"(.+)\"\s*\)\s*\,", text);
-									if timeData != None:
-										Data.services[name].append((Data.Time(int(timeData.group(1)), int(timeData.group(2))), Data.places[timeData.group(3)]));									
-										text = text[timeData.end(0):];
+								# try matching the new time format
+								try:
+									text, values = Parser.ParseFormat(text, newStopSyntax);
+									
+									hours = values[0];
+									minutes = values[2];
+									if version == 1:
+										place = int(values[4]);
 									else:
-										raise Exception("Syntax error in service data.");
+										try:
+											place = Data.places[values[4]];
+										except KeyError:
+											raise KeyError("Place {} does not exist when defining service {}".format(values[4], name));
+									
+									Data.services[name].append((Data.Time(hours, minutes), place));
+									continue;
+								except Parser.ParseError:
+									pass;
+								
+								# try matching the antique time format (when it was barely not hardcoded)
+								try:
+									text, values = Parser.ParseFormat(text, oldStopSyntax);
+									
+									hours = values[3];
+									minutes = values[5];
+									place = Data.places[values[9]];
+									
+									Data.services[name].append((Data.Time(hours, minutes), place));
+									continue;
+								except Parser.ParseError:
+									pass;
+								
+								# and make sure there is an :end mark otherwise
+								text, _ = Parser.ParseFormat(text, endSyntax);
+								break;
 						
-							Data.services[name].sort(key=lambda x: x[0])
+							Data.services[name].sort(key=lambda x: x[0]);
 							continue;
+						
+						# make sure we hit an :end mark
+						text, _ = Parser.ParseFormat(text, endSyntax);
+						print("");
+						break;
 			
 				if section.group(1) == "trains":
 					print("Parsing trains...");
