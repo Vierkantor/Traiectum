@@ -14,11 +14,15 @@ def SkipWhitespace(text):
 	return text;
 
 # checks that the text starts with the literal
-def MatchText(text, literal):
-	text = SkipWhitespace(text);
-	if text[:len(literal)] == literal:
-		return (text[len(literal):], literal);
-	raise ParseError("Expected {}, received {}".format(literal, text[:len(literal)]));
+def MatchText(literal):
+	def MatchLiteral(text):
+		text = SkipWhitespace(text);
+		if text[:len(literal)] == literal:
+			return (text[len(literal):], literal);
+		raise ParseError("Expected {}, received {}".format(literal, text[:len(literal)]));
+	
+	# partial application!
+	return MatchLiteral;
 
 # checks that the text starts with an integer
 intRegex = re.compile(r"\+?(\-?\d+)");
@@ -46,3 +50,13 @@ def MatchName(text):
 	if match != None:
 		return (text[match.end(1):], match.group(1));
 	raise ParseError("Expected <name>, received {}".format(text[:16]));
+
+# matches a list of Match... functions
+def ParseFormat(text, syntax):
+	result = [];
+	
+	for element in syntax:
+		text, value = syntax.match(text);
+		result.append(value);
+	
+	return result;
