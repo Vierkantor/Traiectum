@@ -43,7 +43,7 @@ def MatchFloat(text):
 	raise ParseError("Expected <float>, received {}".format(text[:16]));
 
 # a name (used as key, so anything up to a ':')
-nameRegex = re.compile(r"([^\:]+)");
+nameRegex = re.compile(r"([^\:\n\r]+)");
 def MatchName(text):
 	text = SkipWhitespace(text);
 	match = nameRegex.match(text);
