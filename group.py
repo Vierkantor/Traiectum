@@ -62,10 +62,7 @@ while len(servicesByTime) > 0:
 			firstOrder = newService[1][0];
 			
 			# if the new service starts later than this one in the same station with the same train
-			# note that we'll assume that trains can go between subsections of platforms (e.g. 12b -> 12a)
-			if firstOrder[0] > lastOrder[0] and \
-				re.sub("\D", "", firstOrder[1]) == re.sub("\D", "", lastOrder[1]):
-				
+			if firstOrder[0] > lastOrder[0] and firstOrder[1] == lastOrder[1]:
 				schedule.append(servicesByTime.pop(newIndex));
 				break;
 			
