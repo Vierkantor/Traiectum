@@ -7,14 +7,60 @@ class ParseError(Exception):
 	def __str__(self):
 		return self.message;
 
-# returns a string, starting from the first non-whitespace character
-spaceRegex = re.compile(r"(\s*)");
-def SkipWhitespace(text):
-	match = spaceRegex.match(text);
-	if match == None:
-		raise ParseError("Somehow, text doesn't start with zero or more whitespace characters.");
+# makes a possibly negative or None key into a positive one
+def regularize(key, start, stop, default = 0):
+	if key == None:
+		return default;
 	
-	return text[match.end(1):];
+	if key < 0:
+		return stop + key + 1;
+	
+	return start + key;
+
+# to make slicing long strings easier
+# instead of creating a copy of the text, create a copy of the start pointer
+class StringSlice:
+	def __init__(self, text, start = None, stop = None):
+		self.text = text;
+		
+		self.start = regularize(start, 0, len(self.text));
+		self.stop = regularize(stop, 0, len(self.text), len(self.text));
+	
+	# force slicing
+	def __str__(self):
+		return self.text[self.start:self.stop];
+	
+	def __eq__(self, other):
+		if isinstance(other, StringSlice):
+			return self.text == other.text and self.start == other.start and self.end == other.end;
+		else:
+			return self.text[self.start:self.stop] == other;
+	
+	def __len__(self):
+		return int(self.stop - self.start);
+	
+	def __getitem__(self, key):
+		# key should be a slice or an int
+		if isinstance(key, int):
+			# int: return character at that position (like a regular string)
+			return self.text[regularize(key, self.start, self.stop)];
+		elif isinstance(key, slice):
+			# slice: make a *_new_* StringSlice object (note the new!)
+			return StringSlice(self.text, regularize(key.start, self.start, self.stop, None), regularize(key.stop, self.start, self.stop, None));
+		else:
+			raise TypeError("string indices must be integers or slices")
+	
+	def __iter__(self):
+		for i in xrange(self.start, self.end):
+			yield self.text[i];
+
+# returns a string, starting from the first non-whitespace character
+whitespace = " \t\n\r"
+def SkipWhitespace(text):
+	while text[0] in whitespace:
+		text = text[1:];
+	
+	return text;
 
 # checks that the text starts with the literal
 def MatchText(literal):
@@ -28,28 +74,64 @@ def MatchText(literal):
 	return MatchLiteral;
 
 # checks that the text starts with an integer
-intRegex = re.compile(r"\s*\+?(\-?\d+)");
-def MatchInt(text):
-	match = intRegex.match(text);
-	if match != None:
-		return (text[match.end(1):], int(match.group(1)));
-	raise ParseError("Expected <int>, received {}".format(text[:16]));
+def MatchInt(text, signed = True):
+	text = SkipWhitespace(text);
+	startText = text[:16];
+	
+	if signed:
+		# check if the int is negative
+		negative = False;
+		if text[0] == "+":
+			text = text[1:];
+		elif text[0] == "-":
+			text = text[1:];
+			negative = True;
+	else:
+		# it's always positive
+		negative = False;
+	
+	# actually make it into an int
+	number = 0;
+	length = 0;
+	while text[0] in '0123456789':
+		number *= 10;
+		number += int(text[0]);
+		text = text[1:];
+		length += 1;
+	
+	# make sure there are digits
+	if length == 0:
+		raise ParseError("Expected <int>, received {}".format(startText));
+	
+	return text, ((-number) if negative else number);
 
 # checks that the text starts with a float (or integer)
-floatRegex = re.compile(r"\s*\+?(\-?\d+(.\d*)?)");
 def MatchFloat(text):
-	match = floatRegex.match(text);
-	if match != None:
-		return (text[match.end(1):], float(match.group(1)));
-	raise ParseError("Expected <float>, received {}".format(text[:16]));
+	# start with a (non-optional) integer part
+	text, intPart = MatchInt(text);
+	floatPart = "";
+	try:
+		# and an optional point after the dot
+		text, _ = MatchText(".")(text);
+		text, floatPart = MatchInt(text, signed = False);
+	except ParseError:
+		pass;
+	
+	# make it into a nice float
+	return text, float(intPart) + float("0." + floatPart);
 
 # a name (used as key, so anything up to a ':')
-nameRegex = re.compile(r"\s*([^\:\n\r]+)");
 def MatchName(text):
-	match = nameRegex.match(text);
-	if match != None:
-		return (text[match.end(1):], match.group(1));
-	raise ParseError("Expected <name>, received {}".format(text[:16]));
+	text = SkipWhitespace(text);
+	name = [];
+	while text[0] not in ":\n\r":
+		name.append(text[0]);
+		text = text[1:];
+	
+	if name == []:
+		raise ParseError("Expected <name>, received {}".format(text[:16]));
+	
+	return text, "".join(name);
 
 # matches a list of Match... functions
 def ParseFormat(text, syntax):
