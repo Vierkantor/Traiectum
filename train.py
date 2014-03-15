@@ -18,6 +18,9 @@ def Add(time, service):
 
 mouseDown = False;
 
+# don't show the screen if someone imports our modules
+Graphics.screen = pygame.display.set_mode(Graphics.size);
+
 Filefunc.LoadData();
 
 while 1:

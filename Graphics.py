@@ -10,7 +10,9 @@ size = width, height = 1024, 768;
 scale = 8;
 center = (50, 0);
 font = pygame.font.Font(None, 14);
-screen = pygame.display.set_mode(size);
+
+# screen is initialized when the main module runs (so things can get imported without displaying a screen)
+screen = None;
 
 # move standard parallel to about 50 degrees
 parallelCorrection = math.cos(center[0] / 180 * math.pi);
