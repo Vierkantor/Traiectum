@@ -219,7 +219,7 @@ def LoadServices(filename = "servicedata.txt"):
 		
 		
 		except:
-			print("In servicedata.txt, near:");
+			print("In {}, near:".format(filename));
 			print(text[:100]);
 			raise;
 
