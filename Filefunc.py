@@ -57,8 +57,8 @@ oldStopSyntax = [
 	Parser.MatchText(")"), Parser.MatchText(","), # end of stop
 ];
 
-def LoadServices():
-	with open("servicedata.txt") as data:
+def LoadServices(filename = "servicedata.txt"):
+	with open(filename) as data:
 		text = data.read();
 		version = re.match("\s*version:\s*(\d+)", text);
 		if version == None or int(version.group(1)) > 2:
