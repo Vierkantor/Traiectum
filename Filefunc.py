@@ -25,6 +25,10 @@ def sort_nicely(l):
     """
     return sorted(l, key=lambda x: alphanum_key(x[0]))
 
+sectionStartSyntax = [
+	Parser.MatchName, Parser.MatchText(":"),
+];
+
 endSyntax = [
 	Parser.MatchText(":end")
 ];
@@ -35,12 +39,13 @@ addServiceSyntax = [
 	Parser.MatchText(","), Parser.MatchName, Parser.MatchText(")"), # old service
 ];
 
-regularServiceSyntax = [
-	Parser.MatchName, Parser.MatchText(":"),
-];
-
 newStopSyntax = [
 	Parser.MatchInt, Parser.MatchText(","), Parser.MatchInt, Parser.MatchText(","), # time
+	Parser.MatchName, # place
+];
+
+newStopFancyTimeSyntax = [
+	Parser.MatchInt, Parser.MatchText(":"), Parser.MatchInt, Parser.MatchText(","), # time
 	Parser.MatchName, # place
 ];
 
@@ -59,7 +64,7 @@ def LoadServices():
 		if version == None or int(version.group(1)) > 2:
 			raise Exception("Data file is of an invalid version! (Expected [1, 2], received {})".format(version.group(1)));
 		else:
-			text = text[version.end(0):];
+			text = Parser.StringSlice(text, version.end(0));
 			version = int(version.group(1));
 			
 		# remove old data
@@ -68,11 +73,11 @@ def LoadServices():
 		Data.trains = {};
 		
 		try:
-			section = re.match("\s*(\w+):\s*", text);
-			while section != None:
-				text = text[section.end(0):];
-			
-				if section.group(1) == "services":
+			while len(Parser.SkipWhitespace(text)) > 0:
+				text, values = Parser.ParseFormat(text, sectionStartSyntax);
+				section = values[0];
+				
+				if section == "services":
 					sys.stdout.write("Parsing services.");
 					sys.stdout.flush();
 					parseCount = 0;
@@ -98,7 +103,7 @@ def LoadServices():
 						
 						# define a service by all its stops and times
 						try:
-							text, values = Parser.ParseFormat(text, regularServiceSyntax);
+							text, values = Parser.ParseFormat(text, sectionStartSyntax);
 						except Parser.ParseError:
 							pass;
 						else:
@@ -114,7 +119,9 @@ def LoadServices():
 								# try matching the new time format
 								try:
 									text, values = Parser.ParseFormat(text, newStopSyntax);
-									
+								except Parser.ParseError:
+									pass;
+								else:
 									hours = values[0];
 									minutes = values[2];
 									if version == 1:
@@ -127,8 +134,25 @@ def LoadServices():
 									
 									Data.services[name].append((Data.Time(hours, minutes), place));
 									continue;
+								
+								# support colons for time as well
+								try:
+									text, values = Parser.ParseFormat(text, newStopFancyTimeSyntax);
 								except Parser.ParseError:
 									pass;
+								else:
+									hours = values[0];
+									minutes = values[2];
+									if version == 1:
+										place = int(values[4]);
+									else:
+										try:
+											place = Data.places[values[4]];
+										except KeyError:
+											raise KeyError("Place {} does not exist when defining service {}".format(values[4], name));
+									
+									Data.services[name].append((Data.Time(hours, minutes), place));
+									continue;
 								
 								# try matching the antique time format (when it was barely not hardcoded)
 								try:
@@ -155,40 +179,44 @@ def LoadServices():
 						print("");
 						break;
 			
-				if section.group(1) == "trains":
+				if section == "trains":
 					print("Parsing trains...");
 					while True:
-						endMark = re.match("\s*\:end", text);
-						if endMark != None:
-							text = text[endMark.end(0):];
-							break;
-					
-						trainName = re.match("\s*([^:]+)\:\s*", text);
-						if trainName != None:
-							name = trainName.group(1);
-						
+						# train:
+						try:
+							text, values = Parser.ParseFormat(text, sectionStartSyntax);
+						except Parser.ParseError:
+							pass;
+						else:
+							name = values[0];
+							
+							# get all the services the train runs
 							trainData = [];
-							text = text[trainName.end(0):];
 							while True:
-								endMark = re.match("\s*\:end", text);
-								if endMark != None:
-									if name in Data.trains:
-										Data.trains[name].serviceName.extend(trainData);
-									else:
-										Data.trains[name] = Data.Train(name, trainData, Data.Join(trainData));
-									text = text[endMark.end(0):];
-									break;
-							
-								serviceData = re.match("\s*([^:\s]+)", text);
-								if serviceData != None:
-									trainData.append(serviceData.group(1));
-								
-									text = text[serviceData.end(0):];
+								try:
+									text, serviceName = Parser.MatchName(text);
+								except Parser.ParseError:
+									pass;
+								else:
+									trainData.append(serviceName);
 									continue;
+								
+								# make sure we hit an :end mark
+								text, _ = Parser.ParseFormat(text, endSyntax);
+								break;
+						
+							# and save it all
+							if name in Data.trains:
+								Data.trains[name].serviceName.extend(trainData);
+							else:
+								Data.trains[name] = Data.Train(name, trainData, Data.Join(trainData));
 							
-								raise Exception("Syntax error in train info.");
+							continue;
+						
+						# make sure we hit an :end mark
+						text, _ = Parser.ParseFormat(text, endSyntax);
+						break;
 		
-				section = re.match("\s*(\w+):", text);
 		
 		except:
 			print("In servicedata.txt, near:");
