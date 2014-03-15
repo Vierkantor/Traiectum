@@ -8,10 +8,13 @@ class ParseError(Exception):
 		return self.message;
 
 # returns a string, starting from the first non-whitespace character
+spaceRegex = re.compile(r"(\s*)");
 def SkipWhitespace(text):
-	while text[0] == " " or text[0] == "\t" or text[0] == "\n":
-		text = text[1:];
-	return text;
+	match = spaceRegex.match(text);
+	if match == None:
+		raise ParseError("Somehow, text doesn't start with zero or more whitespace characters.");
+	
+	return text[match.end(1):];
 
 # checks that the text starts with the literal
 def MatchText(literal):
@@ -25,27 +28,24 @@ def MatchText(literal):
 	return MatchLiteral;
 
 # checks that the text starts with an integer
-intRegex = re.compile(r"\+?(\-?\d+)");
+intRegex = re.compile(r"\s*\+?(\-?\d+)");
 def MatchInt(text):
-	text = SkipWhitespace(text);
 	match = intRegex.match(text);
 	if match != None:
 		return (text[match.end(1):], int(match.group(1)));
 	raise ParseError("Expected <int>, received {}".format(text[:16]));
 
 # checks that the text starts with a float (or integer)
-floatRegex = re.compile(r"\+?(\-?\d+(.\d*)?)");
+floatRegex = re.compile(r"\s*\+?(\-?\d+(.\d*)?)");
 def MatchFloat(text):
-	text = SkipWhitespace(text);
 	match = floatRegex.match(text);
 	if match != None:
 		return (text[match.end(1):], float(match.group(1)));
 	raise ParseError("Expected <float>, received {}".format(text[:16]));
 
 # a name (used as key, so anything up to a ':')
-nameRegex = re.compile(r"([^\:\n\r]+)");
+nameRegex = re.compile(r"\s*([^\:\n\r]+)");
 def MatchName(text):
-	text = SkipWhitespace(text);
 	match = nameRegex.match(text);
 	if match != None:
 		return (text[match.end(1):], match.group(1));
