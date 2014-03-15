@@ -23,7 +23,7 @@ class StringSlice:
 	def __init__(self, text, start = None, stop = None):
 		self.text = text;
 		
-		self.start = regularize(start, 0, len(self.text));
+		self.start = regularize(start, 0, len(self.text), 0);
 		self.stop = regularize(stop, 0, len(self.text), len(self.text));
 	
 	# force slicing
@@ -46,7 +46,7 @@ class StringSlice:
 			return self.text[regularize(key, self.start, self.stop)];
 		elif isinstance(key, slice):
 			# slice: make a *_new_* StringSlice object (note the new!)
-			return StringSlice(self.text, regularize(key.start, self.start, self.stop, None), regularize(key.stop, self.start, self.stop, None));
+			return StringSlice(self.text, regularize(key.start, self.start, self.stop, self.start), regularize(key.stop, self.start, self.stop, self.stop));
 		else:
 			raise TypeError("string indices must be integers or slices")
 	
