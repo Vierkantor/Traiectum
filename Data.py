@@ -1,6 +1,5 @@
 from __future__ import division;
 import math;
-import pygame;
 import random;
 
 import Graphics;
@@ -12,7 +11,12 @@ def Time(hr = 0, min = 0, sec = 0):
 		hr += 24;
 	return hr * 60 + min + sec / 60;
 
-clock = pygame.time.Clock();
+try:
+	import pygame;
+	clock = pygame.time.Clock();
+except ImportError:
+	pass;
+
 frameTime = 120;
 
 # the time (in minutes) elapsing every tick (= 1/30s)

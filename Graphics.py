@@ -1,15 +1,20 @@
 from __future__ import division;
 import math;
-import pygame;
 
 import Data;
 
-pygame.init();
+try:
+	import pygame;
+	
+	pygame.init();
+
+	font = pygame.font.Font(None, 14);
+except ImportError:
+	pass;
 
 size = width, height = 1024, 768;
 scale = 8;
 center = (50, 0);
-font = pygame.font.Font(None, 14);
 
 # screen is initialized when the main module runs (so things can get imported without displaying a screen)
 screen = None;
