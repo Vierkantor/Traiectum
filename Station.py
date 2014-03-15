@@ -34,6 +34,6 @@ class Station:
 	def DeparturesFrom(self, time):
 		for service in Data.services:
 			for stop in Data.services[service]:
-				if stop[0] > time and stop[1] in self.nodes:
+				if stop[0] > time and stop[1] in self.platforms:
 					yield service;
 					break;
