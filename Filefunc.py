@@ -61,8 +61,8 @@ def LoadServices(filename = "servicedata.txt"):
 	with open(filename) as data:
 		text = data.read();
 		version = re.match("\s*version:\s*(\d+)", text);
-		if version == None or int(version.group(1)) > 2:
-			raise Exception("Data file is of an invalid version! (Expected [1, 2], received {})".format(version.group(1)));
+		if version == None or int(version.group(1)) not in [2]:
+			raise Exception("Data file is of an invalid version! (Expected [2], received {})".format(version.group(1)));
 		else:
 			text = Parser.StringSlice(text, version.end(0));
 			version = int(version.group(1));
@@ -124,13 +124,7 @@ def LoadServices(filename = "servicedata.txt"):
 								else:
 									hours = values[0];
 									minutes = values[2];
-									if version == 1:
-										place = int(values[4]);
-									else:
-										try:
-											place = Data.places[values[4]];
-										except KeyError:
-											raise KeyError("Place {} does not exist when defining service {}".format(values[4], name));
+									place = values[4];
 									
 									Data.services[name].append((Data.Time(hours, minutes), place));
 									continue;
@@ -143,13 +137,7 @@ def LoadServices(filename = "servicedata.txt"):
 								else:
 									hours = values[0];
 									minutes = values[2];
-									if version == 1:
-										place = int(values[4]);
-									else:
-										try:
-											place = Data.places[values[4]];
-										except KeyError:
-											raise KeyError("Place {} does not exist when defining service {}".format(values[4], name));
+									place = values[4];
 									
 									Data.services[name].append((Data.Time(hours, minutes), place));
 									continue;
@@ -351,11 +339,10 @@ def SaveData():
 		data.write("version: 2\n");
 		
 		data.write("services:\n");
-		inversePlaces = dict((v, k) for k, v in Data.places.items());
 		for service in sort_nicely(Data.services.items()):
 			data.write("\t{0}:\n".format(service[0]));
 			for order in service[1]:
-				data.write("\t\t{0}, {1}, {2}\n".format(int(order[0] // 60), int(order[0] % 60), inversePlaces[order[1]]));
+				data.write("\t\t{0}, {1}, {2}\n".format(int(order[0] // 60), int(order[0] % 60), order[1]));
 			data.write("\t:end\n\n");
 		data.write(":end\n\n");
 		
