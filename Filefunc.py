@@ -352,6 +352,4 @@ def SaveData():
 			for service in train[1].serviceName:
 				data.write("\t\t{0}\n".format(service));
 			data.write("\t:end\n\n");
-			
-			print(train[1].composition, Data.services[train[1].serviceName[0]][0], Data.services[train[1].serviceName[-1]][-1]);
 		data.write(":end\n\n");
