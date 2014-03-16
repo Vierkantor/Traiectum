@@ -37,8 +37,13 @@ for fileName in os.listdir("DataSources"):
 	Filefunc.LoadServices(filename = os.path.join("DataSources", fileName), loadIndicators = False);
 	for service in Data.services:
 		# make a secret copy for ourselves
-		services[service] = Data.services[service];
-		mergeService(service, Data.services[service]);
+		if service in services:
+			# add to existing service data
+			services[service].extend(Data.services[service]);
+			# in the correct order
+			services[service].sort(key=lambda order: order[0]);
+		else:
+			services[service] = Data.services[service];
 
 # write it all down
 print("version: 3");
@@ -54,6 +59,9 @@ for service in services:
 	
 	for stop in services[service]:
 		print("\t\t{}, {}, {}".format(int(stop[0]) // 60, int(stop[0]) % 60, stop[1]));
+	
+	# prepare it for the train generation
+	mergeService(service, services[service]);
 	
 	print("\t:end");
 
