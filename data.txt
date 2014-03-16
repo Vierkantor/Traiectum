@@ -4615,6 +4615,7 @@ places:
 	Hdb -> 1044
 	Hde -> 291
 	Hdl -> 344
+	Hdr -> 945
 	HdrS1 -> 945
 	HdrS2 -> 946
 	HdrS3 -> 947
@@ -4884,6 +4885,7 @@ places:
 	Tbr -> 559
 	Tbu -> 558
 	Tgra -> 330
+	Tl -> 1375
 	TlS1 -> 1375
 	TlS2 -> 1376
 	TlS3 -> 1377
@@ -5210,6 +5212,7 @@ stations:
 	Hd -> Hd
 	Hdb -> Hdb
 	Hde -> Hde
+	Hdr -> Hdr
 	Hdr -> HdrS1
 	Hdr -> HdrS2
 	Hdr -> HdrS3
@@ -5363,6 +5366,7 @@ stations:
 	Tbi -> Tbi
 	Tbr -> Tbr
 	Tbu -> Tbu
+	Tl -> Tl
 	Tl -> TlS1
 	Tl -> TlS2
 	Tl -> TlS3
