@@ -1387,6 +1387,7 @@ nodes:
 	1385 -> 51.970407, 5.579197
 	1386 -> 51.962323, 5.579358
 	1387 -> 51.957979, 5.578302
+	1388 -> 53.196123, 5.792492
 :end
 
 links:
@@ -4742,6 +4743,7 @@ places:
 	Lpe -> 337
 	Lut -> 316
 	Luta -> 317
+	Lw -> 1388
 	Lwd -> 818
 	Mabr -> 418
 	Mannhe -> 70
@@ -5277,6 +5279,7 @@ stations:
 	Ledn -> LednS4a
 	Lls -> Lls
 	Lut -> Lut
+	Lw -> Lw
 	Mannhe -> Mannhe
 	Maria -> Maria
 	Mas -> Mas
