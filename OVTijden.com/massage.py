@@ -22,20 +22,7 @@ def mergeOrder(service, order):
 	
 	services[service].sort(key=lambda order: order[1]);
 
-# sorts the services by departure time
-def mergeService(serviceData):
-	# find the insertion point
-	index = 0;
-	for service in servicesByTime:
-		if service[0][1] > serviceData[0][1]:
-			break;
-		index += 1;
-	
-	# insert before the later service
-	servicesByTime.insert(index, serviceData);
-
 services = {};
-servicesByTime = [];
 
 for fileName in os.listdir("."):
 	if not fileName.endswith(".txt"):
@@ -72,9 +59,6 @@ for fileName in os.listdir("."):
 			print("Error:");
 			print(e);
 
-for service in services:
-	mergeService(services[service]);
-
 print("version: 2");
 
 print("services:");
@@ -86,37 +70,4 @@ for service in services:
 		else:
 			print("\t\t{}, {}, {}".format(int(order[1] // 60), int(order[1] % 60), order[2]));
 	print("\t:end");
-print(":end");
-
-print("trains:");
-index = 0;
-while len(servicesByTime) > 0:
-	# add this service to the new schedule
-	schedule = [servicesByTime.pop(0)];
-	while True:
-		lastOrder = schedule[-1][-1];
-		newIndex = 0;
-		for newService in servicesByTime:
-			firstOrder = newService[0];
-			
-			# if the new service starts later than this one in the same station with the same train
-			# note that we'll assume that trains can go between subsections of platforms (e.g. 12b -> 12a)
-			if firstOrder[1] > lastOrder[1] and firstOrder[2] == lastOrder[2] and re.sub("\D", "", firstOrder[3]) == re.sub("\D", "", lastOrder[3]) and firstOrder[4] == lastOrder[4]:
-				schedule.append(servicesByTime.pop(newIndex));
-				break;
-			
-			newIndex += 1;
-		else:
-			break;
-	
-	# save the data
-	print("\t{} {}:".format(schedule[0][0][4], index));
-	
-	for service in schedule:
-		print("\t\t{}".format(service[0][0]));
-	
-	print("\t:end");
-	sys.stdout.flush();
-	
-	index += 1;
 print(":end");
