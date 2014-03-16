@@ -4918,6 +4918,7 @@ stations:
 	Amrn -> Amrn
 	Ana -> AnaS1
 	Ana -> AnaS2
+	And -> And
 	Apd -> Apd
 	Apdo -> Apdo
 	Apn -> ApnS1
@@ -4945,14 +4946,23 @@ stations:
 	Assp -> Assp
 	Atn -> AtnS1
 	Atn -> AtnS2
+	Atw -> Atw
+	Atwlb -> Atwlb
+	Augsb -> Augsb
 	Avat -> Avat
+	Baselb -> Baselb
+	Basels -> Basels
 	Bd -> Bd
 	Bde -> Bde
 	Bdg -> BdgS1
 	Bdg -> BdgS2
 	Bdpb -> Bdpb
+	Berhbl -> Berhbl
+	Berlis -> Berlis
+	Berost -> Berost
 	Bet -> Bet
 	Bgn -> Bgn
+	Bh -> Bh
 	Bhdv -> Bhdv
 	Bhv -> Bhv
 	Bk -> Bk
@@ -4964,14 +4974,18 @@ stations:
 	Bmn -> Bmn
 	Bn -> Bn
 	Bnk -> Bnk
+	Bonn -> Bonn
 	Br -> Br
 	Brd -> Brd
 	Brn -> Brn
+	Brusc -> Brusc
+	Brusz -> Brusz
 	Bsd -> Bsd
 	Bsk -> BskS1
 	Bsk -> BskS2
 	Bsmz -> Bsmz
 	Btl -> Btl
+	Buende -> Buende
 	Bv -> Bv
 	Bzl -> Bzl
 	Cas -> CasS1
@@ -4990,6 +5004,7 @@ stations:
 	Dmn -> Dmn
 	Dmnz -> Dmnz
 	Dn -> Dn
+	Dortm -> Dortm
 	Dr -> Dr
 	Drh -> Drh
 	Dron -> Dron
@@ -4997,6 +5012,8 @@ stations:
 	Dtc -> Dtc
 	Dtch -> Dtch
 	Dtz -> Dtz
+	Duisb -> Duisb
+	Dussel -> Dussel
 	Dv -> Dv
 	Dvc -> Dvc
 	Dvd -> Dvd
@@ -5006,14 +5023,22 @@ stations:
 	Ed -> Ed
 	Ehb -> Ehb
 	Ehv -> Ehv
+	Ekeren -> Ekeren
 	Ekz -> Ekz
+	El -> El
+	Em -> Em
 	Eml -> Eml
 	Emn -> Emn
 	Emnz -> Emnz
 	Es -> Es
 	Esd -> Esd
+	Esn -> Esn
 	Est -> Est
 	Etn -> Etn
+	Fffm -> Fffm
+	Flb -> Flb
+	Fnaf -> Fnaf
+	Freibb -> Freibb
 	Gbg -> Gbg
 	Gd -> Gd
 	Gd -> GdS3
@@ -5024,10 +5049,13 @@ stations:
 	Gdg -> Gdg
 	Gdm -> Gdm
 	Gdr -> Gdr
+	Geisl -> Geisl
 	Gerp -> Gerp
+	Gkt -> Gkt
 	Gln -> Gln
 	Gn -> Gn
 	Gnd -> Gnd
+	Gop -> Gop
 	Gp -> Gp
 	Gr -> Gr
 	Gs -> Gs
@@ -5037,8 +5065,11 @@ stations:
 	Gvc -> GvcS5
 	Gvm -> Gvm
 	Gvmw -> Gvmw
+	Gwd -> Gwd
 	Gz -> Gz
 	Had -> Had
+	Hamm -> Hamm
+	Hann -> Hann
 	Hb -> Hb
 	Hd -> Hd
 	Hdb -> Hdb
@@ -5051,6 +5082,7 @@ stations:
 	Hdr -> HdrS6
 	Hdrz -> HdrzS2
 	Hdrz -> HdrzS3
+	Heide -> Heide
 	Hfd -> Hfd
 	Hgl -> Hgl
 	Hglo -> Hglo
@@ -5086,12 +5118,21 @@ stations:
 	Hwd -> Hwd
 	Hwzb -> Hwzb
 	Hze -> Hze
+	Kalmth -> Kalmth
+	Kapell -> Kapell
+	Karlsr -> Karlsr
 	Kbd -> Kbd
+	Kbfl -> Kbfl
 	Kbw -> Kbw
 	Klp -> Klp
 	Kma -> Kma
+	Kmb -> Kmb
+	Koblen -> Koblen
+	Koln -> Koln
 	Kpnz -> Kpnz
+	Kpw -> Kpw
 	Krg -> Krg
+	Ksb -> Ksb
 	Kzd -> Kzd
 	Laa -> Laa
 	Ldl -> Ldl
@@ -5102,14 +5143,19 @@ stations:
 	Ledn -> LednS4a
 	Lls -> Lls
 	Lut -> Lut
+	Mannhe -> Mannhe
+	Maria -> Maria
 	Mas -> Mas
 	Mdb -> Mdb
+	Mech -> Mech
+	Minden -> Minden
 	Mp -> Mp
 	Mrb -> Mrb
 	Mrn -> Mrn
 	Mss -> Mss
 	Msw -> Msw
 	Mt -> Mt
+	Munchh -> Munchh
 	Mz -> Mz
 	Na -> Na
 	Ndb -> Ndb
@@ -5125,14 +5171,19 @@ stations:
 	O -> O
 	Obd -> ObdS1
 	Obd -> ObdS2
+	Oberh -> Oberh
+	Oberhs -> Oberhs
 	Odb -> Odb
 	Odz -> Odz
+	Offen -> Offen
 	Omn -> Omn
 	Ost -> Ost
 	Ot -> Ot
 	Otb -> Otb
 	Ovn -> Ovn
 	Ow -> Ow
+	Paris -> Paris
+	Ploch -> Ploch
 	Pmo -> Pmo
 	Pmr -> Pmr
 	Pmw -> Pmw
@@ -5140,6 +5191,7 @@ stations:
 	Rai -> Rai
 	Rb -> Rb
 	Rh -> Rh
+	Rheine -> Rheine
 	Rlb -> Rlb
 	Rm -> Rm
 	Rs -> Rs
@@ -5164,12 +5216,15 @@ stations:
 	Srn -> Srn
 	Ssh -> Ssh
 	Std -> Std
+	Stdal -> Stdal
+	Stutt -> Stutt
 	Tb -> Tb
 	Tbg -> Tbg
 	Tbi -> Tbi
 	Tbr -> Tbr
 	Tbu -> Tbu
 	Twl -> Twl
+	Ulm -> Ulm
 	Ut -> Ut
 	Ut -> UtS1
 	Ut -> UtS2
@@ -5237,11 +5292,14 @@ stations:
 	Wd -> WdS5
 	Wd -> WdS6
 	Wdn -> Wdn
+	Wesel -> Wesel
 	Wf -> Wf
 	Wh -> Wh
 	Wl -> Wl
 	Wm -> Wm
+	Wolfsb -> Wolfsb
 	Wp -> Wp
+	Wupph -> Wupph
 	Ww -> Ww
 	Wz -> Wz
 	Ypb -> Ypb
