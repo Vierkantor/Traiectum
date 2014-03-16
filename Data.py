@@ -60,7 +60,7 @@ def AddLink(begin, end):
 
 # returns a new service that starts the specified amount of time later
 def Add(time, service):
-	return map(lambda x: (x[0] + time, x[1]), service);
+	return list(map(lambda x: (x[0] + time, x[1]), service));
 
 # find name of node if it exists, else return its number
 def NodeName(node):
