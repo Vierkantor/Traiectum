@@ -62,12 +62,12 @@ class Passenger:
 		
 		boarded = False;
 		for stop in train.service:
-			if not (boarded or self.route[0][1].HasPlatform(stop[1])):
+			if not (boarded or self.route[0][1].HasPlatform(Data.places[stop[1]])):
 				continue;
 			else:
 				boarded = True;
 			
-			if self.route[1][1].HasPlatform(stop[1]):
+			if self.route[1][1].HasPlatform(Data.places[stop[1]]):
 				return True;
 		return False;
 	
