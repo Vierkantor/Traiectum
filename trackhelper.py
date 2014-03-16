@@ -8,7 +8,7 @@ import svgwrite;
 
 Filefunc.LoadData();
 
-commands = "[<h>elp] [<?>], [<l>ink], [<u>nlink], [<i>nsert node], [<r>eload], [<s>ave], [<e>xport to SVG], [<q>uit]";
+commands = "[<h>elp] [<?>], [<l>ink], [<u>nlink], [<i>nsert node], [<v>erify nodes and trains], [<r>eload], [<s>ave], [<e>xport to SVG], [<q>uit]";
 
 print("Enter command:");
 print(commands);
@@ -51,6 +51,17 @@ while True:
 			Data.links[end].append(new);
 		except KeyError:
 			pass;
+	elif command[0] == "v":
+		# find all unlinked nodes
+		for node in Data.nodes:
+			if node not in Data.links:
+				print("Node {} ({}) has no links".format(node, Data.NodeName(node)));
+		
+		# find non-existent platforms
+		for service in Data.services:
+			for stop in Data.services[service]:
+				if stop[1] not in Data.places:
+					print("{} stops at non-existent station {}".format(service, stop[1]));
 	elif command[0] == "r":
 		print("Sure?");
 		print("[<y>es], [<n>o]");
