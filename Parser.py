@@ -55,11 +55,19 @@ class StringSlice:
 			yield self.text[i];
 
 # returns a string, starting from the first non-whitespace character
-whitespace = " \t\n\r"
+whitespace = " \t\n\r#"
+newlines = "\n\r"
 def SkipWhitespace(text):
 	try:
 		while text[0] in whitespace:
-			text = text[1:];
+			# ignore comments
+			if text[0] == "#":
+				text = text[1:];
+				# take out everything up to a newline, which is taken care of by the regular whitespace removing
+				while text[0] not in newlines:
+					text = text[1:];
+			else:
+				text = text[1:];
 	except IndexError:
 		return "";
 	
