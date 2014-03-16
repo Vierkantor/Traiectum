@@ -5328,6 +5328,7 @@ stations:
 	Rb -> Rb
 	Rh -> Rh
 	Rheine -> Rheine
+	Rhn -> Rhn
 	Rlb -> Rlb
 	Rm -> Rm
 	Rs -> Rs
@@ -5413,6 +5414,8 @@ stations:
 	Vdw -> Vdw
 	Vg -> Vg
 	Vl -> Vl
+	Vndc -> Vndc
+	Vndw -> Vndw
 	Vp -> Vp
 	Vs -> Vs
 	Vss -> Vss
