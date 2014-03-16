@@ -1,4 +1,5 @@
-version: 2
+version: 3
+# Generated automatically by Traiectum
 services:
 	40:
 		8, 46, Ah

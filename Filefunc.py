@@ -61,8 +61,8 @@ def LoadServices(filename = "servicedata.txt", loadIndicators = True):
 	with open(filename) as data:
 		text = data.read();
 		version = re.match("\s*version:\s*(\d+)", text);
-		if version == None or int(version.group(1)) not in [2]:
-			raise Exception("Data file is of an invalid version! (Expected [2], received {})".format(version.group(1)));
+		if version == None or int(version.group(1)) not in [2, 3]:
+			raise Exception("Data file is of an invalid version! (Expected [2, 3], received {})".format(version.group(1)));
 		else:
 			text = Parser.StringSlice(text, version.end(0));
 			version = int(version.group(1));
@@ -340,7 +340,8 @@ def SaveData():
 		data.write(":end\n\n");
 		
 	with open("servicedata.txt", "w") as data:
-		data.write("version: 2\n");
+		data.write("version: 3\n");
+		data.write("# Generated automatically by Traiectum\n");
 		
 		data.write("services:\n");
 		for service in sort_nicely(Data.services.items()):
