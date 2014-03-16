@@ -17,8 +17,8 @@ Sometimes the markup gets mashed up. Some open or close brackets might be missin
 
 # Nothing went wrong
 
-Check for stray '<', '/' and '>' characters in your servicedata.txt file, it might have still gone wrong. Again, fix any broken tags and run massage.py.
+Check for stray '<', '/' and '>' characters in your output file, it might have still gone wrong. Again, fix any broken tags and run massage.py.
 
 # Importing the data
 
-When you're confident the data is correct, replace the servicedata.txt file with your newly-generated data. Start up train.py to load it up. Now it is a good idea to clean and standardise your data files. Close train.py when it has started running and open it again. Your data will be alphabetically sorted and clean.
+When you're confident the data is correct, add the output file to the folder DataSources and run group.py (see the main README for more info) to assemble it into a new servicedata.txt.
