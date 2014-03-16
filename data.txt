@@ -4879,6 +4879,7 @@ places:
 	WdS2 -> 526
 	WdS5 -> 527
 	WdS6 -> 528
+	Wdmv -> 482
 	Wdn -> 177
 	Wdo -> 91
 	Wesel -> 92
