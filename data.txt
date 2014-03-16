@@ -4365,7 +4365,7 @@ links:
 
 places:
 	Abr -> 822
-	Ac -> 25
+	Ac -> 472
 	AcS2 -> 472
 	AcS3 -> 473
 	Aco -> 26
@@ -4399,7 +4399,7 @@ places:
 	Apd -> 187
 	Apda -> 186
 	Apdo -> 185
-	Apn -> 0
+	Apn -> 6
 	ApnGd -> 445
 	ApnS1 -> 6
 	ApnS2 -> 7
@@ -4418,7 +4418,7 @@ places:
 	Ashd -> 36
 	Asn -> 278
 	Asra -> 127
-	Ass -> 226
+	Ass -> 1306
 	AssS3 -> 1306
 	AssS4 -> 1305
 	AssS5 -> 1304
@@ -4498,7 +4498,7 @@ places:
 	Bv -> 679
 	Bzl -> 813
 	Bzm -> 859
-	Cas -> 363
+	Cas -> 1332
 	CasS1 -> 1332
 	CasS2 -> 1331
 	Cl -> 351
@@ -4646,7 +4646,7 @@ places:
 	Hlms -> 635
 	Hlmvam -> 632
 	Hln -> 324
-	Hlo -> 365
+	Hlo -> 1341
 	HloS1 -> 1341
 	HloS2 -> 1340
 	Hm -> 783
@@ -4892,7 +4892,7 @@ places:
 	Tpsw -> 1368
 	Twl -> 184
 	Ulm -> 211
-	Ut -> 81
+	Ut -> 466
 	UtS1 -> 466
 	UtS2 -> 469
 	UtS4a -> 454
@@ -4923,7 +4923,7 @@ places:
 	UtS19b -> 447
 	Utg -> 362
 	Utl -> 355
-	Utlr -> 82
+	Utlr -> 740
 	UtlrS1 -> 740
 	UtlrS2 -> 739
 	UtlrS3 -> 738
@@ -4932,7 +4932,7 @@ places:
 	Utma -> 83
 	Uto -> 562
 	Utoa -> 561
-	Utt -> 84
+	Utt -> 736
 	UttS1 -> 736
 	UttS2 -> 735
 	UttS3 -> 734
@@ -4963,18 +4963,18 @@ places:
 	Vst -> 137
 	Vsv -> 547
 	Vtbr -> 203
-	Vtn -> 89
+	Vtn -> 732
 	VtnS1 -> 732
 	VtnS2 -> 731
 	VtnS3 -> 730
 	VtnS4 -> 729
-	Wad -> 17
+	Wad -> 480
 	WadS1 -> 480
 	WadS2 -> 477
 	Wadn -> 16
 	WadnS1 -> 16
 	Wc -> 540
-	Wd -> 90
+	Wd -> 525
 	WdS1 -> 525
 	WdS2 -> 526
 	WdS5 -> 527
@@ -5035,6 +5035,7 @@ places:
 :end
 
 stations:
+	Ac -> Ac
 	Ac -> AcS2
 	Ac -> AcS3
 	Ah -> Ah
@@ -5059,6 +5060,7 @@ stations:
 	And -> And
 	Apd -> Apd
 	Apdo -> Apdo
+	Apn -> Apn
 	Apn -> ApnS1
 	Apn -> ApnS2
 	Apn -> ApnS3
@@ -5072,6 +5074,7 @@ stations:
 	Asdz -> Asdz
 	Ashd -> Ashd
 	Asn -> Asn
+	Ass -> Ass
 	Ass -> AssS3
 	Ass -> AssS4
 	Ass -> AssS5
@@ -5092,6 +5095,7 @@ stations:
 	Basels -> Basels
 	Bd -> Bd
 	Bde -> Bde
+	Bdg -> Bdg
 	Bdg -> BdgS1
 	Bdg -> BdgS2
 	Bdpb -> Bdpb
@@ -5126,6 +5130,7 @@ stations:
 	Buende -> Buende
 	Bv -> Bv
 	Bzl -> Bzl
+	Cas -> Cas
 	Cas -> CasS1
 	Cas -> CasS2
 	Cl -> Cl
@@ -5233,6 +5238,7 @@ stations:
 	Hlds -> Hlds
 	Hlm -> Hlm
 	Hlms -> Hlms
+	Hlo -> Hlo
 	Hlo -> HloS1
 	Hlo -> HloS2
 	Hm -> Hm
@@ -5404,12 +5410,14 @@ stations:
 	Ut -> UtS19b
 	Utg -> Utg
 	Utl -> Utl
+	Utlr -> Utlr
 	Utlr -> UtlrS1
 	Utlr -> UtlrS2
 	Utlr -> UtlrS3
 	Utlr -> UtlrS4
 	Utm -> Utm
 	Uto -> Uto
+	Utt -> Utt
 	Utt -> UttS1
 	Utt -> UttS2
 	Utt -> UttS3
@@ -5428,10 +5436,12 @@ stations:
 	Vss -> Vss
 	Vst -> Vst
 	Vsv -> Vsv
+	Vtn -> Vtn
 	Vtn -> VtnS1
 	Vtn -> VtnS2
 	Vtn -> VtnS3
 	Vtn -> VtnS4
+	Wad -> Wad
 	Wad -> WadS1
 	Wad -> WadS2
 	Wadn -> WadnS1
