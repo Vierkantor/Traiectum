@@ -26,6 +26,17 @@ def mergeService(serviceName, serviceData):
 	# insert before the later service
 	servicesByTime.insert(index, (serviceName, serviceData));
 
+def sameStation(a, b):
+	if len(a) > len(b):
+		b, a = a, b;
+	
+	# either a and b are the same
+	if len(a) == len(b):
+		return a == b;
+	
+	# or a is a station and b has a track number
+	return (a == b[:len(a)] and b[len(a)] == "S");
+
 for fileName in os.listdir("DataSources"):
 	# only load data files
 	if not fileName.endswith(".txt"):
@@ -79,7 +90,7 @@ while len(servicesByTime) > 0:
 			firstOrder = newService[1][0];
 			
 			# if the new service starts later than this one in the same station with the same train
-			if firstOrder[0] > lastOrder[0] and firstOrder[1] == lastOrder[1]:
+			if firstOrder[0] > lastOrder[0] and sameStation(firstOrder[1], lastOrder[1]):
 				schedule.append(servicesByTime.pop(newIndex));
 				break;
 			
