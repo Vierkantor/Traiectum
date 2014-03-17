@@ -116,12 +116,15 @@ class Train:
 		if plannedTime < frameTime - 1:
 			print("{} arrived +{} at {}".format(self.composition, int(frameTime - plannedTime), self.path[0]));
 		
+		# we just arrived, so let passengers get off
+		currentNode = self.path[0];
 		for passenger in self.passengers:
-			if passenger.ShouldDisembark(self.path[0]):
+			if passenger.ShouldDisembark(currentNode):
 				self.passengers.remove(passenger);
 				
+				# send the passenger to their following train
 				if len(passenger.route) > 1:
-					passenger.pos = nodes[self.path[0]].station;
+					passenger.pos = currentNode.station;
 					passenger.pos.passengers.append(passenger);
 		
 		self.v = 0;
