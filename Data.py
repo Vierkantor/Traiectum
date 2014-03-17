@@ -194,7 +194,7 @@ class Train:
 					self.distance -= lineDistance;
 					
 					# recalculate path distance
-					if len(self.path > 1):
+					if len(self.path) > 1:
 						lineDistance = Path.Distance(nodes[self.path[0]].pos, nodes[self.path[1]].pos);
 					else:
 						lineDistance = 0;
