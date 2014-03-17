@@ -72,7 +72,7 @@ class Passenger:
 		return False;
 	
 	def ShouldDisembark(self, node):
-		if self.route[0][1].HasPlatform(node):
+		if node.station == self.route[0][1]:
 			return True;
 		
 		return False;
