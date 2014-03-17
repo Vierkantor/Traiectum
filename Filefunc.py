@@ -215,6 +215,17 @@ def LoadServices(filename = "servicedata.txt", loadIndicators = True):
 			print(text[:100]);
 			raise;
 
+# creates the stations' departure list
+def GenerateDepartures():
+	for service in Data.services:
+		for stop in Data.services[service]:
+			try:
+				node = Data.nodes[Data.places[stop[1]]];
+				if node.station != None:
+					node.station.departures.append(service);
+			except KeyError:
+				raise KeyError("{} stops at non-existing place {}".format(service, stop[1]));
+
 def LoadData():
 	with open("data.txt") as data:
 		text = data.read();
@@ -311,7 +322,9 @@ def LoadData():
 					raise Exception("Syntax error near {0}".format(text[:100]));
 				
 			section = re.match("\s*(\w+):", text);
-		LoadServices();
+	
+	LoadServices();
+	GenerateDepartures();
 
 def SaveData():
 	with open("data.txt", "w") as data:

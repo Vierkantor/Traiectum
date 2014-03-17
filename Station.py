@@ -14,6 +14,7 @@ class Station:
 		self.platforms = [];
 		self.nodes = [];
 		self.passengers = [];
+		self.departures = [];
 	
 	def AddPlatform(self, place):
 		self.platforms.append(place);
@@ -32,7 +33,7 @@ class Station:
 	
 	# all the services that leave said node after said time
 	def DeparturesFrom(self, time):
-		for service in Data.services:
+		for service in self.departures:
 			for stop in Data.services[service]:
 				if stop[0] > time and stop[1] in self.platforms:
 					yield service;
