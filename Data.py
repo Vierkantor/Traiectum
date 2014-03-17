@@ -132,18 +132,24 @@ class Train:
 		self.distance = 0;
 		self.pos = currentNode.pos; # at the place we arrived
 		
-		if self.service[self.order + 1][0] < frameTime:
-			if nodes[self.path[0]].station != None:
-				# take in passengers
-				for passenger in nodes[self.path[0]].station.passengers:
-					if passenger.ShouldEmbark(self):
-						passenger.pos = None;
-						passenger.route = passenger.route[1:];
-						self.passengers.append(passenger);
-						nodes[self.path[0]].station.passengers.remove(passenger);
+		if plannedTime < frameTime:
+			self.Depart();
+	
+	def Depart(self):
+		# if we stopped at a station
+		currentNode = nodes[self.path[0]];
+		if currentNode.station != None:
+			currentStation = currentNode.station;
+			# take in passengers
+			for passenger in currentStation.passengers:
+				if passenger.ShouldEmbark(self):
+					passenger.pos = None;
+					passenger.route = passenger.route[1:];
+					self.passengers.append(passenger);
+					currentStation.passengers.remove(passenger);
 			
-			self.order += 1;
-			self.path = [];
+		self.order += 1;
+		self.path = [];
 	
 	def Update(self):
 		try:
