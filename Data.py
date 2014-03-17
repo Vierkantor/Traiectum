@@ -103,14 +103,17 @@ class Train:
 		self.pos = nodes[places[self.service[self.order][1]]].pos;
 		self.v = 0;
 		self.distance = 0;
-		self.path = Path.FindRoute(places[self.service[self.order][1]], places[self.service[self.order + 1][1]]);
+		self.CreateNewPath();
 		
 		self.passengers = [];
+	
+	def CreateNewPath(self):
+		self.path = Path.FindRoute(places[self.service[self.order][1]], places[self.service[self.order + 1][1]]);
 	
 	def Update(self):
 		try:
 			if self.path == []:
-				self.path = Path.FindRoute(places[self.service[self.order][1]], places[self.service[self.order + 1][1]]);
+				self.CreateNewPath();
 			elif self.path == False: # no way to continue
 				return;
 			elif len(self.path) == 1:
