@@ -192,10 +192,19 @@ class Train:
 				if lineDistance <= 0 or self.distance > lineDistance:
 					del self.path[0]; # go to the next node in our path
 					self.distance -= lineDistance;
+					
+					# recalculate path distance
+					if len(self.path > 1):
+						lineDistance = Path.Distance(nodes[self.path[0]].pos, nodes[self.path[1]].pos);
+					else:
+						lineDistance = 0;
 				
 				# make sure we don't go off the end of the route
-				if len(self.path) > 1:
+				if lineDistance > 0:
 					self.pos = Path.Move(nodes[self.path[1]].pos, nodes[self.path[0]].pos, self.distance / lineDistance);
+				else:
+					self.pos = nodes[self.path[0]].pos;
+				
 		except:
 			print(self.serviceName, self.path, self.service, self.order);
 			raise;
