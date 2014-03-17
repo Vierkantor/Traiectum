@@ -111,9 +111,10 @@ class Train:
 		self.path = Path.FindRoute(places[self.service[self.order][1]], places[self.service[self.order + 1][1]]);
 	
 	def Arrived(self):
-		# warn if we're too late
-		if self.service[self.order + 1][0] < frameTime - 1:
-			print("{} arrived +{} at {}".format(self.composition, int(frameTime - self.service[self.order + 1][0]), self.path[0]));
+		# warn if we're too late by at least 1 minute
+		plannedTime = self.service[self.order + 1][0];
+		if plannedTime < frameTime - 1:
+			print("{} arrived +{} at {}".format(self.composition, int(frameTime - plannedTime), self.path[0]));
 		
 		for passenger in self.passengers:
 			if passenger.ShouldDisembark(self.path[0]):
