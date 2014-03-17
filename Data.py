@@ -127,9 +127,10 @@ class Train:
 					passenger.pos = currentNode.station;
 					passenger.pos.passengers.append(passenger);
 		
+		# since we arrived, stop the train
 		self.v = 0;
 		self.distance = 0;
-		self.pos = nodes[self.path[0]].pos;
+		self.pos = currentNode.pos; # at the place we arrived
 		
 		if self.service[self.order + 1][0] < frameTime:
 			if nodes[self.path[0]].station != None:
