@@ -31,36 +31,50 @@ def Distance(begin, end):
 def Move(a, b, weight = 0.5):
 	return (a[0] * weight + b[0] * (1 - weight), a[1] * weight + b[1] * (1 - weight));
 
+# uses A*
+# heuristic: distance along great circle (is lower bound of actual distance, so it is admissible)
 def FindRoute(begin, end):
 	if begin == end:
 		return [end];
 
 	closed = {};
-	open = [(begin, 0, Distance(Data.nodes[begin].pos, Data.nodes[end].pos))];
+	open = {};
+	open[begin] = (Distance(Data.nodes[begin].pos, Data.nodes[end].pos), 0);
 	dirs = {};
 	
-	while open != []:
-		open = sorted(open, key = lambda x: x[2]);
-		current = open[0];
-		open = open[1:];
-		closed[current[0]] = current;
+	while len(open) > 0:
+		distance = open.values()[0];
+		current = open.keys()[0];
 		
-		if current[0] == end:
+		# find first node to process
+		for node in open:
+			if open[node][0] < distance[0]:
+				distance = open[node];
+				current = node;
+		
+		# processing it, so remove the node from the open points
+		del open[current];
+		# and add it to the closed points
+		closed[current] = distance;
+		
+		# if we already reached the end, return the path
+		if current == end:
 			return MakePath(begin, end, dirs);
 		
-		for next in Data.GetLinks(current[0]):
-			skip = False;
-			g = current[1] + Distance(Data.nodes[current[0]].pos, Data.nodes[next].pos);
+		# add the adjacent nodes to the queue
+		for next in Data.GetLinks(current):
+			# if we've already processed it, continue
 			if next in closed:
-				if g < closed[next][1]:
-					del closed[next];
-				else:
-					skip = True;		
+				continue;
 			
-			if not skip:
-				open.append((next, g, g + Distance(Data.nodes[next].pos, Data.nodes[end].pos)));
-				dirs[next] = current[0];
-	
+			# otherwise, calculate its distance
+			newG = distance[1] + Distance(Data.nodes[current].pos, Data.nodes[next].pos);
+			
+			# if it's a good way to get there, save the new direction
+			if next not in open or open[next][1] > newG:
+				dirs[next] = current;
+				open[next] = (newG + Distance(Data.nodes[next].pos, Data.nodes[end].pos), newG);
+			
 	print("No path between {} and {}".format(Data.NodeName(begin), Data.NodeName(end)));
 	
 	return False;
