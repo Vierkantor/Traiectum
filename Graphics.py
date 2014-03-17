@@ -33,7 +33,6 @@ def Transform(pos):
 	return (int((pos[0] - center[0]) * scale), int((pos[1] - center[1]) * scale * parallelCorrection));
 
 def InvTransform(pos):
-	print(pos);
 	return (pos[0] / scale + center[0], pos[1] / scale / parallelCorrection + center[1]);
 
 def GetWorldPos(pos):
