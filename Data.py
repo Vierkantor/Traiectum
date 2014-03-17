@@ -151,6 +151,22 @@ class Train:
 		self.order += 1;
 		self.path = [];
 	
+	def GetAcceleration(self):
+		# determine our movement
+		a = 0;
+		if len(self.path) == 2 and self.v * (self.service[self.order + 1][0] - frameTime) > (lineDistance - self.distance):
+			# brake for an upcoming station
+			if self.v > 100:
+				# decelerate by about 6 m/s^2
+				a = -20000;
+		else:
+			# if the velocity is too low, accelerate by about 6 m/s^2
+			if self.v <= 20:
+				a = 20000;
+			else:
+				a = 400000 / self.v;
+		return a;
+	
 	def Update(self):
 		try:
 			if self.path == []:
@@ -162,32 +178,16 @@ class Train:
 			else:
 				lineDistance = Path.Distance(nodes[self.path[0]].pos, nodes[self.path[1]].pos);
 				
+				a = self.GetAcceleration();
+				
 				# move the train
 				self.distance += self.v * timeStep;
-				
-				# determine our movement
-				a = 0;
-				if len(self.path) == 2 and self.v * (self.service[self.order + 1][0] - frameTime) > (lineDistance - self.distance):
-					# brake for an upcoming station
-					if self.v > 100:
-						# decelerate by about 6 m/s^2
-						a = -20000;
-				else:
-					# if the velocity is too low, accelerate by about 6 m/s^2
-					if self.v <= 20:
-						a = 20000;
-					else:
-						a = 400000 / self.v;
-				
-				# accelerate how we want
 				self.v += a * timeStep;
-				
-				# round off the speed
 				if self.v <= 0:
 					self.v = 0;
-				
-				# apply the acceleration too
+				# distance is the integral of v dt = x_0 + v_0 * t + 
 				self.distance += 0.5 * a * timeStep * timeStep;
+				
 				self.pos = Path.Move(nodes[self.path[1]].pos, nodes[self.path[0]].pos, self.distance / lineDistance);
 				
 				# move to the next line segment if we pass the end of this one
