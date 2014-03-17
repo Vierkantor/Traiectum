@@ -152,6 +152,8 @@ class Train:
 		self.path = [];
 	
 	def GetAcceleration(self):
+		lineDistance = Path.Distance(nodes[self.path[0]].pos, nodes[self.path[1]].pos);
+		
 		# determine our movement
 		a = 0;
 		if len(self.path) == 2 and self.v * (self.service[self.order + 1][0] - frameTime) > (lineDistance - self.distance):
@@ -176,8 +178,6 @@ class Train:
 			elif len(self.path) == 1: # we arrived at the destination
 				self.Arrived();
 			else:
-				lineDistance = Path.Distance(nodes[self.path[0]].pos, nodes[self.path[1]].pos);
-				
 				a = self.GetAcceleration();
 				
 				# move the train
@@ -185,15 +185,15 @@ class Train:
 				self.v += a * timeStep;
 				if self.v <= 0:
 					self.v = 0;
-				# distance is the integral of v dt = x_0 + v_0 * t + 
+				# distance is the integral of v dt = x_0 + v_0 * t + 1/2 * a * t * t
 				self.distance += 0.5 * a * timeStep * timeStep;
 				
-				self.pos = Path.Move(nodes[self.path[1]].pos, nodes[self.path[0]].pos, self.distance / lineDistance);
-				
-				# move to the next line segment if we pass the end of this one
-				if self.distance > lineDistance:
-					del self.path[0];
+				lineDistance = Path.Distance(nodes[self.path[0]].pos, nodes[self.path[1]].pos);
+				if lineDistance <= 0 or self.distance > lineDistance:
+					del self.path[0]; # go to the next node in our path
 					self.distance -= lineDistance;
+				
+				self.pos = Path.Move(nodes[self.path[1]].pos, nodes[self.path[0]].pos, self.distance / lineDistance);
 		except:
 			print(self.serviceName, self.path, self.service, self.order);
 			raise;
