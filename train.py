@@ -23,68 +23,71 @@ Graphics.screen = pygame.display.set_mode(Graphics.size);
 
 Filefunc.LoadData();
 
-while 1:
-	keys = pygame.key.get_pressed();
+def SimLoop():
+	while 1:
+		keys = pygame.key.get_pressed();
 		
-	if keys[pygame.K_LEFT] or keys[pygame.K_a]:
-		Graphics.center = (Graphics.center[0], Graphics.center[1] - 100 / Graphics.scale);
-		Graphics.following = None;
-	if keys[pygame.K_RIGHT] or keys[pygame.K_d]:
-		Graphics.center = (Graphics.center[0], Graphics.center[1] + 100 / Graphics.scale);
-		Graphics.following = None;
-	if keys[pygame.K_UP] or keys[pygame.K_w]:
-		Graphics.center = (Graphics.center[0] + 100 / Graphics.scale, Graphics.center[1]);
-		Graphics.following = None;
-	if keys[pygame.K_DOWN] or keys[pygame.K_s]:
-		Graphics.center = (Graphics.center[0] - 100 / Graphics.scale, Graphics.center[1]);
-		Graphics.following = None;
+		if keys[pygame.K_LEFT] or keys[pygame.K_a]:
+			Graphics.center = (Graphics.center[0], Graphics.center[1] - 100 / Graphics.scale);
+			Graphics.following = None;
+		if keys[pygame.K_RIGHT] or keys[pygame.K_d]:
+			Graphics.center = (Graphics.center[0], Graphics.center[1] + 100 / Graphics.scale);
+			Graphics.following = None;
+		if keys[pygame.K_UP] or keys[pygame.K_w]:
+			Graphics.center = (Graphics.center[0] + 100 / Graphics.scale, Graphics.center[1]);
+			Graphics.following = None;
+		if keys[pygame.K_DOWN] or keys[pygame.K_s]:
+			Graphics.center = (Graphics.center[0] - 100 / Graphics.scale, Graphics.center[1]);
+			Graphics.following = None;
 		
-	for event in pygame.event.get():
-		if event.type == pygame.QUIT:
-			Filefunc.SaveData();
-			sys.exit();
-		elif event.type == pygame.MOUSEBUTTONDOWN:
-			if event.button == 1: # center on a train
-				worldPos = Graphics.GetWorldPos(pygame.mouse.get_pos());
-				smallestDistance = 1000;
+		for event in pygame.event.get():
+			if event.type == pygame.QUIT:
+				Filefunc.SaveData();
+				sys.exit();
+			elif event.type == pygame.MOUSEBUTTONDOWN:
+				if event.button == 1: # center on a train
+					worldPos = Graphics.GetWorldPos(pygame.mouse.get_pos());
+					smallestDistance = 1000;
 				
-				# check all trains
-				for trainID in Data.trains:
-					train = Data.trains[trainID];
+					# check all trains
+					for trainID in Data.trains:
+						train = Data.trains[trainID];
 					
-					# if the distance is the shortest
-					distance = Path.Distance(train.pos, worldPos);
-					if distance < smallestDistance:
-						# center on that train
-						Graphics.following = train;
-						smallestDistance = distance;
-			elif event.button == 4:
-				Graphics.scale = Graphics.scale * 2;
-			elif event.button == 5:
-				Graphics.scale = Graphics.scale / 2;
-		elif event.type == pygame.KEYDOWN:
-			if event.key == pygame.K_EQUALS:
-				Data.timeStep *= 2;
-			elif event.key == pygame.K_MINUS:
-				Data.timeStep /= 2;	
+						# if the distance is the shortest
+						distance = Path.Distance(train.pos, worldPos);
+						if distance < smallestDistance:
+							# center on that train
+							Graphics.following = train;
+							smallestDistance = distance;
+				elif event.button == 4:
+					Graphics.scale = Graphics.scale * 2;
+				elif event.button == 5:
+					Graphics.scale = Graphics.scale / 2;
+			elif event.type == pygame.KEYDOWN:
+				if event.key == pygame.K_EQUALS:
+					Data.timeStep *= 2;
+				elif event.key == pygame.K_MINUS:
+					Data.timeStep /= 2;
 
-	Data.UpdateTime();
+		Data.UpdateTime();
 	
-	for train in Data.trains:
-		try:
-			Data.trains[train].Update();
-		except:
-			print(train);
-			raise;
+		for train in Data.trains:
+			try:
+				Data.trains[train].Update();
+			except:
+				print(train);
+				raise;
 	
-	for station in Station.stations:
-		try:
-			Station.stations[station].Update();
-		except:
-			print(station);
-			raise;
+		for station in Station.stations:
+			try:
+				Station.stations[station].Update();
+			except:
+				print(station);
+				raise;
 
-	Graphics.Draw();
+		Graphics.Draw();
 	
-	# make sure the log gets updated
-	sys.stdout.flush();
+		# make sure the log gets updated
+		sys.stdout.flush();
+
+SimLoop();
