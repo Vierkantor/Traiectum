@@ -117,7 +117,7 @@ class Train:
 			print("{} arrived +{} at {}".format(self.composition, int(frameTime - plannedTime), self.path[0]));
 		
 		# we just arrived, so let passengers get off
-		currentNode = self.path[0];
+		currentNode = nodes[self.path[0]];
 		for passenger in self.passengers:
 			if passenger.ShouldDisembark(currentNode):
 				self.passengers.remove(passenger);
