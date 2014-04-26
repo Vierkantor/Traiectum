@@ -1516,6 +1516,7 @@ nodes:
 	1514 -> 51.536823, -0.129262
 	1515 -> 51.541407, -0.135208
 	1516 -> 51.531974, -0.126473
+	1517 -> 51.143212, 0.875686
 :end
 
 links:
@@ -4742,8 +4743,10 @@ links:
 	1504, 1505
 	1505, 1504
 	1505, 1506
+	1505, 1517
 	1506, 1505
 	1506, 1507
+	1506, 1517
 	1507, 1506
 	1507, 1508
 	1508, 1507
@@ -4765,9 +4768,12 @@ links:
 	1515, 1513
 	1515, 1514
 	1516, 1514
+	1517, 1505
+	1517, 1506
 :end
 
 places:
+	AFK -> 1517
 	Abr -> 822
 	Ac -> 472
 	AcS2 -> 472
@@ -4905,6 +4911,7 @@ places:
 	Bv -> 679
 	Bzl -> 813
 	Bzm -> 859
+	Calais_Fréthun -> 1497
 	Cas -> 1332
 	CasS1 -> 1332
 	CasS2 -> 1331
@@ -4953,6 +4960,7 @@ places:
 	Dvgea -> 182
 	Dvn -> 50
 	Dvnk -> 136
+	EBD -> 1508
 	Ebtwa -> 101
 	Ec -> 320
 	Ed -> 51
@@ -5145,6 +5153,7 @@ places:
 	LednS2 -> 112
 	LednS4a -> 117
 	Lek -> 352
+	Lille_Europe -> 1493
 	Lin -> 322
 	Lis -> 618
 	Lls -> 257
@@ -5271,6 +5280,7 @@ places:
 	RvS2 -> 1446
 	Rvbr -> 133
 	Rvs -> 541
+	STP -> 1516
 	Sbk -> 965
 	Sdm -> 403
 	Sdn -> 569
@@ -5460,6 +5470,7 @@ places:
 :end
 
 stations:
+	AFK -> AFK
 	Ac -> Ac
 	Ac -> AcS2
 	Ac -> AcS3
@@ -5556,6 +5567,7 @@ stations:
 	Buende -> Buende
 	Bv -> Bv
 	Bzl -> Bzl
+	Calais_Fréthun -> Calais_Fréthun
 	Cas -> Cas
 	Cas -> CasS1
 	Cas -> CasS2
@@ -5588,6 +5600,7 @@ stations:
 	Dvd -> Dvd
 	Dvn -> Dvn
 	Dvnk -> Dvnk
+	EBD -> EBD
 	Ec -> Ec
 	Ed -> Ed
 	Ehb -> Ehb
@@ -5715,6 +5728,7 @@ stations:
 	Ledn -> LednS1
 	Ledn -> LednS2
 	Ledn -> LednS4a
+	Lille_Europe -> Lille_Europe
 	Lls -> Lls
 	Lut -> Lut
 	Lw -> Lw
@@ -5782,6 +5796,7 @@ stations:
 	Rtn -> Rtn
 	Rtz -> Rtz
 	Rvs -> Rvs
+	STP -> STP
 	Sbk -> Sbk
 	Sdm -> Sdm
 	Sdt -> Sdt
