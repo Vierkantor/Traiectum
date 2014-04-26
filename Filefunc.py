@@ -328,8 +328,8 @@ def LoadData():
 	GenerateDepartures();
 
 def SaveData():
-	with open("data.txt", "w") as data:
-		data.write("version: 2\n");
+	with codecs.open("data.txt", "w", encoding="utf-8") as data:
+		data.write("version: 3\n");
 		
 		data.write("nodes:\n");
 		for node in sort_nicely(Data.nodes.items()):
@@ -353,8 +353,8 @@ def SaveData():
 				data.write("\t{0} -> {1}\n".format(place[1].name, platform));
 		data.write(":end\n\n");
 		
-	with open("servicedata.txt", "w") as data:
-		data.write("version: 3\n");
+	with codecs.open("servicedata.txt", "w", encoding="utf-8") as data:
+		data.write("version: 4\n");
 		data.write("# Generated automatically by Traiectum\n");
 		
 		data.write("services:\n");
