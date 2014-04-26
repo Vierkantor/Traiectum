@@ -17,7 +17,7 @@ Find a nice version of [pygame](http://pygame.org) for your computer. Run train.
 
 # Data files
 
-The simulation data is stored in data.txt and servicedata.txt, using a custom format. This is to make them human-readable(-ish) and easy to tweak by hand. Generally, different types of data are stored between type: and :end tokens. Data in the form of lists is usually represented by name: ... :end and other named things with name -> value. Other values are separated by commas.
+The simulation data is stored in data.txt and servicedata.txt, using a custom format. This is to make them human-readable(-ish) and easy to tweak by hand. Generally, different types of data are stored between type: and :end tokens. Data in the form of lists is usually represented by name: ... :end and other named things with name -> value. Other values are separated by commas. These files are encoded in UTF-8, because that is the only useful encoding ever made.
 
 The program group.py takes all the text files in a folder called DataSources and makes one big servicedata.txt from them, automagically smooshing all service information together and generating enough trains to do these services. Pipe the output of this program to a **new** file to make sure it's correct, and replace servicedata.txt with it when you're satisfied it works.
 

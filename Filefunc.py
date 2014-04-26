@@ -1,3 +1,4 @@
+import codecs;
 import re;
 import sys;
 
@@ -58,11 +59,11 @@ oldStopSyntax = [
 ];
 
 def LoadServices(filename = "servicedata.txt", loadIndicators = True):
-	with open(filename) as data:
+	with codecs.open(filename, encoding="utf-8") as data:
 		text = data.read();
 		version = re.match("\s*version:\s*(\d+)", text);
-		if version == None or int(version.group(1)) not in [2, 3]:
-			raise Exception("Data file is of an invalid version! (Expected [2, 3], received {})".format(version.group(1)));
+		if version == None or int(version.group(1)) not in [2, 3, 4]:
+			raise Exception("Data file is of an invalid version! (Expected [2, 3, 4], received {})".format(version.group(1)));
 		else:
 			text = Parser.StringSlice(text, version.end(0));
 			version = int(version.group(1));
@@ -227,11 +228,11 @@ def GenerateDepartures():
 				raise KeyError("{} stops at non-existing place {}".format(service, stop[1]));
 
 def LoadData():
-	with open("data.txt") as data:
-		text = data.read();
-		version = re.match("\s*version:\s*(\d+)", text);
-		if version == None or int(version.group(1)) > 2:
-			raise Exception("Data file is of an invalid version! (Expected [1, 2], received {})".format(version.group(1)));
+	with codecs.open("data.txt", encoding="utf-8") as data:
+		text = data.read()
+		version = re.match("\s*version:\s*(\d+)", text, re.UNICODE);
+		if version == None or int(version.group(1)) > 3:
+			raise Exception("Data file is of an invalid version! (Expected [1, 2, 3], received {})".format(version.group(1)));
 		else:
 			text = text[version.end(0):];
 			version = int(version.group(1));
@@ -241,19 +242,19 @@ def LoadData():
 		Data.places = {};
 		Data.links = {};
 		
-		section = re.match("\s*(\w+):\s*", text);
+		section = re.match("\s*(\w+):\s*", text, re.UNICODE);
 		while section != None:
 			text = text[section.end(0):];
 			
 			if section.group(1) == "places":
 				print("Parsing places...");
 				while True:
-					endMark = re.match("\s*\:end", text);
+					endMark = re.match("\s*\:end", text, re.UNICODE);
 					if endMark != None:
 						text = text[endMark.end(0):];
 						break;
 					
-					placeData = re.match("\s*(\w+)\s*->\s*(\d+)", text);
+					placeData = re.match("\s*(\w+)\s*->\s*(\d+)", text, re.UNICODE);
 					if placeData != None:
 						Data.places[placeData.group(1)] = int(placeData.group(2));
 						
@@ -263,12 +264,12 @@ def LoadData():
 			if section.group(1) == "stations":
 				print("Parsing stations...");
 				while True:
-					endMark = re.match("\s*\:end", text);
+					endMark = re.match("\s*\:end", text, re.UNICODE);
 					if endMark != None:
 						text = text[endMark.end(0):];
 						break;
 					
-					placeData = re.match("\s*(\w+)\s*->\s*(\w+)", text);
+					placeData = re.match("\s*(\w+)\s*->\s*(\w+)", text, re.UNICODE);
 					if placeData != None:
 						if placeData.group(1) not in Station.stations:
 							Station.stations[placeData.group(1)] = Station.Station(placeData.group(1));
@@ -281,12 +282,12 @@ def LoadData():
 			if section.group(1) == "links":
 				print("Parsing links...");
 				while True:
-					endMark = re.match("\s*\:end", text);
+					endMark = re.match("\s*\:end", text, re.UNICODE);
 					if endMark != None:
 						text = text[endMark.end(0):];
 						break;
 					
-					linkData = re.match("\s*(\d+)\s*,\s*(\d+)", text);
+					linkData = re.match("\s*(\d+)\s*,\s*(\d+)", text, re.UNICODE);
 					if linkData != None:
 						link1 = int(linkData.group(1));
 						link2 = int(linkData.group(2));
@@ -299,12 +300,12 @@ def LoadData():
 			if section.group(1) == "nodes":
 				print("Parsing nodes...");
 				while True:
-					endMark = re.match("\s*\:end", text);
+					endMark = re.match("\s*\:end", text, re.UNICODE);
 					if endMark != None:
 						text = text[endMark.end(0):];
 						break;
 					
-					nodeData = re.match("\s*(\w+)\s*->\s*(\d+)\s*->\s*(\-?[\d\.]+)\s*,\s*(\-?[\d\.]+)", text);
+					nodeData = re.match("\s*(\w+)\s*->\s*(\d+)\s*->\s*(\-?[\d\.]+)\s*,\s*(\-?[\d\.]+)", text, re.UNICODE);
 					if nodeData != None:
 						Data.nodes[int(nodeData.group(2))] = Data.Node(int(nodeData.group(2)), (float(nodeData.group(3)), float(nodeData.group(4))));
 						Data.places[nodeData.group(1)] = int(nodeData.group(2));
@@ -312,16 +313,16 @@ def LoadData():
 						text = text[nodeData.end(0):];
 						continue;
 					
-					nodeData = re.match("\s*(\d+)\s*->\s*(\-?[\d\.]+)\s*,\s*(\-?[\d\.]+)", text);
+					nodeData = re.match("\s*(\d+)\s*->\s*(\-?[\d\.]+)\s*,\s*(\-?[\d\.]+)", text, re.UNICODE);
 					if nodeData != None:
 						Data.nodes[int(nodeData.group(1))] = Data.Node(int(nodeData.group(1)), (float(nodeData.group(2)), float(nodeData.group(3))));
 						
 						text = text[nodeData.end(0):];
 						continue;
 					
-					raise Exception("Syntax error near {0}".format(text[:100]));
+					raise Exception("Syntax error near {0}".format(repr(text[:100])));
 				
-			section = re.match("\s*(\w+):", text);
+			section = re.match("\s*(\w+):", text, re.UNICODE);
 	
 	LoadServices();
 	GenerateDepartures();
