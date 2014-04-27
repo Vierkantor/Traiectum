@@ -46,10 +46,10 @@ class Passenger:
 		if station == None:
 			return;
 		
-		self.route.append((new[0], station));
+		self.route.append((new[0], station, service));
 	
 	def MakeRoute(self):
-		self.route = [(Data.frameTime, self.pos)];
+		self.route = [(Data.frameTime, self.pos, None)];
 		self.AddStop();
 		
 		# about 4 stops (pos, next, approx 2 more)
@@ -60,16 +60,7 @@ class Passenger:
 		if len(self.route) == 1:
 			return False;
 		
-		boarded = False;
-		for stop in train.service:
-			if not (boarded or self.route[0][1].HasPlatform(Data.places[stop[1]])):
-				continue;
-			else:
-				boarded = True;
-			
-			if self.route[1][1].HasPlatform(Data.places[stop[1]]):
-				return True;
-		return False;
+		return self.route[1][2] in train.serviceName;
 	
 	def ShouldDisembark(self, node):
 		return node.station == self.route[0][1];
