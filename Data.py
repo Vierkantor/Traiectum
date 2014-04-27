@@ -114,7 +114,7 @@ class Train:
 		# warn if we're too late by at least 1 minute
 		plannedTime = self.service[self.order + 1][0];
 		if plannedTime < frameTime - 1:
-			print("{} arrived +{} at {}".format(self.composition, int(frameTime - plannedTime), self.path[0]));
+			print("{} arrived +{} at {}".format(self.composition, int(frameTime - plannedTime), NodeName(self.path[0])));
 		
 		# we just arrived, so let passengers get off
 		currentNode = nodes[self.path[0]];
