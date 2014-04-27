@@ -9,22 +9,9 @@ import Filefunc;
 # Groups all the different service data files together into one big one
 # And use them to automatically produce the trains
 services = {};
-servicesByTime = [];
 
 # the list of files we got data from
 sources = [];
-
-# sorts the services by departure time
-def mergeService(serviceName, serviceData):
-	# find the insertion point
-	index = 0;
-	for service in servicesByTime:
-		if service[1][0][0] > serviceData[0][0]:
-			break;
-		index += 1;
-	
-	# insert before the later service
-	servicesByTime.insert(index, (serviceName, serviceData));
 
 def sameStation(a, b):
 	if len(a) > len(b):
@@ -71,12 +58,12 @@ for service in services:
 	for stop in services[service]:
 		print("\t\t{}, {}, {}".format(int(stop[0]) // 60, int(stop[0]) % 60, stop[1]));
 	
-	# prepare it for the train generation
-	mergeService(service, services[service]);
-	
 	print("\t:end");
 
 print(":end");
+
+# sort the services for easier searching of departures
+servicesByTime = sorted(services.items(), key=lambda x: (x[1], x[0]));
 
 print("trains:");
 index = 0;
