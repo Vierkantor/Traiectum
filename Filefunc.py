@@ -86,8 +86,8 @@ def LoadServices(filename = "servicedata.txt", loadIndicators = True):
 					
 					while True:
 						parseCount += 1;
-						if parseCount % 100 == 0 and loadIndicators:						
-							sys.stdout.write("\rParsing services." + "." * (parseCount // 100));
+						if parseCount % 100 == 0 and loadIndicators:
+							sys.stdout.write("\rParsing services." + "." * (parseCount // 200));
 							sys.stdout.flush();
 						
 						# add a number of minutes to another service (handy for manual input of services)
