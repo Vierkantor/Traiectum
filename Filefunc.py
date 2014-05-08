@@ -6,6 +6,12 @@ import Data;
 import Parser;
 import Station;
 
+# fix Python2's bad range() function
+try:
+	range = xrange;
+except NameError:
+	pass;
+
 def tryint(s):
     try:
         return int(s)
@@ -25,6 +31,9 @@ def sort_nicely(l):
     """ Sort the given list in the way that humans expect.
     """
     return sorted(l, key=lambda x: alphanum_key(x[0]))
+
+def isSorted(list, key=lambda x: x):
+	return all(key(list[i]) <= key(list[i + 1]) for i in range(len(list) - 1))
 
 sectionStartSyntax = [
 	Parser.MatchName, Parser.MatchText(":"),
@@ -160,8 +169,13 @@ def LoadServices(filename = "servicedata.txt", loadIndicators = True):
 								# and make sure there is an :end mark otherwise
 								text, _ = Parser.ParseFormat(text, endSyntax);
 								break;
-						
-							Data.services[name].sort(key=lambda x: x[0]);
+							
+							# make sure the orders are sorted (and warn if they aren't)
+							if not isSorted(Data.services[name], key=lambda x: x[0]):
+								sys.stderr.write("Warning: Orders for service {} are not in order!".format(name));
+								sys.stderr.flush();
+								Data.services[name].sort(key=lambda x: x[0]);
+							
 							continue;
 						
 						# make sure we hit an :end mark
