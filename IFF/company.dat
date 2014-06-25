@@ -1,0 +1,59 @@
+@100,15122013,13122014,0440,IFF uit RITS                  
+041,41        ,Largo Recorrido Renfe         ,0000
+083,83        ,Ferrovie dello Stato          ,0000
+020,area      ,Stadsvervoer Oss              ,0000
+803,arriva    ,Arriva (OVR)                  ,0000
+003,bba       ,BBA                           ,0000
+900,BR        ,British Rail                  ,0000
+052,breng     ,Breng                         ,0000
+942,CD        ,ceske drahy                   ,0000
+970,cfl       ,Chemins de Fer Luxembourg     ,0000
+941,CH-small  ,Zwitserland Smallspoor        ,0000
+802,connex    ,Connexxion (OVR)              ,0000
+805,connexx   ,ConneXXion bus                ,0000
+600,connexxi  ,Connexxion                    ,0000
+910,db        ,DB                            ,0000
+048,doeksen   ,Doeksen                       ,0000
+930,dsb       ,Danske Statsbaner             ,0000
+035,ebs       ,ebs bus                       ,0000
+310,EETC      ,EETC                          ,0400
+022,gvb       ,GVB                           ,0000
+025,gvu       ,GVU                           ,0000
+501,hermes    ,Hermes                        ,0000
+200,Hispeed   ,NS Hispeed                    ,0400
+850,HSS       ,STENA                         ,0000
+023,htm       ,HTM                           ,0000
+960,int       ,Overig Internationaal         ,0000
+911,keo       ,Keolis                        ,0000
+962,LCB       ,Locon Benelux                 ,0000
+046,limex     ,Limex                         ,0000
+053,mti       ,Mti                           ,0000
+028,NACO      ,Rederij NACO                  ,0000
+920,nmbs      ,NMBS                          ,0000
+500,noord     ,Arriva                        ,0000
+806,noordne   ,Noordned (OVR)                ,0000
+014,novio     ,Novio                         ,0000
+100,ns        ,NS                            ,0400
+015,oad       ,Oad                           ,0000
+950,oebb      ,Oestereichische Bahn          ,0000
+030,PSD       ,Provinciale Stoombootdiensten ,0000
+750,qbuzz     ,Qbuzz                         ,0000
+024,ret       ,Ret                           ,0000
+037,Rnet      ,R-net                         ,0000
+940,sbb       ,Schweizerische Bundesbahn     ,0000
+012,sbm       ,SBM                           ,0000
+980,sncf      ,Franse Spoorwegen             ,0000
+021,stadsve   ,Stadsvervoer Nederland        ,0000
+036,svd       ,Svd                           ,0000
+400,syn       ,Syntus                        ,0000
+801,syntus    ,Syntus (OVR)                  ,0000
+027,teso      ,Teso                          ,0000
+300,THALYS    ,Thalys                        ,0000
+047,TSM       ,Rederij Doeksen               ,0000
+751,uov       ,U-OV                          ,0000
+054,Vallei    ,Valleilijn                    ,0000
+700,veo       ,Veolia                        ,0000
+701,veolia    ,Veolia bus                    ,0000
+050,veren     ,veren (OVR)                   ,0000
+026,Wagenb    ,Wagenborg                     ,0000
+029,waterbu   ,Waterbus                      ,0000

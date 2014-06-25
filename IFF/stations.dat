@@ -1,0 +1,674 @@
+@100,15122013,13122014,0440,IFF uit RITS                  
+1,ac     ,03,03,NL  ,0000,  ,012699,047685,Abcoude                       
+0,adh    ,00,00,NL  ,0000,  ,018286,057907,Leeuwarden Achter De Hoven    
+1,ah     ,04,04,NL  ,0000,  ,019032,044414,Arnhem                        
+1,ahbf   ,05,05,D   ,0000,  ,020462,030892,Aachen Hbf                    
+1,ahp    ,04,04,NL  ,0000,  ,019162,044419,Arnhem Velperpoort            
+1,ahpr   ,02,02,NL  ,0000,  ,019318,044447,Arnhem Presikhaaf             
+1,ahz    ,02,02,NL  ,0000,  ,018695,044085,Arnhem Zuid                   
+0,aime   ,00,00,F   ,0000,  ,025374,-27149,Aime-la-Plagne                
+0,aixtgv ,00,00,F   ,0000,  ,014927,-50612,Aix-en Provence TGV           
+1,akl    ,02,02,NL  ,0000,  ,012785,043159,Arkel                         
+1,akm    ,02,02,NL  ,0000,  ,018555,056240,Akkrum                        
+0,albert ,00,00,F   ,0000,  ,023298,-25948,Albertville                   
+0,aless  ,00,00,I   ,0000,  ,000000,000000,Alessandria                   
+1,alm    ,02,02,NL  ,0000,  ,014354,048749,Almere Centrum                
+1,almb   ,02,02,NL  ,0000,  ,014759,048963,Almere Buiten                 
+1,almm   ,02,02,NL  ,0000,  ,014161,048665,Almere Muziekwijk             
+1,almo   ,02,02,NL  ,0000,  ,014895,049059,Almere Oostvaarders           
+1,almp   ,02,02,NL  ,0000,  ,014528,048769,Almere Parkwijk               
+1,amf    ,04,04,NL  ,0000,  ,015409,046281,Amersfoort                    
+1,amfs   ,02,02,NL  ,0000,  ,015621,046526,Amersfoort Schothorst         
+1,aml    ,02,02,NL  ,0000,  ,024142,048623,Almelo                        
+1,ampo   ,02,02,NL  ,0000,  ,013894,048389,Almere Poort                  
+1,amr    ,04,04,NL  ,0000,  ,011125,051690,Alkmaar                       
+1,amri   ,02,02,NL  ,0000,  ,024216,048460,Almelo de Riet                
+1,amrn   ,02,02,NL  ,0000,  ,011281,051755,Alkmaar Noord                 
+1,ana    ,02,02,NL  ,0000,  ,011624,054243,Anna Paulowna                 
+0,andd   ,00,00,B   ,0000,  ,008791,036335,Antwerpen-Noorderdokken       
+1,apd    ,02,02,NL  ,0000,  ,019486,046920,Apeldoorn                     
+1,apdm   ,01,01,NL  ,0000,  ,019694,046875,Apeldoorn De Maten            
+1,apdo   ,01,01,NL  ,0000,  ,019733,046996,Apeldoorn Osseveld            
+1,apg    ,02,02,NL  ,0000,  ,025326,059427,Appingedam                    
+1,apn    ,02,02,NL  ,0000,  ,010505,045982,Alphen a/d Rijn               
+1,arn    ,02,02,NL  ,0000,  ,003576,039168,Arnemuiden                    
+1,asa    ,04,04,NL  ,0000,  ,012303,048432,Amsterdam Amstel              
+1,asb    ,05,05,NL  ,0000,  ,012503,048049,Amsterdam Bijlmer ArenA       
+0,asch   ,00,00,D   ,0000,  ,020344,030909,Aachen Schanz                 
+1,asd    ,05,05,NL  ,0000,  ,012186,048798,Amsterdam Centraal            
+1,asdar  ,02,02,NL  ,0000,  ,012400,048150,Amsterdam Stadion             
+1,asdl   ,02,02,NL  ,0000,  ,011731,048570,Amsterdam Lelylaan            
+1,asdm   ,04,04,NL  ,0000,  ,012394,048599,Amsterdam Muiderpoort         
+1,asdz   ,02,02,NL  ,0000,  ,011996,048358,Amsterdam Zuid                
+1,ashd   ,04,04,NL  ,0000,  ,012583,047902,Amsterdam Holendrecht         
+1,asn    ,01,01,NL  ,0000,  ,023447,055677,Assen                         
+1,ass    ,04,04,NL  ,0000,  ,011753,048920,Amsterdam Sloterdijk          
+1,assp   ,02,02,NL  ,0000,  ,012497,048535,Amsterdam Science Park        
+1,atn    ,02,02,NL  ,0000,  ,023696,043765,Aalten                        
+1,atw    ,03,03,B   ,0000,  ,008748,035896,Antwerpen-Centraal            
+0,atwlb  ,00,00,B   ,0000,  ,008782,036217,Antwerpen-Luchtbal            
+1,avat   ,02,02,NL  ,0000,  ,015816,046712,Amersfoort Vathorst           
+0,avtgv  ,00,00,F   ,0000,  ,010640,-45380,Avignon TGV                   
+0,aw     ,05,05,D   ,0000,  ,020321,031027,Aachen West                   
+0,badenz ,00,00,CH  ,0000,  ,037545,-05324,Baden                         
+0,badsch ,00,00,D   ,0000,  ,077050,036225,Bad Schandau                  
+0,baselb ,00,00,D   ,0000,  ,032233,-04503,Basel Bad Bf                  
+0,basels ,00,00,CH  ,0000,  ,032102,-04729,Basel SBB                     
+0,bbrn   ,00,00,D   ,0000,  ,070916,055248,Bernau (B Berlin)             
+1,bd     ,04,04,NL  ,0000,  ,011293,040086,Breda                         
+1,bde    ,02,02,NL  ,0000,  ,017957,032307,Bunde                         
+1,bdg    ,02,02,NL  ,0000,  ,011105,045502,Bodegraven                    
+1,bdm    ,01,01,NL  ,0000,  ,023538,059183,Bedum                         
+1,bdpb   ,02,02,NL  ,0000,  ,010894,040203,Breda-Prinsenbeek             
+1,berch  ,05,05,B   ,0000,  ,008826,035718,Antwerpen-Berchem             
+0,berfl  ,00,00,D   ,0000,  ,070726,052025,Berlin-Schönefeld Flugh.      
+1,berhbl ,01,01,D   ,0000,  ,069595,053410,Berlin Hbf                    
+0,berlig ,00,00,D   ,0000,  ,069695,053683,Berlin-Gesundbrunnen          
+0,bersud ,00,00,D   ,0000,  ,069622,052845,Berlin Südkreuz               
+0,berzoo ,00,00,D   ,0000,  ,069364,053179,Berlin Zoo                    
+1,bet    ,02,02,NL  ,0000,  ,015514,039117,Best                          
+1,beurs  ,02,02,NL  ,0000,  ,009187,043720,Rotterdam Beurs               
+1,bf     ,02,02,NL  ,0000,  ,023032,059776,Baflo                         
+0,bfbi   ,00,00,D   ,0000,  ,070725,052025,Berlin Brandenburg Flughafen  
+1,bgn    ,02,02,NL  ,0000,  ,007922,039015,Bergen op Zoom                
+1,bh     ,02,02,D   ,0000,  ,027586,048171,Bad Bentheim                  
+1,bhdv   ,02,02,NL  ,0000,  ,011948,042721,Boven-Hardinxveld             
+0,bhf    ,00,00,D   ,0000,  ,070053,053297,Berlin Ostbahnhof             
+0,bhg    ,00,00,NL  ,0000,  ,026758,048161,Bentheim Grens                
+1,bhv    ,02,02,NL  ,0000,  ,014247,046018,Bilthoven                     
+0,bischo ,00,00,A   ,0000,  ,074630,-03328,Bischofshofen                 
+1,bk     ,02,02,NL  ,0000,  ,018302,032866,Beek-Elsloo                   
+1,bkf    ,02,02,NL  ,0000,  ,014593,052321,Bovenkarspel Flora            
+1,bkg    ,02,02,NL  ,0000,  ,014478,052310,Bovenkarspel-Grootebroek      
+1,bkl    ,04,04,NL  ,0000,  ,012787,046485,Breukelen                     
+1,bl     ,02,02,NL  ,0000,  ,023137,054147,Beilen                        
+1,bll    ,02,02,NL  ,0000,  ,010327,049096,Bloemendaal                   
+0,bluden ,00,00,A   ,0000,  ,000000,000000,Bludenz                       
+1,bmn    ,02,02,NL  ,0000,  ,020712,045621,Brummen                       
+1,bmr    ,02,02,NL  ,0000,  ,019323,040631,Boxmeer                       
+1,bn     ,02,02,NL  ,0000,  ,024787,047980,Borne                         
+1,bnc    ,02,02,NL  ,0000,  ,016885,046139,Barneveld Centrum             
+1,bnk    ,02,02,NL  ,0000,  ,014187,045280,Bunnik                        
+1,bnn    ,02,02,NL  ,0000,  ,016948,046365,Barneveld Noord               
+0,bonn   ,00,00,D   ,0000,  ,027572,030608,Bonn Hbf                      
+0,bourg  ,00,00,F   ,0000,  ,026334,-26390,Bourg-St-Maurice              
+1,bp     ,02,02,NL  ,0000,  ,020555,058581,Buitenpost                    
+1,br     ,02,02,NL  ,0000,  ,020848,037617,Blerick                       
+0,brauns ,00,00,D   ,0000,  ,050661,048630,Braunschweig Hbf              
+1,brd    ,02,02,NL  ,0000,  ,009749,042990,Barendrecht                   
+1,bremen ,05,05,D   ,0000,  ,038454,057175,Bremen Hbf                    
+1,bressx ,05,05,B   ,0000,  ,017082,029488,Bressoux                      
+0,brig   ,00,00,CH  ,0000,  ,035557,-18364,Brig                          
+1,brn    ,03,03,NL  ,0000,  ,014782,046889,Baarn                         
+1,brusc  ,05,05,B   ,0000,  ,008185,031755,Brussel-Centraal              
+0,brusl  ,00,00,B   ,0000,  ,009151,032345,Brussel Nat. Luchthv          
+1,brusn  ,05,05,B   ,0000,  ,008245,031970,Brussel-Noord                 
+1,brusz  ,08,08,B   ,0000,  ,008161,031655,Brussel-Zuid/Midi             
+1,bsd    ,02,02,NL  ,0000,  ,014176,043456,Beesd                         
+1,bsk    ,02,02,NL  ,0000,  ,010423,045450,Boskoop                       
+1,bsmz   ,02,02,NL  ,0000,  ,013970,047528,Bussum Zuid                   
+0,bspd   ,00,00,D   ,0000,  ,068422,053381,Berlin-Spandau                
+1,btl    ,02,02,NL  ,0000,  ,015028,039955,Boxtel                        
+1,buende ,02,02,D   ,0000,  ,037279,047298,Buende (Westf.)               
+1,bv     ,02,02,NL  ,0000,  ,010527,049920,Beverwijk                     
+1,bzl    ,02,02,NL  ,0000,  ,005564,038892,Kapelle-Biezelinge            
+1,cas    ,03,03,NL  ,0000,  ,010562,050669,Castricum                     
+0,chamb  ,00,00,F   ,0000,  ,019662,-26969,Chambery                      
+0,chur   ,00,00,CH  ,0000,  ,047133,-11834,Chur                          
+1,ck     ,02,02,NL  ,0000,  ,018863,041550,Cuijk                         
+1,cl     ,02,02,NL  ,0000,  ,014400,043982,Culemborg                     
+1,co     ,02,02,NL  ,0000,  ,024625,052037,Coevorden                     
+1,cps    ,02,02,NL  ,0000,  ,009979,044094,Capelle Schollevaar           
+1,cvm    ,02,02,NL  ,0000,  ,020234,032094,Chevremont                    
+1,da     ,02,02,NL  ,0000,  ,023583,049544,Daarlerveen                   
+1,db     ,02,02,NL  ,0000,  ,014627,045299,Driebergen-Zeist              
+1,ddn    ,02,02,NL  ,0000,  ,024564,047551,Delden                        
+1,ddr    ,04,04,NL  ,0000,  ,010543,042457,Dordrecht                     
+1,ddrs   ,02,02,NL  ,0000,  ,010875,042393,Dordrecht Stadspolders        
+1,ddzd   ,02,02,NL  ,0000,  ,010565,042262,Dordrecht Zuid                
+0,decin  ,00,00,CS  ,0000,  ,077654,034774,Decin hl.n.                   
+1,dei    ,02,02,NL  ,0000,  ,017779,057807,Deinum                        
+1,did    ,02,02,NL  ,0000,  ,020625,043860,Didam                         
+1,dl     ,02,02,NL  ,0000,  ,021424,050155,Dalfsen                       
+1,dld    ,02,02,NL  ,0000,  ,014504,046133,Den Dolder                    
+1,dln    ,02,02,NL  ,0000,  ,024767,052390,Dalen                         
+1,dmn    ,02,02,NL  ,0000,  ,012639,048427,Diemen                        
+1,dmnz   ,02,02,NL  ,0000,  ,012562,048259,Diemen Zuid                   
+1,dmp    ,04,04,NL  ,0000,  ,009268,045151,Driemanspolder                
+1,dn     ,02,02,NL  ,0000,  ,018286,038533,Deurne                        
+0,domod  ,00,00,I   ,0000,  ,000000,000000,Domodossola                   
+1,dr     ,02,02,NL  ,0000,  ,020413,045095,Dieren                        
+0,dresd  ,00,00,D   ,0000,  ,073934,037238,Dresden Hbf                   
+0,dresdn ,00,00,D   ,0000,  ,073998,037673,Dresden-Neustadt              
+1,drh    ,02,02,NL  ,0000,  ,010415,049532,Driehuis                      
+1,dron   ,02,02,NL  ,0000,  ,017767,050522,Dronten                       
+1,drp    ,04,04,NL  ,0000,  ,017155,057682,Dronrijp                      
+1,dt     ,02,02,NL  ,0000,  ,008424,044698,Delft                         
+1,dtc    ,01,01,NL  ,0000,  ,021748,044152,Doetinchem                    
+1,dtch   ,02,02,NL  ,0000,  ,021498,044155,Doetinchem De Huet            
+1,dtwa   ,02,02,NL  ,0000,  ,009325,045178,Zoetermeer Delftsewallen      
+1,dtz    ,02,02,NL  ,0000,  ,008477,044522,Delft Zuid                    
+1,duisb  ,99,99,D   ,0000,  ,025149,038324,Duisburg Hbf                  
+1,dussel ,99,99,D   ,0000,  ,025330,035990,Duesseldorf Hbf               
+1,dv     ,02,02,NL  ,0000,  ,020783,047462,Deventer                      
+1,dvc    ,02,02,NL  ,0000,  ,021156,047393,Deventer Colmschate           
+1,dvd    ,04,04,NL  ,0000,  ,012428,048183,Duivendrecht                  
+1,dvn    ,02,02,NL  ,0000,  ,019814,043962,Duiven                        
+1,dvnk   ,02,02,NL  ,0000,  ,009127,046246,De Vink                       
+1,dvt    ,01,01,NL  ,0000,  ,021126,047400,Deventer De Scheg             
+1,dz     ,04,04,NL  ,0000,  ,025738,059523,Delfzijl                      
+1,dzw    ,02,02,NL  ,0000,  ,025624,059503,Delfzijl West                 
+0,eabg   ,00,00,D   ,0000,  ,029862,045362,Altenberge                    
+0,eahs   ,00,00,D   ,0000,  ,026669,045607,Ahaus                         
+0,ebeo   ,00,00,D   ,0000,  ,031920,040369,Boenen                        
+0,ebft   ,00,00,D   ,0000,  ,028791,046393,Burgsteinfurt                 
+0,ebgo   ,01,01,D   ,0000,  ,029258,046090,Borghorst (Westf)             
+0,ebok   ,00,00,D   ,0000,  ,029814,041104,Bork (Westf)                  
+1,ec     ,02,02,NL  ,0000,  ,018944,034578,Echt                          
+0,ecmf   ,00,00,D   ,0000,  ,027719,044045,Coesfeld (Westf)              
+1,ed     ,04,04,NL  ,0000,  ,017452,044891,Ede-Wageningen                
+1,edc    ,02,02,NL  ,0000,  ,017429,045060,Ede Centrum                   
+0,edd    ,00,00,D   ,0000,  ,030344,039977,Dortmund-Derne                
+0,edkd   ,00,00,D   ,0000,  ,030225,039748,Dortmund-Kirchderne           
+1,edn    ,02,02,NL  ,0000,  ,017777,030917,Eijsden                       
+0,edo    ,00,00,D   ,0000,  ,029881,039414,Dortmund Hbf                  
+0,edulh  ,00,00,D   ,0000,  ,028656,042832,Duelmen                       
+0,eenp   ,00,00,D   ,0000,  ,029139,037018,Ennepetal (Gevelsberg)        
+0,eepe   ,00,00,D   ,0000,  ,026735,046741,Epe (Westf)                   
+1,egh    ,02,02,NL  ,0000,  ,020134,032246,Eygelshoven                   
+1,eghm   ,02,02,NL  ,0000,  ,020220,032315,Eygelshoven Markt             
+1,ehb    ,02,02,NL  ,0000,  ,015989,038458,Eindhoven Beukenlaan          
+1,ehst   ,02,02,NL  ,0000,  ,016000,038377,Eindhoven Stadion             
+1,ehv    ,04,04,NL  ,0000,  ,016145,038370,Eindhoven                     
+0,ehw    ,00,00,D   ,0000,  ,027417,044699,Rosendahl-Holtwick            
+0,ehzw   ,00,00,D   ,0000,  ,031004,039305,Holzwickede                   
+1,ekz    ,04,04,NL  ,0000,  ,014827,052358,Enkhuizen                     
+0,eldh   ,00,00,D   ,0000,  ,029613,042122,Luedinghausen                 
+0,elet   ,00,00,D   ,0000,  ,027888,043531,Lette (Kr Coesfeld)           
+0,elgd   ,00,00,D   ,0000,  ,027173,045100,Legden                        
+0,elue   ,00,00,D   ,0000,  ,030336,040526,Luenen Hbf                    
+0,em     ,00,00,D   ,0000,  ,021475,042766,Emmerich                      
+0,emg    ,00,00,NL  ,0000,  ,020755,043500,Emmerich Grens                
+1,eml    ,02,02,NL  ,0000,  ,017049,047924,Ermelo                        
+1,emn    ,02,02,NL  ,0000,  ,025701,053477,Emmen                         
+1,emnz   ,02,02,NL  ,0000,  ,025560,053015,Emmen Zuid                    
+0,emte   ,00,00,D   ,0000,  ,028275,046545,Metelen Land                  
+0,enbe   ,00,00,D   ,0000,  ,030430,045046,Muenster-Haeger               
+0,enhf   ,00,00,D   ,0000,  ,030964,044646,Muenster (W) Zentrum Nord     
+0,enow   ,00,00,D   ,0000,  ,029720,045640,Nordwalde                     
+0,eop    ,00,00,D   ,0000,  ,027773,046970,Ochtrup                       
+0,eprn   ,00,00,D   ,0000,  ,030413,040220,Preussen                      
+1,es     ,04,04,NL  ,0000,  ,025770,047154,Enschede                      
+0,esch   ,00,00,D   ,0000,  ,021596,031409,Eschweiler Hbf                
+0,escht  ,00,00,D   ,0000,  ,021673,031424,Eschweiler Talbahnhof         
+1,esd    ,02,02,NL  ,0000,  ,025416,047309,Enschede Drienerlo            
+1,ese    ,02,02,NL  ,0000,  ,026186,047151,Enschede De Eschmarke         
+0,eseb   ,00,00,D   ,0000,  ,029795,041361,Selm-Beifang                  
+0,esem   ,00,00,D   ,0000,  ,029778,041528,Selm                          
+1,esn    ,05,05,B   ,0000,  ,008996,038635,Essen (Belgie)                
+0,esrt   ,00,00,D   ,0000,  ,030599,038593,Schwerte (Ruhr)               
+1,est    ,03,03,NL  ,0000,  ,018717,043660,Elst                          
+1,etn    ,02,02,NL  ,0000,  ,010302,039877,Etten-Leur                    
+0,eun    ,00,00,D   ,0000,  ,031491,039698,Unna                          
+0,eweis  ,00,00,D   ,0000,  ,022077,031536,Eschweiler-Weisweiler         
+0,fdp    ,00,00,B   ,0000,  ,009233,034502,Duffel                        
+0,feldh  ,00,00,D   ,0000,  ,026486,040406,Feldhausen                    
+1,fffm   ,05,05,D   ,0000,  ,038940,024037,Frankfurt (M) Hbf             
+1,fkb    ,02,02,NL  ,0000,  ,025212,047515,Hengelo FBK-stadion           
+0,fki    ,00,00,B   ,0000,  ,009124,034976,Kontich                       
+0,fkth   ,00,00,B   ,0000,  ,009095,037839,Kalmthout                     
+0,flb    ,00,00,D   ,0000,  ,034759,026942,Limburg Sud                   
+0,flensb ,00,00,DK  ,0000,  ,041546,076259,Flensburg                     
+0,fmb    ,00,00,B   ,0000,  ,008307,034511,Boom                          
+0,fmz    ,00,00,D   ,0000,  ,036089,022737,Mainz Hbf                     
+1,fn     ,02,02,NL  ,0000,  ,016577,057732,Franeker                      
+1,fnaf   ,05,05,D   ,0000,  ,038296,023408,Frankfurt Flughafen Fernb     
+0,fnzd   ,00,00,B   ,0000,  ,008531,035696,Antwerpen-Zuid                
+0,foe    ,00,00,B   ,0000,  ,008236,035533,Hoboken-Polder                
+0,frp    ,00,00,B   ,0000,  ,007759,034365,Puurs                         
+0,frutig ,00,00,CH  ,0000,  ,032171,-15146,Frutigen                      
+0,fsv    ,00,00,B   ,0000,  ,008058,034404,Ruisbroek-Sauvegarde          
+1,fvs    ,02,02,B   ,0000,  ,017679,030581,Vise                          
+0,fvsg   ,00,00,NL  ,0000,  ,017785,030764,Vise Grens                    
+0,fwa    ,00,00,B   ,0000,  ,009252,034264,Sint-Katelijne-Waver          
+0,g      ,02,02,D   ,0000,  ,026673,047094,Gronau Westf                  
+1,gbg    ,02,02,NL  ,0000,  ,024232,051442,Gramsbergen                   
+1,gbr    ,02,02,NL  ,0000,  ,026337,047129,Glanerbrug                    
+1,gd     ,04,04,NL  ,0000,  ,010826,044787,Gouda                         
+1,gdg    ,02,02,NL  ,0000,  ,011066,044761,Gouda Goverwelle              
+1,gdk    ,02,02,NL  ,0000,  ,023516,049927,Geerdijk                      
+1,gdm    ,02,02,NL  ,0000,  ,014705,043268,Geldermalsen                  
+1,gdr    ,01,01,NL  ,0000,  ,022117,043843,Gaanderen                     
+0,geisl  ,00,00,D   ,0000,  ,048358,007955,Geislingen                    
+1,gerp   ,02,02,NL  ,0000,  ,023485,058061,Groningen Europapark          
+1,gk     ,02,02,NL  ,0000,  ,021657,058586,Grijpskerk                    
+0,gkt    ,00,00,B   ,0000,  ,009096,037714,Kijkuit                       
+1,gln    ,02,02,NL  ,0000,  ,018704,033096,Geleen Oost                   
+0,gmd    ,00,00,B   ,0000,  ,008925,035520,Mortsel-Deurnesteenweg        
+0,gmog   ,00,00,B   ,0000,  ,008984,035392,Mortsel-Oude God              
+1,gn     ,04,04,NL  ,0000,  ,023360,058112,Groningen                     
+1,gnd    ,02,02,NL  ,0000,  ,011695,042700,Hardinxveld-Giessendam        
+1,gnn    ,02,02,NL  ,0000,  ,023307,058325,Groningen Noord               
+1,go     ,02,02,NL  ,0000,  ,023690,047204,Goor                          
+0,goppen ,00,00,CH  ,0000,  ,033748,-17819,Goppenstein                   
+1,gp     ,01,01,NL  ,0000,  ,016638,038123,Geldrop                       
+1,gr     ,02,02,NL  ,0000,  ,012612,042732,Gorinchem                     
+1,gs     ,02,02,NL  ,0000,  ,005109,039099,Goes                          
+1,gv     ,04,04,NL  ,0000,  ,008201,045409,Den Haag HS                   
+1,gvc    ,05,05,NL  ,0000,  ,008212,045531,Den Haag Centraal             
+1,gvm    ,04,04,NL  ,0000,  ,008528,045637,Den Haag Mariahoeve           
+1,gvmw   ,04,04,NL  ,0000,  ,008104,045235,Den Haag Moerwijk             
+1,gw     ,02,02,NL  ,0000,  ,018415,056712,Grou-Jirnsum                  
+0,gwd    ,00,00,B   ,0000,  ,009064,038252,Wildert                       
+1,gz     ,02,02,NL  ,0000,  ,012294,039956,Gilze-Rijen                   
+1,had    ,02,02,NL  ,0000,  ,010187,048601,Heemstede-Aerdenhout          
+0,hagen  ,00,00,D   ,0000,  ,029931,037676,Hagen Hbf                     
+0,halle  ,00,00,D   ,0000,  ,061307,040837,Halle (Saale) Hbf             
+0,hamh   ,00,00,D   ,0000,  ,046105,062836,Hamburg Hbf                   
+1,hamm   ,05,05,D   ,0000,  ,032240,041270,Hamm (Westf.)                 
+1,hann   ,05,05,D   ,0000,  ,045134,049656,Hannover Hbf                  
+1,harw   ,15,15,GB  ,0001,  ,-12748,044671,Harwich International         
+1,hb     ,02,02,NL  ,0000,  ,019319,032414,Hoensbroek                    
+1,hbzm   ,02,02,NL  ,0000,  ,011526,042564,Hardinxveld Blauwe Zoom       
+1,hd     ,02,02,NL  ,0000,  ,017086,048332,Harderwijk                    
+1,hdb    ,02,02,NL  ,0000,  ,023909,051014,Hardenberg                    
+1,hde    ,02,02,NL  ,0000,  ,018936,049137,Harde ('t)                    
+1,hdg    ,02,02,NL  ,0000,  ,019156,058149,Hurdegaryp                    
+1,hdr    ,02,02,NL  ,0000,  ,011290,055239,Den Helder                    
+1,hdrh   ,01,01,NL  ,0000,  ,011300,055300,Den Helder Haven              
+1,hdrz   ,02,02,NL  ,0000,  ,011312,054972,Den Helder Zuid               
+1,hfd    ,02,02,NL  ,0000,  ,010797,047849,Hoofddorp                     
+1,hgl    ,02,02,NL  ,0000,  ,025101,047584,Hengelo                       
+1,hglg   ,02,02,NL  ,0000,  ,024962,047574,Hengelo Gezondheidspark       
+1,hglo   ,02,02,NL  ,0000,  ,025283,047666,Hengelo Oost                  
+1,hgv    ,02,02,NL  ,0000,  ,022832,052791,Hoogeveen                     
+1,hgz    ,02,02,NL  ,0000,  ,024754,057568,Hoogezand-Sappemeer           
+1,hil    ,02,02,NL  ,0000,  ,009899,047973,Hillegom                      
+1,hk     ,02,02,NL  ,0000,  ,010735,050099,Heemskerk                     
+1,hks    ,02,02,NL  ,0000,  ,014115,052258,Hoogkarspel                   
+1,hld    ,19,19,NL  ,0000,  ,006846,044384,Hoek van Holland Haven        
+1,hlds   ,02,02,NL  ,0000,  ,006790,044448,Hoek van Holland Strand       
+1,hlg    ,02,02,NL  ,0000,  ,015754,057597,Harlingen                     
+1,hlgh   ,08,08,NL  ,0000,  ,015661,057647,Harlingen Haven               
+1,hlm    ,04,04,NL  ,0000,  ,010403,048918,Haarlem                       
+1,hlms   ,02,02,NL  ,0000,  ,010625,048859,Haarlem Spaarnwoude           
+1,hlo    ,04,04,NL  ,0000,  ,010851,051273,Heiloo                        
+1,hm     ,03,03,NL  ,0000,  ,017407,038746,Helmond                       
+1,hmbh   ,02,02,NL  ,0000,  ,017677,038696,Helmond Brouwhuis             
+1,hmbv   ,01,01,NL  ,0000,  ,017040,038596,Helmond Brandevoort           
+1,hmh    ,02,02,NL  ,0000,  ,017193,038657,Helmond 't Hout               
+1,hmn    ,02,02,NL  ,0000,  ,017471,043712,Hemmen-Dodewaard              
+1,hn     ,03,03,NL  ,0000,  ,013249,051756,Hoorn                         
+1,hnk    ,02,02,NL  ,0000,  ,013453,051845,Hoorn Kersenboogerd           
+1,hno    ,02,02,NL  ,0000,  ,021174,049361,Heino                         
+1,hnp    ,02,02,NL  ,0000,  ,015741,055105,Hindeloopen                   
+1,hon    ,02,02,NL  ,0000,  ,022557,047785,Holten                        
+0,hopf   ,00,00,A   ,0000,  ,066656,-03852,Hopfgarten                    
+1,hor    ,02,02,NL  ,0000,  ,014077,046557,Hollandsche Rading            
+1,hr     ,02,02,NL  ,0000,  ,019050,055276,Heerenveen                    
+1,hrl    ,04,04,NL  ,0000,  ,019639,032248,Heerlen                       
+1,hrlk   ,02,02,NL  ,0000,  ,019800,032254,Heerlen De Kissel             
+1,hrlw   ,02,02,NL  ,0000,  ,019472,032313,Heerlen Woonboulevard         
+1,hrn    ,02,02,NL  ,0000,  ,023730,057717,Haren                         
+1,hrt    ,02,02,NL  ,0000,  ,020053,038220,Horst-Sevenum                 
+1,hry    ,02,02,NL  ,0000,  ,019243,054994,Heerenveen IJsstadion         
+1,ht     ,04,04,NL  ,0000,  ,014861,041131,Hertogenbosch ('s)            
+1,htn    ,02,02,NL  ,0000,  ,013996,044962,Houten                        
+1,htnc   ,02,02,NL  ,0000,  ,014074,044768,Houten Castellum              
+1,hto    ,02,02,NL  ,0000,  ,015025,041245,Hertogenb ('s) Oost           
+1,hvl    ,02,02,NL  ,0000,  ,016000,046358,Hoevelaken                    
+1,hvs    ,03,03,NL  ,0000,  ,014093,047094,Hilversum                     
+1,hvsm   ,02,02,NL  ,0000,  ,014044,047231,Hilversum Media Park          
+1,hvsn   ,02,02,NL  ,0000,  ,014044,047231,Hilversum Noord               
+1,hvsp   ,02,02,NL  ,0000,  ,014134,046983,Hilversum Sportpark           
+1,hwd    ,04,04,NL  ,0000,  ,011691,052050,Heerhugowaard                 
+0,hwob   ,00,00,D   ,0000,  ,052210,050722,Wolfsburg                     
+1,hwzb   ,02,02,NL  ,0000,  ,011170,048872,Halfweg-Zwanenburg            
+1,hz     ,02,02,D   ,0000,  ,020479,032036,Herzogenrath                  
+1,hze    ,02,02,NL  ,0000,  ,016770,037736,Heeze                         
+1,ijt    ,02,02,NL  ,0000,  ,017036,055866,IJlst                         
+0,innsb  ,00,00,A   ,0000,  ,061039,-06303,Innsbruck Hbf                 
+0,intero ,00,00,CH  ,0000,  ,034523,-14199,Interlaken Ost                
+0,jenbac ,00,00,A   ,0000,  ,063769,-04688,Jenbach                       
+0,kander ,00,00,CH  ,0000,  ,033071,-16425,Kandersteg                    
+0,karlsr ,00,00,D   ,0000,  ,037562,011573,Karlsruhe Hbf                 
+1,kbd    ,02,02,NL  ,0000,  ,006670,038343,Krabbendijke                  
+1,kbk    ,02,02,NL  ,0000,  ,020270,046575,Klarenbeek                    
+0,kboi   ,00,00,D   ,0000,  ,021691,036539,Boisheim                      
+0,kbry   ,00,00,D   ,0000,  ,021448,036769,Breyell                       
+1,kbw    ,02,02,NL  ,0000,  ,011549,049685,Koog Bloemwijk                
+1,kdr    ,01,01,D   ,0000,  ,023322,031385,Dueren                        
+0,kdul   ,00,00,D   ,0000,  ,022142,036351,Duelken                       
+0,kirchb ,00,00,A   ,0000,  ,067774,-03661,Kirchberg in Tirol            
+0,kitzb  ,00,00,A   ,0000,  ,068338,-03539,Kitzbuehel                    
+0,kkd    ,00,00,D   ,0000,  ,026758,032819,Koeln Deutz                   
+1,kkdgl  ,07,07,D   ,0000,  ,026656,032918,Koeln-Deutz Gleis 11-12       
+0,kko    ,00,00,D   ,0000,  ,031169,026464,Koblenz Hbf                   
+1,klp    ,03,03,NL  ,0000,  ,016777,045085,Veenendaal-De Klomp           
+1,kma    ,02,02,NL  ,0000,  ,011198,050100,Krommenie-Assendelft          
+0,kmb    ,00,00,D   ,0000,  ,032821,027560,Montabaur                     
+1,kmr    ,02,02,NL  ,0000,  ,019042,031977,Klimmen-Ransdaal              
+1,kmw    ,02,02,NL  ,0000,  ,015658,054619,Koudum-Molkwerum              
+1,kn     ,04,04,D   ,0000,  ,021184,037120,Kaldenkirchen                 
+0,koben  ,00,00,DK  ,0000,  ,060436,087779,K›benhavn Hovedb.             
+0,kohl   ,00,00,D   ,0000,  ,020342,031599,Kohlscheid                    
+0,kold   ,00,00,DK  ,0000,  ,041326,084235,Kolding                       
+0,koln   ,08,08,D   ,0000,  ,026716,032820,Koeln Hbf                     
+0,kolne  ,00,00,D   ,0000,  ,026262,033023,Koeln-Ehrenfeld               
+0,konin  ,00,00,PL  ,0000,  ,103077,054855,Konin                         
+1,kpn    ,02,02,NL  ,0000,  ,019125,050815,Kampen                        
+1,kpnz   ,02,02,NL  ,0000,  ,019068,050515,Kampen Zuid                   
+1,krd    ,02,02,NL  ,0000,  ,020218,031925,Kerkrade Centrum              
+1,krg    ,03,03,NL  ,0000,  ,006114,038712,Kruiningen-Yerseke            
+0,ksb    ,00,00,D   ,0000,  ,028305,031316,Siegburg                      
+0,kswe   ,00,00,D   ,0000,  ,028777,036855,Schwelm                       
+1,ktr    ,01,01,NL  ,0000,  ,016849,043812,Kesteren                      
+0,kufst  ,00,00,A   ,0000,  ,066517,-02265,Kufstein                      
+0,kutno  ,00,00,PL  ,0000,  ,110576,056347,Kutno                         
+1,kw     ,02,02,NL  ,0000,  ,024428,057583,Kropswolde                    
+0,kwba   ,00,00,D   ,0000,  ,028123,036576,Wuppertal-Barmen              
+0,kwo    ,00,00,D   ,0000,  ,028299,036656,Wuppertal Oberbarmen          
+1,kzd    ,02,02,NL  ,0000,  ,011546,049801,Koog-Zaandijk                 
+1,laa    ,04,04,NL  ,0000,  ,008345,045508,Den Haag Laan v NOI           
+0,land   ,00,00,A   ,0000,  ,054919,-08056,Landeck                       
+0,landq  ,00,00,CH  ,0000,  ,047258,-10555,Landquart                     
+0,landry ,00,00,F   ,0000,  ,026061,-26905,Landry                        
+0,lang   ,00,00,D   ,0000,  ,022323,031464,Langerwehe                    
+1,lc     ,02,02,NL  ,0000,  ,022608,046467,Lochem                        
+1,ldl    ,02,02,NL  ,0000,  ,009377,046244,Leiden Lammenschans           
+1,ldm    ,02,02,NL  ,0000,  ,013478,043404,Leerdam                       
+1,ldv    ,03,03,NL  ,0000,  ,008615,045474,Leidschendam-Voorburg         
+1,ledn   ,05,05,NL  ,0000,  ,009314,046465,Leiden Centraal               
+1,leer   ,04,04,D   ,0000,  ,029375,058479,Leer (Ostfriesland)           
+0,leipz  ,00,00,D   ,0000,  ,064191,039641,Leipzig Hbf                   
+1,ley    ,02,02,NL  ,0000,  ,009381,045412,Zoetermeer De Leyens          
+1,lg     ,02,02,NL  ,0000,  ,019949,032316,Landgraaf                     
+0,lille  ,00,00,F   ,0000,  ,-00861,029694,Lille Europe                  
+0,livor  ,00,00,I   ,0000,  ,000000,000000,Livorno C                     
+0,lkm    ,00,00,B   ,0000,  ,008158,035016,Hemiksem                      
+1,lkp    ,02,02,B   ,0000,  ,008850,036952,Kapellen                      
+0,lkr    ,00,00,B   ,0000,  ,008806,036457,Ekeren                        
+1,lls    ,04,04,NL  ,0000,  ,016081,050225,Lelystad Centrum              
+0,lni    ,00,00,B   ,0000,  ,008155,034741,Niel                          
+0,lnk    ,00,00,B   ,0000,  ,009203,033820,Mechelen-Nekkerspoel          
+1,london ,10,10,GB  ,0001,  ,-22421,040626,London Liverpool Street       
+0,londs  ,00,00,GB  ,0001,  ,-20982,040674,London St.Pancras             
+0,londw  ,00,00,GB  ,0001,  ,-22658,040475,London Waterloo               
+1,lp     ,02,02,NL  ,0000,  ,024560,059511,Loppersum                     
+0,ls     ,04,04,D   ,0000,  ,059280,053150,Stendal                       
+1,ltn    ,02,02,NL  ,0000,  ,017123,045524,Lunteren                      
+1,ltv    ,02,02,NL  ,0000,  ,023789,044782,Lichtenvoorde-Groenlo         
+1,luik   ,05,05,B   ,0000,  ,016766,029270,Liege-Guillemins              
+1,lut    ,02,02,NL  ,0000,  ,018575,033183,Geleen-Lutterade              
+1,lw     ,03,03,NL  ,0000,  ,018210,057895,Leeuwarden                    
+1,lwc    ,02,02,NL  ,0000,  ,018541,057960,Leeuwarden Camminghaburen     
+0,ma     ,00,00,D   ,0000,  ,056258,005640,Augsburg Hbf                  
+0,magdeb ,00,00,D   ,0000,  ,058186,047860,Magdeburg Hbf                 
+0,mannhe ,00,00,D   ,0000,  ,037838,016996,Mannheim Hbf                  
+0,maria  ,00,00,B   ,0000,  ,008856,036738,Sint-Mariaburg                
+0,marne  ,00,00,F   ,0000,  ,-03626,010065,Marne-la-Vallee-Chessy        
+0,mars   ,00,00,F   ,0000,  ,015449,-52307,Marseille-St-Charles          
+1,mas    ,02,02,NL  ,0000,  ,013076,046088,Maarssen                      
+0,mcgb   ,00,00,D   ,0000,  ,022902,035689,Moenchengladbach Hbf          
+1,mdb    ,02,02,NL  ,0000,  ,003216,039107,Middelburg                    
+1,mech   ,05,05,B   ,0000,  ,009094,033662,Mechelen                      
+1,mes    ,02,02,NL  ,0000,  ,018059,032150,Meerssen                      
+1,mg     ,02,02,NL  ,0000,  ,017682,057148,Mantgum                       
+0,mgp    ,00,00,D   ,0000,  ,058567,-03953,Garmisch-Partenkirchen        
+0,mgzb   ,00,00,D   ,0000,  ,051695,006379,Guenzburg                     
+0,mho    ,00,00,B   ,0000,  ,009047,035197,Hove                          
+0,mid    ,00,00,B   ,0000,  ,009037,037549,Heide                         
+1,minden ,04,04,D   ,0000,  ,039700,048391,Minden (Westf.)               
+1,mmlh   ,02,02,NL  ,0000,  ,018850,041880,Mook Molenhoek                
+0,mmu    ,00,00,D   ,0000,  ,059125,-01776,Murnau                        
+0,mou    ,00,00,D   ,0000,  ,058828,-03175,Oberau                        
+0,mout   ,00,00,F   ,0000,  ,024397,-27937,Moutiers-Salins-Brides        
+1,mp     ,02,02,NL  ,0000,  ,020979,052303,Meppel                        
+1,mrb    ,02,02,NL  ,0000,  ,023559,050303,Marienberg                    
+1,mrn    ,04,04,NL  ,0000,  ,015385,045291,Maarn                         
+1,mss    ,02,02,NL  ,0000,  ,007701,043708,Maassluis                     
+1,msw    ,02,02,NL  ,0000,  ,007580,043813,Maassluis West                
+1,mt     ,04,04,NL  ,0000,  ,017742,031784,Maastricht                    
+1,mth    ,02,02,NL  ,0000,  ,024550,057574,Martenshoek                   
+1,mtn    ,02,02,NL  ,0000,  ,017824,032015,Maastricht Noord              
+1,mtr    ,02,02,NL  ,0000,  ,017828,031649,Maastricht Randwyck           
+1,munchh ,05,05,D   ,0000,  ,061446,003529,Muenchen Hbf                  
+1,munst  ,05,05,D   ,0000,  ,030955,044333,Muenster (Westf) Hbf          
+0,mwh    ,00,00,D   ,0000,  ,058615,000001,Weilheim (Oberbay)            
+1,mz     ,02,02,NL  ,0000,  ,017100,036788,Maarheeze                     
+1,na     ,02,02,NL  ,0000,  ,025375,052668,Nieuw Amsterdam               
+1,ndb    ,04,04,NL  ,0000,  ,013929,047702,Naarden-Bussum                
+0,neumu  ,00,00,D   ,0000,  ,045582,068621,Neumuenster                   
+0,neuss  ,00,00,D   ,0000,  ,024567,035808,Neuss Hbf                     
+1,nh     ,02,02,NL  ,0000,  ,019051,032572,Nuth                          
+1,nkk    ,02,02,NL  ,0000,  ,016229,047048,Nijkerk                       
+1,nm     ,04,04,NL  ,0000,  ,018710,042840,Nijmegen                      
+1,nmd    ,02,02,NL  ,0000,  ,018312,042622,Nijmegen Dukenburg            
+1,nmh    ,02,02,NL  ,0000,  ,018811,042657,Nijmegen Heyendaal            
+1,nml    ,02,02,NL  ,0000,  ,018753,043073,Nijmegen Lent                 
+1,ns     ,02,02,NL  ,0000,  ,018207,048709,Nunspeet                      
+1,nsch   ,01,01,NL  ,0000,  ,027619,057914,Bad Nieuweschans              
+0,nurnb  ,00,00,D   ,0000,  ,000000,000000,Nuernberg Hbf                 
+1,nvd    ,02,02,NL  ,0000,  ,022876,048697,Nijverdal                     
+1,nvdw   ,02,02,NL  ,0000,  ,022741,048521,Nijverdal West                
+1,nvp    ,02,02,NL  ,0000,  ,010438,047483,Nieuw Vennep                  
+1,nwk    ,02,02,NL  ,0000,  ,010205,044216,Nieuwerkerk ad IJssel         
+1,nwl    ,02,02,NL  ,0000,  ,008597,043763,Schiedam Nieuwland            
+1,o      ,02,02,NL  ,0000,  ,016483,041959,Oss                           
+1,obd    ,02,02,NL  ,0000,  ,012267,052128,Obdam                         
+0,oberh  ,00,00,D   ,0000,  ,025676,038836,Oberhausen Hbf                
+1,odb    ,02,02,NL  ,0000,  ,009581,040022,Oudenbosch                    
+0,odens  ,00,00,DK  ,0000,  ,047266,083586,Odense                        
+1,odz    ,02,02,NL  ,0000,  ,026047,048094,Oldenzaal                     
+0,oetz   ,00,00,A   ,0000,  ,000000,000000,Oetztal                       
+0,oeynh  ,00,00,D   ,0000,  ,038849,047436,Bad Oeynhausen                
+1,olden  ,04,04,D   ,0000,  ,034468,057684,Oldenburg (oldb) Hbf          
+0,olv    ,00,00,NL  ,0000,  ,010755,051103,Onze Lieve Vrouwe t. Nood     
+1,omn    ,03,03,NL  ,0000,  ,022496,050297,Ommen                         
+1,op     ,02,02,NL  ,0000,  ,017219,043755,Opheusden                     
+1,osnh   ,05,05,D   ,0000,  ,033751,047944,Osnabrueck Hbf                
+1,ost    ,02,02,NL  ,0000,  ,020449,048334,Olst                          
+1,ot     ,02,02,NL  ,0000,  ,014158,039925,Oisterwijk                    
+1,otb    ,02,02,NL  ,0000,  ,018618,044522,Oosterbeek                    
+1,ovn    ,02,02,NL  ,0000,  ,010193,048952,Overveen                      
+1,ow     ,02,02,NL  ,0000,  ,016326,041885,Oss West                      
+0,padb   ,00,00,DK  ,0000,  ,041006,076817,Padborg                       
+1,paris  ,10,10,F   ,0000,  ,-06752,010321,Paris-Nord                    
+1,pmo    ,02,02,NL  ,0000,  ,012652,050272,Purmerend Overwhere           
+1,pmr    ,02,02,NL  ,0000,  ,012560,050188,Purmerend                     
+1,pmw    ,02,02,NL  ,0000,  ,012450,050116,Purmerend Weidevenne          
+1,pnk    ,02,02,NL  ,0000,  ,008983,044828,Pijnacker                     
+0,pozn   ,00,00,PL  ,0000,  ,093781,055351,Poznan Gl                     
+0,praha  ,00,00,CS  ,0000,  ,080163,027257,Praha hl.n.                   
+0,prahol ,00,00,CS  ,0000,  ,080137,027501,Praha-Holesovice              
+1,pt     ,02,02,NL  ,0000,  ,016788,047530,Putten                        
+0,pulh   ,00,00,D   ,0000,  ,025394,033527,Pulheim                       
+1,rai    ,02,02,NL  ,0000,  ,012108,048338,Amsterdam RAI                 
+1,rat    ,02,02,NL  ,0000,  ,021566,048961,Raalte                        
+1,rb     ,02,02,NL  ,0000,  ,006967,038217,Rilland-Bath                  
+0,rbb    ,00,00,D   ,0000,  ,036111,009249,Baden-Baden                   
+1,rd     ,02,02,NL  ,0000,  ,024631,060453,Roodeschool                   
+1,rdr    ,02,02,NL  ,0000,  ,009134,044348,Berkel en Rodenrijs           
+0,rf     ,00,00,D   ,0000,  ,033835,000344,Freiburg (Breisgau) Hbf       
+1,rh     ,02,02,NL  ,0000,  ,019922,044707,Rheden                        
+1,rheine ,02,02,D   ,0000,  ,029476,047843,Rheine                        
+1,rhn    ,02,02,NL  ,0000,  ,016811,044103,Rhenen                        
+1,rl     ,02,02,NL  ,0000,  ,022780,045529,Ruurlo                        
+1,rlb    ,02,02,NL  ,0000,  ,009603,043273,Rotterdam Lombardijen         
+1,rm     ,03,03,NL  ,0000,  ,019745,035615,Roermond                      
+0,ro     ,00,00,D   ,0000,  ,034436,005695,Offenburg                     
+0,romm   ,00,00,D   ,0000,  ,024715,033973,Rommerskirchen                
+0,roskil ,00,00,DK  ,0000,  ,057687,087081,Roskilde                      
+1,rs     ,02,02,NL  ,0000,  ,015375,041405,Rosmalen                      
+1,rsd    ,03,03,NL  ,0000,  ,009063,039502,Roosendaal                    
+0,rsdg   ,00,00,NL  ,0000,  ,008981,038710,Roosendaal grens              
+1,rsn    ,02,02,NL  ,0000,  ,023220,048104,Rijssen                       
+1,rsw    ,02,02,NL  ,0000,  ,008176,045068,Rijswijk                      
+1,rta    ,04,04,NL  ,0000,  ,009758,044066,Rotterdam Alexander           
+1,rtb    ,02,02,NL  ,0000,  ,009322,043720,Rotterdam Blaak               
+1,rtbw   ,02,02,NL  ,0000,  ,009197,043860,Rotterdam Bergweg             
+1,rtd    ,05,05,NL  ,0000,  ,009187,043780,Rotterdam Centraal            
+1,rtdzpl ,02,02,NL  ,0000,  ,009312,043359,Rotterdam Zuidplein           
+1,rth    ,03,03,NL  ,0000,  ,009257,043792,Rotterdam Hofplein            
+1,rtkw   ,03,03,NL  ,0000,  ,009167,044010,Rotterdam Kleiweg             
+1,rtn    ,04,04,NL  ,0000,  ,009270,043968,Rotterdam Noord               
+1,rtst   ,02,02,NL  ,0000,  ,009531,043416,Rotterdam Stadion             
+1,rtwp   ,02,02,NL  ,0000,  ,009143,044179,Rotterdam Wilgenplas          
+1,rtz    ,02,02,NL  ,0000,  ,009474,043529,Rotterdam Zuid                
+1,rv     ,02,02,NL  ,0000,  ,020328,036622,Reuver                        
+1,rvs    ,02,02,NL  ,0000,  ,017222,042290,Ravenstein                    
+0,rzepin ,00,00,PL  ,0000,  ,079548,052638,Rzepin                        
+0,saalf  ,00,00,A   ,0000,  ,071680,-03524,Saalfelden                    
+1,sbk    ,02,02,NL  ,0000,  ,018750,032828,Spaubeek                      
+0,schlad ,00,00,A   ,0000,  ,000000,000000,Schladming                    
+0,schll  ,00,00,B   ,0000,  ,008152,034832,Schelle                       
+0,schwar ,00,00,A   ,0000,  ,074250,-04476,Schwarzach-St. Veit           
+1,sd     ,02,02,NL  ,0000,  ,014901,046620,Soestdijk                     
+1,sda    ,02,02,NL  ,0000,  ,026137,057660,Scheemda                      
+1,sdm    ,04,04,NL  ,0000,  ,008773,043747,Schiedam Centrum              
+1,sdt    ,02,02,NL  ,0000,  ,011300,042697,Sliedrecht                    
+1,sdtb   ,02,02,NL  ,0000,  ,011103,042754,Sliedrecht Baanhoek           
+1,sgl    ,02,02,NL  ,0000,  ,018381,032050,Houthem-St Gerlach            
+1,sgn    ,02,02,NL  ,0000,  ,011573,053327,Schagen                       
+1,shl    ,04,04,NL  ,0000,  ,011238,048022,Schiphol                      
+1,sk     ,03,03,NL  ,0000,  ,017279,056065,Sneek                         
+1,sknd   ,02,02,NL  ,0000,  ,017351,056155,Sneek Noord                   
+1,sm     ,02,02,NL  ,0000,  ,020002,036083,Swalmen                       
+1,sn     ,02,02,NL  ,0000,  ,018935,032779,Schinnen                      
+1,sog    ,02,02,NL  ,0000,  ,018913,031859,Schin op Geul                 
+0,spiez  ,00,00,CH  ,0000,  ,033053,-14301,Spiez                         
+1,spm    ,02,02,NL  ,0000,  ,024920,057561,Sappemeer Oost                
+1,sptn   ,02,02,NL  ,0000,  ,010369,049425,Santpoort Noord               
+1,sptz   ,02,02,NL  ,0000,  ,010357,049267,Santpoort Zuid                
+1,srn    ,02,02,NL  ,0000,  ,018833,034135,Susteren                      
+1,ssh    ,02,02,NL  ,0000,  ,009634,047032,Sassenheim                    
+1,st     ,03,03,NL  ,0000,  ,014974,046497,Soest                         
+1,std    ,04,04,NL  ,0000,  ,018815,033486,Sittard                       
+0,stjoh  ,00,00,A   ,0000,  ,068572,-02782,St. Johann in Tirol           
+0,stjohp ,00,00,A   ,0000,  ,074520,-04117,St. Johann im Pongau          
+1,stm    ,02,02,NL  ,0000,  ,024164,059409,Stedum                        
+1,sto    ,02,02,NL  ,0000,  ,018278,046729,Stroe                         
+1,stola  ,01,01,D   ,0000,  ,021450,030870,Stolberg Altstadt             
+0,stolb  ,00,00,D   ,0000,  ,021364,031201,Stolberg Hbf                  
+0,stomm  ,00,00,D   ,0000,  ,025080,033740,Stommeln                      
+1,stv    ,02,02,NL  ,0000,  ,015317,054438,Stavoren                      
+1,stz    ,02,02,NL  ,0000,  ,014927,046414,Soest Zuid                    
+1,swd    ,02,02,NL  ,0000,  ,023189,059008,Sauwerd                       
+1,swk    ,02,02,NL  ,0000,  ,020421,053399,Steenwijk                     
+1,tb     ,04,04,NL  ,0000,  ,013397,039687,Tilburg                       
+1,tbg    ,02,02,NL  ,0000,  ,022221,043756,Terborg                       
+1,tbr    ,02,02,NL  ,0000,  ,012768,039840,Tilburg Reeshof               
+1,tbu    ,02,02,NL  ,0000,  ,013170,039740,Tilburg Universiteit          
+1,tg     ,02,02,NL  ,0000,  ,020769,037250,Tegelen                       
+0,tgo    ,00,00,D   ,0000,  ,046905,008761,Goeppingen                    
+0,thun   ,00,00,CH  ,0000,  ,032489,-13606,Thun                          
+1,tl     ,02,02,NL  ,0000,  ,015747,043345,Tiel                          
+0,tp     ,00,00,D   ,0000,  ,045123,008808,Plochingen                    
+1,tpsw   ,01,01,NL  ,0000,  ,015537,043173,Tiel Passewaaij               
+0,ts     ,00,00,D   ,0000,  ,043398,009506,Stuttgart Hbf                 
+0,tu     ,00,00,D   ,0000,  ,049544,005559,Ulm Hbf                       
+1,twl    ,01,01,NL  ,0000,  ,020382,047254,Twello                        
+1,uhm    ,02,02,NL  ,0000,  ,024364,060392,Uithuizermeeden               
+1,uhz    ,02,02,NL  ,0000,  ,024063,060335,Uithuizen                     
+1,urk    ,02,02,NL  ,0000,  ,016929,051929,Urk                           
+1,ust    ,02,02,NL  ,0000,  ,023629,060233,Usquert                       
+0,usti   ,00,00,CS  ,0000,  ,076538,033284,Usti nad Labem                
+1,ut     ,05,05,NL  ,0000,  ,013607,045576,Utrecht Centraal              
+1,utg    ,03,03,NL  ,0000,  ,010852,050404,Uitgeest                      
+1,utl    ,02,02,NL  ,0000,  ,013829,045310,Utrecht Lunetten              
+1,utlr   ,02,02,NL  ,0000,  ,013293,045679,Utrecht Leidsche Rijn         
+1,utm    ,02,02,NL  ,0000,  ,013745,045555,Utrecht Maliebaan             
+1,uto    ,04,04,NL  ,0000,  ,013705,045805,Utrecht Overvecht             
+1,utt    ,02,02,NL  ,0000,  ,013124,045699,Utrecht Terwijde              
+1,utzl   ,02,02,NL  ,0000,  ,013462,045726,Utrecht Zuilen                
+0,valtgv ,00,00,F   ,0000,  ,012262,-33448,Valence TGV                   
+1,vb     ,03,03,NL  ,0000,  ,008453,045361,Voorburg                      
+1,vbl    ,02,02,NL  ,0000,  ,008497,045538,Voorburg t Loo                
+1,vd     ,02,02,NL  ,0000,  ,021870,045807,Vorden                        
+1,vdg    ,02,02,NL  ,0000,  ,008325,043552,Vlaardingen Centrum           
+1,vdl    ,02,02,NL  ,0000,  ,019317,032202,Voerendaal                    
+1,vdm    ,02,02,NL  ,0000,  ,025544,056975,Veendam                       
+1,vdo    ,02,02,NL  ,0000,  ,008442,043626,Vlaardingen Oost              
+1,vdw    ,02,02,NL  ,0000,  ,008120,043561,Vlaardingen West              
+1,vem    ,01,01,NL  ,0000,  ,020675,046355,Voorst-Empe                   
+1,vg     ,02,02,NL  ,0000,  ,014839,040743,Vught                         
+1,vh     ,02,02,NL  ,0000,  ,009332,047103,Voorhout                      
+1,vhp    ,02,02,NL  ,0000,  ,023537,049726,Vroomshoop                    
+1,viers  ,03,03,D   ,0000,  ,022600,036335,Viersen                       
+1,vijfsl ,02,02,NL  ,0000,  ,008500,043600,Vijfsluizen                   
+1,vk     ,02,02,NL  ,0000,  ,018637,032003,Valkenburg                    
+1,vl     ,04,04,NL  ,0000,  ,020963,037538,Venlo                         
+1,vlb    ,02,02,NL  ,0000,  ,019727,040051,Vierlingsbeek                 
+0,vlgr   ,00,00,NL  ,0000,  ,021097,037337,Venlo Grens                   
+1,vmw    ,02,02,NL  ,0000,  ,012379,048255,Amsterdam Van der Madeweg     
+1,vndc   ,02,02,NL  ,0000,  ,016610,044796,Veenendaal Centrum            
+1,vndw   ,02,02,NL  ,0000,  ,016500,044884,Veenendaal West               
+1,vp     ,02,02,NL  ,0000,  ,019582,044541,Velp                          
+1,vry    ,02,02,NL  ,0000,  ,019851,039324,Venray                        
+1,vs     ,06,06,NL  ,0000,  ,003043,038546,Vlissingen                    
+1,vss    ,02,02,NL  ,0000,  ,003049,038771,Vlissingen Souburg            
+1,vst    ,02,02,NL  ,0000,  ,008970,046019,Voorschoten                   
+1,vsv    ,02,02,NL  ,0000,  ,022868,043929,Varsseveld                    
+1,vtn    ,02,02,NL  ,0000,  ,012914,045725,Vleuten                       
+1,vwd    ,02,02,NL  ,0000,  ,019516,058330,Veenwouden                    
+1,vz     ,02,02,NL  ,0000,  ,023764,049105,Vriezenveen                   
+1,wa     ,02,02,D   ,0000,  ,073178,059323,Angermuende                   
+1,wad    ,02,02,NL  ,0000,  ,010443,045097,Waddinxveen                   
+1,wadn   ,02,02,NL  ,0000,  ,010433,045215,Waddinxveen Noord             
+0,warsaw ,00,00,PL  ,0000,  ,121986,059354,Warszawa Wschodnia            
+0,warszc ,00,00,PL  ,0000,  ,121302,057964,Warszawa Centralna            
+1,wc     ,02,02,NL  ,0000,  ,017865,042479,Wijchen                       
+1,wd     ,04,04,NL  ,0000,  ,012112,045531,Woerden                       
+1,wdn    ,02,02,NL  ,0000,  ,023709,048664,Wierden                       
+0,we     ,00,00,D   ,0000,  ,072087,057159,Eberswalde Hbf                
+1,wf     ,02,02,NL  ,0000,  ,018284,044648,Wolfheze                      
+1,wfm    ,02,02,NL  ,0000,  ,023350,060110,Warffum                       
+1,wh     ,02,02,NL  ,0000,  ,020635,048950,Wijhe                         
+0,wienw  ,00,00,A   ,0000,  ,096800,008254,Wien Westbf                   
+1,wk     ,02,02,NL  ,0000,  ,015965,055390,Workum                        
+1,wl     ,02,02,NL  ,0000,  ,021182,044132,Wehl                          
+1,wm     ,02,02,NL  ,0000,  ,011466,050036,Wormerveer                    
+0,worgl  ,00,00,A   ,0000,  ,065820,-03350,Woergl                        
+1,wp     ,02,02,NL  ,0000,  ,013161,048052,Weesp                         
+1,wr     ,02,02,D   ,0000,  ,028591,057688,Weener                        
+0,wrg    ,00,00,NL  ,0000,  ,027712,058013,Weener Grens                  
+1,ws     ,02,02,NL  ,0000,  ,026527,057376,Winschoten                    
+1,wsm    ,02,02,NL  ,0000,  ,023049,059429,Winsum                        
+1,wt     ,02,02,NL  ,0000,  ,017712,036224,Weert                         
+1,wtv    ,02,02,NL  ,0000,  ,019513,044165,Westervoort                   
+0,wupph  ,00,00,D   ,0000,  ,027801,036426,Wuppertal Hbf                 
+0,wurzb  ,00,00,D   ,0000,  ,048240,021127,Wuerzburg Hbf                 
+1,wv     ,02,02,NL  ,0000,  ,019659,054383,Wolvega                       
+1,ww     ,02,02,NL  ,0000,  ,024628,044298,Winterswijk                   
+1,www    ,02,02,NL  ,0000,  ,024540,044378,Winterswijk West              
+1,wz     ,02,02,NL  ,0000,  ,019677,049639,Wezep                         
+0,xpsg   ,00,00,PL  ,0000,  ,076311,064194,Szczecin Glowny               
+0,xpsu   ,00,00,PL  ,0000,  ,075981,063988,Szczecin Gumience             
+1,ypb    ,02,02,NL  ,0000,  ,008681,045234,Den Haag Ypenburg             
+1,za     ,02,02,NL  ,0000,  ,017809,043685,Zetten-Andelst                
+1,zb     ,02,02,NL  ,0000,  ,025404,057578,Zuidbroek                     
+1,zbm    ,02,02,NL  ,0000,  ,014644,042438,Zaltbommel                    
+1,zcw    ,04,04,NL  ,0000,  ,009304,045288,Zoetermeer Centrum West       
+1,zd     ,04,04,NL  ,0000,  ,011601,049467,Zaandam                       
+1,zdk    ,02,02,NL  ,0000,  ,011643,049669,Zaandam Kogerveld             
+0,zell   ,00,00,A   ,0000,  ,071546,-04728,Zell am See                   
+1,zh     ,02,02,NL  ,0000,  ,022302,058511,Zuidhorn                      
+1,zl     ,05,05,NL  ,0000,  ,020270,050222,Zwolle                        
+1,zlw    ,04,04,NL  ,0000,  ,010497,041155,Lage Zwaluwe                  
+1,zp     ,02,02,NL  ,0000,  ,021024,046214,Zutphen                       
+1,zsh    ,02,02,NL  ,0000,  ,009370,045290,Zoetermeer Stadhuis           
+1,ztm    ,04,04,NL  ,0000,  ,009264,045141,Zoetermeer                    
+1,ztmb   ,02,02,NL  ,0000,  ,009270,045356,Zoetermeer Buytenwegh         
+1,ztmd   ,02,02,NL  ,0000,  ,009361,045217,Zoetermeer Dorp               
+1,ztml   ,02,02,NL  ,0000,  ,009486,045378,Zoetermeer Leidsewallen       
+1,ztmm   ,02,02,NL  ,0000,  ,009210,045234,Zoetermeer Meerzicht          
+1,ztmo   ,02,02,NL  ,0000,  ,009362,045129,Zoetermeer Oost               
+1,ztmp   ,02,02,NL  ,0000,  ,009460,045275,Zoetermeer Palenstein         
+1,ztms   ,02,02,NL  ,0000,  ,009520,045308,Zoetermeer Seghwaert          
+1,ztmv   ,02,02,NL  ,0000,  ,009220,045309,Zoetermeer Voorweg            
+0,zue    ,00,00,CH  ,0000,  ,039345,-06362,Zuerich HB                    
+1,zv     ,02,02,NL  ,0000,  ,020222,043738,Zevenaar                      
+1,zvb    ,02,02,NL  ,0000,  ,010122,040617,Zevenbergen                   
+1,zvt    ,02,02,NL  ,0000,  ,009670,048790,Zandvoort aan Zee             
+1,zwd    ,04,04,NL  ,0000,  ,010354,042549,Zwijndrecht                   
+1,zww    ,02,02,NL  ,0000,  ,019826,058489,Zwaagwesteinde                

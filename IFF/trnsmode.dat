@@ -1,0 +1,41 @@
+@100,15122013,13122014,0440,IFF uit RITS                  
+B   ,Bus                           
+BNS ,Stopbus                       
+BO  ,Boot                          
+C   ,Lijntaxi                      
+CNL ,CityNightLine                 
+D   ,D-trein                       
+EC  ,EuroCity                      
+EN  ,EuroNight                     
+ES  ,Eurostar                      
+HSI ,Intercity direct              
+HSN ,Intercity direct              
+I   ,Interliner                    
+IC  ,Intercity                     
+ICD ,IC Duitsland                  
+ICE ,ICE                           
+INT ,Int. trein                    
+IR  ,Interregio                    
+L   ,Aggloliner                    
+M   ,Metro                         
+NSB ,Stopbus i.p.v. trein          
+NSM ,Metro i.p.v. trein            
+NSS ,Snelbus i.p.v. trein          
+NST ,Tram i.p.v. trein             
+NZ  ,NachtZug                      
+R   ,LightRail                     
+RL  ,Regioliner                    
+S   ,Sneltrein                     
+SBA ,S-bahn                        
+SPR ,Sprinter                      
+ST  ,stoptrein                     
+T   ,Tram                          
+TAX ,Taxi                          
+TGV ,TGV                           
+THA ,Thalys                        
+TR  ,Lightrail                     
+TT  ,Treintaxi                     
+U   ,Buurtbus                      
+V   ,Boot (OVR)                    
+X   ,Snelbus                       
+Y   ,Belbus                        
