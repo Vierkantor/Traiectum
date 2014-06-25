@@ -225,7 +225,8 @@ def LoadServices(filename = "servicedata.txt", loadIndicators = True, verify = F
 						
 						if verify:
 							# make sure the stops are all correct
-							print("Verifying places...");
+							if loadIndicators:
+								print("Verifying places...");
 							errors = set();
 							for service in Data.services:
 								for order in Data.services[service]:
