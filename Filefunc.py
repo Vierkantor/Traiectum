@@ -79,7 +79,7 @@ oldStopSyntax = [
 	Parser.MatchText(")"), Parser.MatchText(","), # end of stop
 ];
 
-def LoadServices(filename = "servicedata.txt", loadIndicators = True):
+def LoadServices(filename = "servicedata.txt", loadIndicators = True, verify = False):
 	with codecs.open(filename, encoding="utf-8") as data:
 		text = data.read();
 		version = re.match("\s*version:\s*(\d+)", text);
@@ -222,8 +222,21 @@ def LoadServices(filename = "servicedata.txt", loadIndicators = True):
 						text, _ = Parser.ParseFormat(text, endSyntax);
 						if loadIndicators:
 							print("");
+						
+						if verify:
+							# make sure the stops are all correct
+							print("Verifying places...");
+							errors = set();
+							for service in Data.services:
+								for order in Data.services[service]:
+									if Data.Place(order[1]) not in Data.places:
+										errors.add(str(order[1]));
+						
+							if errors:
+								raise Exception("Places not found:\n{}".format("\n".join(errors)));
+						
 						break;
-			
+				
 				if section == "trains":
 					if loadIndicators:
 						print("Parsing trains...");
@@ -281,7 +294,7 @@ def GenerateDepartures():
 			except KeyError:
 				raise KeyError("{} stops at non-existing place {}".format(service, stop[1]));
 
-def LoadData():
+def LoadData(loadIndicators = True, services = True):
 	with codecs.open("data.txt", encoding="utf-8") as data:
 		text = data.read()
 		version = re.match("\s*version:\s*(\d+)", text, re.UNICODE);
@@ -301,7 +314,8 @@ def LoadData():
 			text = text[section.end(0):];
 			
 			if section.group(1) == "places":
-				print("Parsing places...");
+				if loadIndicators:
+					print("Parsing places...");
 				while True:
 					endMark = re.match("\s*\:end", text, re.UNICODE);
 					if endMark != None:
@@ -316,7 +330,8 @@ def LoadData():
 						continue;
 			
 			if section.group(1) == "stations":
-				print("Parsing stations...");
+				if loadIndicators:
+					print("Parsing stations...");
 				while True:
 					endMark = re.match("\s*\:end", text, re.UNICODE);
 					if endMark != None:
@@ -332,9 +347,10 @@ def LoadData():
 						
 						text = text[placeData.end(0):];
 						continue;
-	
+			
 			if section.group(1) == "links":
-				print("Parsing links...");
+				if loadIndicators:
+					print("Parsing links...");
 				while True:
 					endMark = re.match("\s*\:end", text, re.UNICODE);
 					if endMark != None:
@@ -350,9 +366,10 @@ def LoadData():
 						text = text[linkData.end(0):];
 						continue;
 					raise Exception("Invalid syntax near {}".format(text[:100]));
-	
+			
 			if section.group(1) == "nodes":
-				print("Parsing nodes...");
+				if loadIndicators:
+					print("Parsing nodes...");
 				while True:
 					endMark = re.match("\s*\:end", text, re.UNICODE);
 					if endMark != None:
@@ -378,8 +395,9 @@ def LoadData():
 				
 			section = re.match("\s*(\w+):", text, re.UNICODE);
 	
-	LoadServices();
-	GenerateDepartures();
+	if services:
+		LoadServices(verify = True);
+		GenerateDepartures();
 
 def SaveData():
 	with codecs.open("data.txt", "w", encoding="utf-8") as data:

@@ -25,6 +25,8 @@ def sameStation(a, b):
 	
 	return a[1][:len(b[1])] == b[1][:len(a[1])];
 
+Filefunc.LoadData(loadIndicators = False, services = False);
+
 for fileName in os.listdir("DataSources"):
 	# only load data files
 	if not fileName.endswith(".txt"):
@@ -33,7 +35,7 @@ for fileName in os.listdir("DataSources"):
 	sources.append(fileName);
 	
 	# get all the services in that file
-	Filefunc.LoadServices(filename = os.path.join("DataSources", fileName), loadIndicators = False);
+	Filefunc.LoadServices(filename = os.path.join("DataSources", fileName), loadIndicators = False, verify = True);
 	for service in Data.services:
 		# make a secret copy for ourselves
 		if service in services:
