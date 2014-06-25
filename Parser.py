@@ -135,12 +135,12 @@ def MatchFloat(text):
 	# make it into a nice float
 	return text, float(intPart) + float("0." + floatPart);
 
-# a name (used as key, so anything up to a ':')
+# a name (used as key, so anything up to a ':' or ',')
 def MatchName(text):
 	text = SkipWhitespace(text);
 	name = [];
 	try:
-		while text[0] not in ":\n\r":
+		while text[0] not in ":,\n\r":
 			name.append(text[0]);
 			text = text[1:];
 	except IndexError:

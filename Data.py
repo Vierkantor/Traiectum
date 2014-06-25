@@ -70,15 +70,26 @@ def NodeName(node):
 	
 	return node;
 
+def Place(place):
+	if "S".join(place) in places: # check if the platform was defined
+		return "S".join(place);
+	else:
+		return place[0];
+
+# inserts an order into the list (even if the platform doesn't exist)
+def InsertOrder(list, time, place):
+	list.append((time, Place(place)));
+
 # joins a list of orders together
 def Join(list):
-	result = [(0, services[list[0]][0][1])];
+	result = [];
+	InsertOrder(result, 0, services[list[0]][0][1]);
 
 	prev = None;
 	for elem in list:
 		for order in services[elem]:
-			result.append(order);
-
+			InsertOrder(result, order[0], order[1]);
+	
 	result.append((1560, result[-1][1]));
 	return result;
 

@@ -59,6 +59,18 @@ newStopFancyTimeSyntax = [
 	Parser.MatchName, # place
 ];
 
+newStopWithPlatformSyntax = [
+	Parser.MatchInt, Parser.MatchText(","), Parser.MatchInt, Parser.MatchText(","), # time
+	Parser.MatchName, Parser.MatchText(","), # place
+	Parser.MatchName, # platform
+];
+
+newStopFancyTimeWithPlatformSyntax = [
+	Parser.MatchInt, Parser.MatchText(":"), Parser.MatchInt, Parser.MatchText(","), # time
+	Parser.MatchName, Parser.MatchText(","), # place
+	Parser.MatchName, # platform
+];
+
 oldStopSyntax = [
 	Parser.MatchText("("), Parser.MatchText("Time"), Parser.MatchText("("), # start of stop
 	Parser.MatchInt, Parser.MatchText(","), Parser.MatchInt, # time
@@ -71,8 +83,8 @@ def LoadServices(filename = "servicedata.txt", loadIndicators = True):
 	with codecs.open(filename, encoding="utf-8") as data:
 		text = data.read();
 		version = re.match("\s*version:\s*(\d+)", text);
-		if version == None or int(version.group(1)) not in [2, 3, 4]:
-			raise Exception("Data file is of an invalid version! (Expected [2, 3, 4], received {})".format(version.group(1)));
+		if version == None or int(version.group(1)) not in [2, 3, 4, 5]:
+			raise Exception("Data file is of an invalid version! (Expected [2, 3, 4, 5], received {})".format(version.group(1)));
 		else:
 			text = Parser.StringSlice(text, version.end(0));
 			version = int(version.group(1));
@@ -127,7 +139,21 @@ def LoadServices(filename = "servicedata.txt", loadIndicators = True):
 							# find all the stops in the service
 							while True:
 								
-								# try matching the new time format
+								# try matching the new time format with a platform
+								try:
+									text, values = Parser.ParseFormat(text, newStopWithPlatformSyntax);
+								except Parser.ParseError:
+									pass;
+								else:
+									hours = values[0];
+									minutes = values[2];
+									place = values[4];
+									platform = values[6];
+									
+									Data.services[name].append((Data.Time(hours, minutes), (place, platform)));
+									continue;
+								
+								# or without a platform
 								try:
 									text, values = Parser.ParseFormat(text, newStopSyntax);
 								except Parser.ParseError:
@@ -137,10 +163,24 @@ def LoadServices(filename = "servicedata.txt", loadIndicators = True):
 									minutes = values[2];
 									place = values[4];
 									
-									Data.services[name].append((Data.Time(hours, minutes), place));
+									Data.services[name].append((Data.Time(hours, minutes), (place, '')));
 									continue;
 								
 								# support colons for time as well
+								try:
+									text, values = Parser.ParseFormat(text, newStopFancyTimeWithPlatformSyntax);
+								except Parser.ParseError:
+									pass;
+								else:
+									hours = values[0];
+									minutes = values[2];
+									place = values[4];
+									platform = values[6];
+									
+									Data.services[name].append((Data.Time(hours, minutes), (place, platform)));
+									continue;
+								
+								# or without a platform
 								try:
 									text, values = Parser.ParseFormat(text, newStopFancyTimeSyntax);
 								except Parser.ParseError:
@@ -150,7 +190,7 @@ def LoadServices(filename = "servicedata.txt", loadIndicators = True):
 									minutes = values[2];
 									place = values[4];
 									
-									Data.services[name].append((Data.Time(hours, minutes), place));
+									Data.services[name].append((Data.Time(hours, minutes), (place, '')));
 									continue;
 								
 								# try matching the antique time format (when it was barely not hardcoded)
@@ -235,7 +275,7 @@ def GenerateDepartures():
 	for service in Data.services:
 		for stop in Data.services[service]:
 			try:
-				node = Data.nodes[Data.places[stop[1]]];
+				node = Data.nodes[Data.places[Data.Place(stop[1])]];
 				if node.station != None:
 					node.station.departures.append(service);
 			except KeyError:
@@ -375,7 +415,10 @@ def SaveData():
 		for service in sort_nicely(Data.services.items()):
 			data.write(u"\t{0}:\n".format(service[0]));
 			for order in service[1]:
-				data.write(u"\t\t{0}, {1}, {2}\n".format(int(order[0] // 60), int(order[0] % 60), order[1]));
+				if order[1][1] != '':
+					data.write(u"\t\t{0}, {1}, {2}, {3}\n".format(int(order[0] // 60), int(order[0] % 60), order[1][0], order[1][1]));
+				else:
+					data.write(u"\t\t{0}, {1}, {2}\n".format(int(order[0] // 60), int(order[0] % 60), order[1][0]));
 			data.write(u"\t:end\n\n");
 		data.write(u":end\n\n");
 		
