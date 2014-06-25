@@ -75,6 +75,18 @@ def Draw():
 		if 0 <= pos[0] <= width and 0 <= pos[1] <= height:
 			Data.trains[train].Draw(screen);
 	
+	if following != None:
+		screenPos = GetPos(following.pos);
+		
+		pygame.draw.rect(screen, (255, 255, 255), (screenPos[0], screenPos[1] - 6 * 12, 100, 6 * 12));
+		pygame.draw.rect(screen, (0, 0, 0), (screenPos[0], screenPos[1] - 6 * 12, 100, 6 * 12), 1);
+		offset = -6 * 12;
+		for order in following.service[following.order : following.order + 6]:
+			text = font.render("{}:{} {}".format(int(order[0] // 60), int(order[0] % 60), order[1]), 1, (0, 0, 0));
+			textpos = text.get_rect().move((screenPos[0], screenPos[1] + offset));
+			screen.blit(text, textpos);
+			offset += 12;
+	
 	text = font.render(str(int(Data.frameTime // 60)).zfill(2) + ":" + str(int(Data.frameTime % 60)).zfill(2), 1, (0, 0, 0));
 	textpos = text.get_rect();
 	screen.blit(text, textpos);
