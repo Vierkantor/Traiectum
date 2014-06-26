@@ -75,7 +75,7 @@ In data.txt, stations are listed under stations: as a named location name.
 
 Links represent a route trains can travel on. They are generally two-directional (so a link from node 1 to 2 also makes a link between 2 and 1). A planned feature is to prevent this explicitly somewhere, but this is not yet implemented.
 
-In data.txt, links are listed under links: as a pair of nodes. When reading this, train.py automagically adds in the opposite direction of this link if it doesn't exist yet.
+In data.txt, links are listed under links: as a pair of nodes. When reading this, train.py automagically adds in the opposite direction of this link if it doesn't exist yet. Also, to link a series of nodes you can simply write <begin> ... <end>, which will link everything between the beginning and end node in order (numerically).
 
 # Pathfinding
 

@@ -299,8 +299,8 @@ def LoadData(loadIndicators = True, services = True):
 	with codecs.open("data.txt", encoding="utf-8") as data:
 		text = data.read()
 		version = re.match("\s*version:\s*(\d+)", text, re.UNICODE);
-		if version == None or int(version.group(1)) > 3:
-			raise Exception("Data file is of an invalid version! (Expected [1, 2, 3], received {})".format(version.group(1)));
+		if version == None or int(version.group(1)) not in (1, 2, 3, 4):
+			raise Exception("Data file is of an invalid version! (Expected [1, 2, 3, 4], received {})".format(version.group(1)));
 		else:
 			text = text[version.end(0):];
 			version = int(version.group(1));
@@ -357,6 +357,16 @@ def LoadData(loadIndicators = True, services = True):
 					if endMark != None:
 						text = text[endMark.end(0):];
 						break;
+					
+					linkData = re.match("\s*(\d+)\s*\.\.\.\s*(\d+)", text, re.UNICODE);
+					if linkData != None:
+						begin = int(linkData.group(1));
+						end = int(linkData.group(2));
+						for x in range(begin, end):
+							Data.AddLink(x, x + 1);
+						
+						text = text[linkData.end(0):];
+						continue;
 					
 					linkData = re.match("\s*(\d+)\s*,\s*(\d+)", text, re.UNICODE);
 					if linkData != None:
