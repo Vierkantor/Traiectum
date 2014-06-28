@@ -446,7 +446,7 @@ def SaveData():
 		data.write(u":end\n\n");
 		
 	with codecs.open("servicedata.txt", "w", encoding="utf-8") as data:
-		data.write(u"version: 4\n");
+		data.write(u"version: 5\n");
 		data.write(u"# Generated automatically by Traiectum\n");
 		
 		data.write("services:\n");
