@@ -325,6 +325,10 @@ def LoadData(loadIndicators = True, services = True):
 					
 					placeData = re.match("\s*(\w+)\s*->\s*(\d+)", text, re.UNICODE);
 					if placeData != None:
+						# make sure we don't overwrite existing places
+						if placeData.group(1) in Data.places:
+							raise Exception("Duplicate location {}".format(placeData.group(1)));
+						
 						Data.places[placeData.group(1)] = int(placeData.group(2));
 						
 						text = text[placeData.end(0):];
@@ -390,6 +394,11 @@ def LoadData(loadIndicators = True, services = True):
 					nodeData = re.match("\s*(\w+)\s*->\s*(\d+)\s*->\s*(\-?[\d\.]+)\s*,\s*(\-?[\d\.]+)", text, re.UNICODE);
 					if nodeData != None:
 						Data.nodes[int(nodeData.group(2))] = Data.Node(int(nodeData.group(2)), (float(nodeData.group(3)), float(nodeData.group(4))));
+						
+						# make sure we don't overwrite existing places
+						if nodeData.group(1) in Data.places:
+							raise Exception("Duplicate location {}".format(nodeData.group(1)));
+						
 						Data.places[nodeData.group(1)] = int(nodeData.group(2));
 						
 						text = text[nodeData.end(0):];
