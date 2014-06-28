@@ -37,6 +37,10 @@ for fileName in os.listdir("DataSources"):
 	# get all the services in that file
 	Filefunc.LoadServices(filename = os.path.join("DataSources", fileName), loadIndicators = False, verify = True);
 	for service in Data.services:
+		# skip if it's empty
+		if not Data.services[service]:
+			continue;
+		
 		# make a secret copy for ourselves
 		if service in services:
 			# add to existing service data
