@@ -82,7 +82,9 @@ def ParseIdentification(file):
 
 # a map of Int -> [Bool], footnotes[i][j] indicating that services with footnote i run on day number j
 footnotes = {};
+
 currentDay = 2; # the footnote index of the day we want to simulate
+prevDay = currentDay - 1; # just in case a service runs past the day change
 
 def ParseFootnoteDescription(file):
 	descLine = file.readline();
@@ -112,6 +114,7 @@ def FormatStation(station, platform = None):
 		return "{}{}, {}".format(station[0].upper(), station[1:], platform);
 
 services = {};
+prevServices = {};
 
 def ParseTransportService(file):
 	line = file.readline();
@@ -126,7 +129,7 @@ def ParseTransportService(file):
 	line = file.readline();
 	while line[0] == '%': # supposed to occur just once but who cares, right?
 		company, number, variant, firstValid, lastValid, name = ParseLine("%ddd,ddddd,wwwwww,ddd,ddd,wwwwwwwwwwwwwwwwwwwwwwwwwwwwww", line);
-		tempServices[number] = {"company": company, "variant": variant, "name": name, "stops": [], "footnotes": {}, "modes": [], "attrs": []};
+		tempServices[number] = {"company": company, "variant": variant, "name": name, "footnotes": {}, "modes": [], "attrs": []};
 		
 		if lastValid == 999:
 			lastValid = -1;
@@ -173,8 +176,17 @@ def ParseTransportService(file):
 			for number in tempServices:
 				for footnote in tempServices[number]["footnotes"]:
 					if footnotes[footnote][currentDay]:
-						services[number] = tempServices[number];
-						services[number]["stops"].extend(stops[validServices[number][0] - 1:validServices[number][1]]);
+						if number not in services:
+							services[number] = tempServices[number];
+						
+						services[number]["stops"] = [stop for stop in stops[validServices[number][0] - 1:validServices[number][1]]];
+					
+					if footnotes[footnote][prevDay]:
+						if number not in prevServices:
+							prevServices[number] = tempServices[number];
+							prevServices[number]["stops"] = [];
+						
+						prevServices[number]["stops"] = [stop for stop in stops[validServices[number][0] - 1:validServices[number][1]]];
 			
 			# we're done here
 			return True;
@@ -246,13 +258,19 @@ print("version: 5");
 
 print("services:");
 for service in services:
-	for footnote in services[service]["footnotes"]:
-		if not footnotes[footnote][currentDay]:
-			continue;
-	
 	print("\t{}:".format(service));
 	for stop in services[service]["stops"]:
-		print("\t\t{}, {}, {}".format(stop[0][0], stop[0][1], stop[1]));
+		if stop[0][0] < 26:
+			print("\t\t{}, {}, {}".format(stop[0][0], stop[0][1], stop[1]));
 	
 	print("\t:end");
+
+for service in prevServices:
+	print("\t{}:".format(service));
+	for stop in prevServices[service]["stops"]:
+		if stop[0][0] >= 26:
+			print("\t\t{}, {}, {}".format(stop[0][0] - 24, stop[0][1], stop[1]));
+	
+	print("\t:end");
+
 print(":end");
