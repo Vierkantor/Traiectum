@@ -21,10 +21,13 @@ frameTime = 120;
 
 # the time (in minutes) elapsing every tick (= 1/30s)
 timeStep = 0.5 / 30;
+# that time in seconds, for physics purposes
+deltaT = timeStep * 60;
 
 def UpdateTime():
 	global frameTime;
 	frameTime += timeStep;
+	deltaT = timeStep * 60;
 	while frameTime > 1560:
 		frameTime -= 1440;
 	while frameTime < 120:
@@ -162,22 +165,25 @@ class Train:
 		self.order += 1;
 		self.path = [];
 	
+	# the acceleration in meters per second^2
 	def GetAcceleration(self):
 		lineDistance = Path.Distance(nodes[self.path[0]].pos, nodes[self.path[1]].pos);
 		
 		# determine our movement
 		a = 0;
-		if len(self.path) == 2 and self.v * (self.service[self.order + 1][0] - frameTime) > (lineDistance - self.distance):
+		if len(self.path) == 2 and self.v * (self.service[self.order + 1][0] - frameTime) * 60 > (lineDistance - self.distance):
 			# brake for an upcoming station
-			if self.v > 100:
-				# decelerate by about 6 m/s^2
-				a = -20000;
+			if self.v > 10:
+				a = -2;
 		else:
-			# if the velocity is too low, accelerate by about 6 m/s^2
-			if self.v <= 20:
-				a = 20000;
+			# basically imaginary values
+			if self.v <= 10 / 0.25:
+				a = 0.25;
 			else:
-				a = 400000 / self.v;
+				a = 10 / self.v;
+			
+			# roll and wind resistance
+			a -= 0.005 * self.v;
 		return a;
 	
 	def Update(self):
@@ -192,12 +198,12 @@ class Train:
 				a = self.GetAcceleration();
 				
 				# move the train
-				self.distance += self.v * timeStep;
-				self.v += a * timeStep;
+				self.distance += self.v * deltaT;
+				self.v += a * deltaT;
 				if self.v <= 0:
 					self.v = 0;
-				# distance is the integral of v dt = x_0 + v_0 * t + 1/2 * a * t * t
-				self.distance += 0.5 * a * timeStep * timeStep;
+				
+				self.distance += 0.5 * a * deltaT ** 2;
 				
 				lineDistance = Path.Distance(nodes[self.path[0]].pos, nodes[self.path[1]].pos);
 				if lineDistance <= 0 or self.distance > lineDistance:
