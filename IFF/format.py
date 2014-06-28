@@ -266,7 +266,7 @@ for service in services:
 	print("\t:end");
 
 for service in prevServices:
-	print("\t{}:".format(service));
+	print("\t{}b:".format(service));
 	for stop in prevServices[service]["stops"]:
 		if stop[0][0] >= 26:
 			print("\t\t{}, {}, {}".format(stop[0][0] - 24, stop[0][1], stop[1]));
