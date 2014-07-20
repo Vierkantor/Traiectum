@@ -421,28 +421,28 @@ def LoadData(loadIndicators = True, services = True):
 
 def SaveData():
 	with codecs.open("data.txt", "w", encoding="utf-8") as data:
-		data.write(u"version: 3\n");
+		data.write(u"version: 4\n");
 		
 		data.write(u"nodes:\n");
 		for node in sort_nicely(Data.nodes.items()):
-			data.write(u"\t{0} -> {1}, {2}\n".format(node[0], node[1].pos[0], node[1].pos[1]));
+			data.write(u"\t{0}: {1}, {2}\n".format(node[0], node[1].pos[0], node[1].pos[1]));
 		data.write(u":end\n\n");
 		
 		data.write(u"links:\n");
 		for link in sort_nicely(Data.links.items()):
 			for node in sorted(link[1]):
-				data.write(u"\t{0}, {1}\n".format(link[0], node));
+				data.write(u"\t{0}: {1}\n".format(link[0], node));
 		data.write(u":end\n\n");
 		
 		data.write(u"places:\n");
 		for place in sort_nicely(Data.places.items()):
-			data.write(u"\t{0} -> {1}\n".format(place[0], place[1]));
+			data.write(u"\t{0}: {1}\n".format(place[0], place[1]));
 		data.write(u":end\n\n");
 		
 		data.write(u"stations:\n");
 		for place in sort_nicely(Station.stations.items()):
 			for platform in sort_nicely(place[1].platforms):
-				data.write(u"\t{0} -> {1}\n".format(place[1].name, platform));
+				data.write(u"\t{0}: {1}\n".format(place[1].name, platform));
 		data.write(u":end\n\n");
 		
 	with codecs.open("servicedata.txt", "w", encoding="utf-8") as data:
