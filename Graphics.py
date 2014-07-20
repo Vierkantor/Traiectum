@@ -68,7 +68,7 @@ def Draw():
 			if 0 <= pos[0] <= width and 0 <= pos[1] <= height:
 				Data.nodes[node].Draw(screen);
 		for link in Data.links[node]:
-			pygame.draw.line(screen, (0, 0, 0), GetPos(Data.nodes[node].pos), GetPos(Data.nodes[link].pos), 1);
+			Data.links[node][link].Draw(screen);
 	
 	for train in Data.trains:
 		pos = GetPos(Data.trains[train].pos);
