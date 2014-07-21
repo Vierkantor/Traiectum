@@ -343,6 +343,7 @@ def LoadData(loadIndicators = True, services = True):
 					
 					# detect the end of this section
 					text, _ = Parser.ParseFormat(text, endSyntax);
+					
 					break;
 			
 			if section == "stations":
@@ -361,8 +362,6 @@ def LoadData(loadIndicators = True, services = True):
 							Station.stations[station] = Station.Station(station); # this could be worded better, probably
 						
 						Station.stations[station].AddPlatform(place);
-						
-						Data.places[place] = node;
 						continue;
 					
 					text, _ = Parser.ParseFormat(text, endSyntax);
