@@ -1,6 +1,4 @@
-#!/usr/bin/python2.7
-
-from __future__ import division;
+#!/usr/bin/python3
 
 import collections;
 import math;
