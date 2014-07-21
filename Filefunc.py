@@ -441,7 +441,7 @@ def LoadData(loadIndicators = True, services = True):
 
 def SaveData():
 	with codecs.open("data.txt", "w", encoding="utf-8") as data:
-		data.write(u"version: 4\n");
+		data.write(u"version: 5\n");
 		
 		data.write(u"nodes:\n");
 		for node in sort_nicely(Data.nodes.items()):

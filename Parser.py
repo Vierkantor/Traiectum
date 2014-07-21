@@ -1,5 +1,4 @@
 import re;
-from __future__ import division;
 
 class ParseError(Exception):
 	def __init__(self, message):
@@ -127,7 +126,7 @@ def MatchFloat(text):
 	
 	# start with a (non-optional) integer part
 	text, intPart = MatchInt(text);
-	value.append(intPart);
+	value.append(str(intPart));
 	
 	# possibly add a fractional part
 	if text[0] == '.':
