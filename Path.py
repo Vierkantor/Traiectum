@@ -45,7 +45,7 @@ def FindRoute(begin, end):
 	while len(open) > 0:
 		# find first node to process
 		current = min(open, key=open.get);
-		ditance = open[current];
+		distance = open[current];
 		
 		# processing it, so remove the node from the open points
 		del open[current];
