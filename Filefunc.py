@@ -278,7 +278,6 @@ def LoadServices(filename = "servicedata.txt", loadIndicators = True, verify = F
 						text, _ = Parser.ParseFormat(text, endSyntax);
 						break;
 		
-		
 		except:
 			print("In {}, near:".format(filename));
 			print(text[:100]);
@@ -295,125 +294,146 @@ def GenerateDepartures():
 			except KeyError:
 				raise KeyError("{} stops at non-existing place {}".format(service, stop[1]));
 
+# "label": "name" (places, stations, links)
+labelNameSyntax = [
+	Parser.MatchName, Parser.MatchText(":"), Parser.MatchName,
+];
+nodeSyntax = [
+	Parser.MatchName, Parser.MatchText(":"), Parser.MatchFloat, Parser.MatchText(","), Parser.MatchFloat,
+];
+namedNodeSyntax = [
+	Parser.MatchName, Parser.MatchText(":"), Parser.MatchName, Parser.MatchText(":"), Parser.MatchFloat, Parser.MatchText(","), Parser.MatchFloat,
+];
+linkIntervalSyntax = [
+	Parser.MatchInt, Parser.MatchText("..."), Parser.MatchInt,
+];
+
 def LoadData(loadIndicators = True, services = True):
 	with codecs.open("data.txt", encoding="utf-8") as data:
 		text = data.read()
 		version = re.match("\s*version:\s*(\d+)", text, re.UNICODE);
-		if version == None or int(version.group(1)) not in (1, 2, 3, 4):
-			raise Exception("Data file is of an invalid version! (Expected [1, 2, 3, 4], received {})".format(version.group(1)));
+		if version == None or int(version.group(1)) not in (5,):
+			raise Exception("Data file is of an invalid version! (Expected [5], received {})".format(version.group(1)));
 		else:
-			text = text[version.end(0):];
+			text = Parser.StringSlice(text, version.end(0));
 			version = int(version.group(1));
-			
-		# remove old data
-		Data.nodes = {};
-		Data.places = {};
-		Data.links = {};
 		
-		section = re.match("\s*(\w+):\s*", text, re.UNICODE);
-		while section != None:
-			text = text[section.end(0):];
+		while len(Parser.SkipWhitespace(text)) > 0:
+			text, values = Parser.ParseFormat(text, sectionStartSyntax);
+			section = values[0];
 			
-			if section.group(1) == "places":
+			if section == "places":
 				if loadIndicators:
 					print("Parsing places...");
 				while True:
-					endMark = re.match("\s*\:end", text, re.UNICODE);
-					if endMark != None:
-						text = text[endMark.end(0):];
-						break;
-					
-					placeData = re.match("\s*(\w+)\s*->\s*(\d+)", text, re.UNICODE);
-					if placeData != None:
+					try:
+						text, values = Parser.ParseFormat(text, labelNameSyntax);
+					except Parser.ParseError:
+						pass;
+					else:
+						place = values[0];
+						node = values[2];
+						
 						# make sure we don't overwrite existing places
-						if placeData.group(1) in Data.places:
-							raise Exception("Duplicate location {}".format(placeData.group(1)));
+						if place in Data.places:
+							raise Exception("Duplicate location {}".format(place));
 						
-						Data.places[placeData.group(1)] = int(placeData.group(2));
-						
-						text = text[placeData.end(0):];
+						Data.places[place] = node;
 						continue;
+					
+					# detect the end of this section
+					text, _ = Parser.ParseFormat(text, endSyntax);
+					break;
 			
-			if section.group(1) == "stations":
+			if section == "stations":
 				if loadIndicators:
 					print("Parsing stations...");
 				while True:
-					endMark = re.match("\s*\:end", text, re.UNICODE);
-					if endMark != None:
-						text = text[endMark.end(0):];
-						break;
-					
-					placeData = re.match("\s*(\w+)\s*->\s*(\w+)", text, re.UNICODE);
-					if placeData != None:
-						if placeData.group(1) not in Station.stations:
-							Station.stations[placeData.group(1)] = Station.Station(placeData.group(1));
-					
-						Station.stations[placeData.group(1)].AddPlatform(placeData.group(2));
+					try:
+						text, values = Parser.ParseFormat(text, labelNameSyntax);
+					except Parser.ParseError:
+						pass;
+					else:
+						station = values[0];
+						place = values[2];
 						
-						text = text[placeData.end(0):];
+						if station not in Station.stations:
+							Station.stations[station] = Station.Station(station); # this could be worded better, probably
+						
+						Station.stations[station].AddPlatform(place);
+						
+						Data.places[place] = node;
 						continue;
+					
+					text, _ = Parser.ParseFormat(text, endSyntax);
+					break;
 			
-			if section.group(1) == "links":
+			if section == "links":
 				if loadIndicators:
 					print("Parsing links...");
 				while True:
-					endMark = re.match("\s*\:end", text, re.UNICODE);
-					if endMark != None:
-						text = text[endMark.end(0):];
-						break;
-					
-					linkData = re.match("\s*(\d+)\s*\.\.\.\s*(\d+)", text, re.UNICODE);
-					if linkData != None:
-						begin = int(linkData.group(1));
-						end = int(linkData.group(2));
+					try:
+						text, values = Parser.ParseFormat(text, linkIntervalSyntax);
+					except Parser.ParseError:
+						pass;
+					else:
+						begin = values[0];
+						end = values[2];
 						for x in range(begin, end):
 							Data.AddLink(x, x + 1);
 						
-						text = text[linkData.end(0):];
 						continue;
 					
-					linkData = re.match("\s*(\d+)\s*,\s*(\d+)", text, re.UNICODE);
-					if linkData != None:
-						link1 = int(linkData.group(1));
-						link2 = int(linkData.group(2));
+					try:
+						text, values = Parser.ParseFormat(text, labelNameSyntax);
+					except Parser.ParseError:
+						pass;
+					else:
+						link1 = values[0];
+						link2 = values[2];
 						Data.AddLink(link1, link2);
-						
-						text = text[linkData.end(0):];
 						continue;
-					raise Exception("Invalid syntax near {}".format(text[:100]));
+					
+					text, _ = Parser.ParseFormat(text, endSyntax);
+					break;
 			
-			if section.group(1) == "nodes":
+			if section == "nodes":
 				if loadIndicators:
 					print("Parsing nodes...");
 				while True:
-					endMark = re.match("\s*\:end", text, re.UNICODE);
-					if endMark != None:
-						text = text[endMark.end(0):];
-						break;
-					
-					nodeData = re.match("\s*(\w+)\s*->\s*(\d+)\s*->\s*(\-?[\d\.]+)\s*,\s*(\-?[\d\.]+)", text, re.UNICODE);
-					if nodeData != None:
-						Data.nodes[int(nodeData.group(2))] = Data.Node(int(nodeData.group(2)), (float(nodeData.group(3)), float(nodeData.group(4))));
+					try:
+						text, values = Parser.ParseFormat(text, namedNodeSyntax);
+					except Parser.ParseError:
+						pass;
+					else:
+						place = values[0];
+						node = values[2];
+						lat = values[4];
+						lon = values[6];
 						
-						# make sure we don't overwrite existing places
-						if nodeData.group(1) in Data.places:
-							raise Exception("Duplicate location {}".format(nodeData.group(1)));
+						Data.nodes[node] = Data.Node(node, (lat, lon));
 						
-						Data.places[nodeData.group(1)] = int(nodeData.group(2));
+						if place in Data.places:
+							raise Exception("Duplicate location {}".format(place));
 						
-						text = text[nodeData.end(0):];
+						Data.places[place] = node;
+						
 						continue;
 					
-					nodeData = re.match("\s*(\d+)\s*->\s*(\-?[\d\.]+)\s*,\s*(\-?[\d\.]+)", text, re.UNICODE);
-					if nodeData != None:
-						Data.nodes[int(nodeData.group(1))] = Data.Node(int(nodeData.group(1)), (float(nodeData.group(2)), float(nodeData.group(3))));
+					try:
+						text, values = Parser.ParseFormat(text, nodeSyntax);
+					except Parser.ParseError:
+						pass;
+					else:
+						node = values[0];
+						lat = values[2];
+						lon = values[4];
 						
-						text = text[nodeData.end(0):];
+						Data.nodes[node] = Data.Node(node, (lat, lon));
 						continue;
 					
-					raise Exception("Syntax error near {0}".format(repr(text[:100])));
-				
-			section = re.match("\s*(\w+):", text, re.UNICODE);
+					text, _ = Parser.ParseFormat(text, endSyntax);
+					break;
 	
 	if services:
 		LoadServices(verify = True);
