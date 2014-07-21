@@ -22,7 +22,7 @@ def alphanum_key(s):
 	""" Turn a string into a list of string and number chunks.
 		"z23a" -> ["z", 23, "a"]
 	"""
-	if isinstance(s, str) or isinstance(s, unicode):
+	if isinstance(s, str):
 		return [ tryint(c) for c in re.split('([0-9]+)', s, re.UNICODE) ]
 	else:
 		return s;
