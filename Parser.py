@@ -91,18 +91,16 @@ def MatchInt(text, signed = True):
 	
 	length = 0;
 	try:
+		# positive by default
+		negative = False;
 		if signed:
 			# check if the int is negative
-			negative = False;
 			if text[0] == "+":
 				text = text[1:];
 			elif text[0] == "-":
 				text = text[1:];
 				negative = True;
-		else:
-			# it's always positive
-			negative = False;
-	
+		
 		# actually make it into an int
 		number = 0;
 		while text[0] in '0123456789':
@@ -122,22 +120,33 @@ def MatchInt(text, signed = True):
 
 # checks that the text starts with a float (or integer)
 def MatchFloat(text):
-	value = [];
+	text = SkipWhitespace(text);
+	startText = text; # note that StringSlices are immutable
+	end = 0;
 	
-	# start with a (non-optional) integer part
-	text, intPart = MatchInt(text);
-	value.append(str(intPart));
+	# start with a integer part
+	if text[0] == '+':
+		text = text[1:];
+	elif text[0] == '-':
+		text = text[1:];
+		end += 1;
+	if text[0] not in '0123456789.':
+		raise ParseError("Expected <float>, received {}".format(text[:16]));
+	
+	while text[0] in '0123456789':
+		end += 1;
+		text = text[1:];
 	
 	# possibly add a fractional part
 	if text[0] == '.':
-		value.append('.');
+		end += 1;
 		text = text[1:];
 		while text[0] in '0123456789':
-			value.append(text[0]);
+			end += 1;
 			text = text[1:];
 	
 	# make it into a nice float
-	return text, float("".join(value));
+	return text, float(str(startText[:end]));
 
 # a name (used as key, so anything up to a ':' or ',')
 def MatchName(text):
