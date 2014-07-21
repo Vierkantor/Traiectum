@@ -1,4 +1,5 @@
 import re;
+from __future__ import division;
 
 class ParseError(Exception):
 	def __init__(self, message):
@@ -122,18 +123,22 @@ def MatchInt(text, signed = True):
 
 # checks that the text starts with a float (or integer)
 def MatchFloat(text):
+	value = [];
+	
 	# start with a (non-optional) integer part
 	text, intPart = MatchInt(text);
-	floatPart = "";
-	try:
-		# and an optional point after the dot
-		text, _ = MatchText(".")(text);
-		text, floatPart = MatchInt(text, signed = False);
-	except ParseError:
-		pass;
+	value.append(intPart);
+	
+	# possibly add a fractional part
+	if text[0] == '.':
+		value.append('.');
+		text = text[1:];
+		while text[0] in '0123456789':
+			value.append(text[0]);
+			text = text[1:];
 	
 	# make it into a nice float
-	return text, float(intPart) + float("0." + floatPart);
+	return text, float("".join(value));
 
 # a name (used as key, so anything up to a ':' or ',')
 def MatchName(text):

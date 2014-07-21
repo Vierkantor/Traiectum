@@ -39,7 +39,7 @@ def GetLinks(node):
 	if node in links:
 		return links[node];
 	else:
-		return [];
+		return {};
 
 nodes = {};
 places = {};
@@ -49,17 +49,17 @@ trainCompositions = {};
 trains = {};
 
 def AddLink(begin, end):
+	link = Link(begin, end);
+	
 	if begin in links:
-		if end not in links[begin]:
-			links[begin].append(end);
+		links[begin][end] = link;
 	else:
-		links[begin] = [end];
+		links[begin] = {end: link};
 	
 	if end in links:
-		if begin not in links[end]:
-			links[end].append(begin);
+		links[end][begin] = link;
 	else:
-		links[end] = [begin];
+		links[end] = {begin: link};
 
 # returns a new service that starts the specified amount of time later
 def Add(time, service):
@@ -95,6 +95,20 @@ def Join(list):
 	
 	result.append((1560, result[-1][1]));
 	return result;
+
+class Link:
+	def __init__(self, a, b):
+		# ensure a < b
+		if a > b:
+			a, b = b, a;
+		if a == b:
+			raise ValueError("Can't make a link from a node to itself!");
+		
+		self.a = a;
+		self.b = b;
+	
+	def Draw(self, screen):
+		pygame.draw.line(screen, (0, 0, 0), Graphics.GetPos(nodes[self.a].pos), Graphics.GetPos(nodes[self.b].pos), 1);
 
 class Node:
 	def __init__(self, name, pos):
