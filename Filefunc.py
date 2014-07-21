@@ -450,7 +450,7 @@ def SaveData():
 		
 		data.write(u"links:\n");
 		for link in sort_nicely(Data.links.items()):
-			for node in sorted(link[1]):
+			for node in sort_nicely(link[1]):
 				data.write(u"\t{0}: {1}\n".format(link[0], node));
 		data.write(u":end\n\n");
 		
