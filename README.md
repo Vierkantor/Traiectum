@@ -33,49 +33,64 @@ The clock starts at 2:00 in the night, when the Dutch train network starts up. T
 
 Trains are represented by the red dots on your map. The label next to them is their name (which is usually their train type + number). A train has a schedule from the start of the day (2:00) up to the end of the day (26:00), made up of the services they do that day. They start out at the location of the initial order of their initial service, and wait until that order passes. If the next order is somewhere else, they will find the quickest (hopefully) path to their destination and go there. Currently, they continuously accelerate until the destination is the next node they will visit, then they will brake to arrive exactly on time. Obviously, this is inaccurate, but measuring distances gets hard quickly when you're doing it for hundreds of trains. After they stop at the destination, they will wait until it's time to leave again, and follow the next route to their next destination.
 
-Trains are listed in servicedata.txt under trains:, in a named list of service names.
-
-# Schedules
-
-Schedules are a list of services a train follows. massage.py can generate these automatically or they can be manually entered.
-
-In servicedata.txt, a train's schedule is listed under their name as a list of service names.
+Schedules are the list of services a train follows. group.py generates these automatically based on the files in DataSources.
 
 # Services
 
-A service is a list of destinations and arrival/departure times. A train running a service will travel to each destination in turn, waiting until it can depart again. If the service lists two destinations that are the same (but with different times), the train will try to arrive at the first time and leave at the second time.
+A service is a list of destinations and arrival/departure times. A train running a service will travel to each destination in turn, waiting until it can depart again. If the service lists two destinations that are the same (but with different times), the train will try to arrive at the first time and leave at the second time. An order is a single time-destination pair from a service.
 
-Services are listed in servicedata.txt under services:, as a named list of orders.
+Services are listed in servicedata.txt under services:, as a named list of orders, also created by group.py. You can add new ones by making a text file in DataSources and filling it. The syntax looks like this:
 
-# Orders
-
-An order is a single time-destination pair from a service. 
-
-In servicedata.txt, their format is hours, minutes, location.
+    Eurostar 9080:
+    	6, 40, STP
+    	6, 58, EBD
+    	7, 24, AFK
+    	9, 17, Paris_Nord
+    :end
 
 # Nodes
 
-Nodes are just points on the map. Locations and lines are defined based on nodes.
+Nodes are just points on the map. Places and lines are defined based on nodes.
 
 In data.txt, nodes are listed under nodes:, as a named pair of coordinates.
 
-# Locations
+# Places
 
-Locations are names for nodes. Multiple locations can point to the same node but not otherwise. An order's destination is its location.
+Places are names for nodes. Multiple places can point to the same node but not otherwise. An order's destination is a place.
 
-In data.txt, locations are listed under places: as a named node id. To help manually inputting, they can also be added as a named node (which is still a named coordinate pair), in the nodes: section.
+In data.txt, places are listed under places: as a named node id. To help manually inputting, they can also be added as a named node (which is still a named coordinate pair), in the nodes: section. For example:
+
+    places:
+    	Paris_Nord: 225
+    :end
+
+or:
+
+    nodes:
+    	Paris_Nord: 225: 48.88055, 2.35493
+    :end
 
 # Stations
 
 Stations are groups of locations where passengers can transfer between trains.
 
-In data.txt, stations are listed under stations: as a named location name.
+In data.txt, stations are listed under stations: as a named location name. For example:
+
+    stations:
+    	Paris_Nord: Paris_Nord
+    :end
 
 # Links
 
 Links represent a route trains can travel on. They are generally two-directional (so a link from node 1 to 2 also makes a link between 2 and 1). A planned feature is to prevent this explicitly somewhere, but this is not yet implemented.
 
-In data.txt, links are listed under links: as a pair of nodes. When reading this, train.py automagically adds in the opposite direction of this link if it doesn't exist yet. Also, to link a series of nodes you can simply write <begin> ... <end>, which will link everything between the beginning and end node in order (numerically).
+In data.txt, links are listed under links: as a pair of nodes. When reading this, train.py automagically adds in the opposite direction of this link if it doesn't exist yet. Also, to link a series of nodes you can simply write <begin> ... <end>, which will link everything between the beginning and end node in order (numerically). For example:
+
+    links:
+    	225: 1492
+    	
+    	1943 ... 1515
+    :end
 
 # Pathfinding
 
