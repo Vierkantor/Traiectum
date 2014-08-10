@@ -13,7 +13,7 @@ Traiectum was (besides as an acronym for Not An Acronym For This Train Simulator
 
 # Running
 
-Find a nice version of [pygame](http://pygame.org) for your computer. Run train.py to start the simulation. After the data has been loaded, you will see a white (world) map with black lines and dots. Use the scroll wheel to zoom in or out and arrow keys (or WASD) to move.
+Find a nice version of [pygame](http://pygame.org) for your computer. Run train.py to start the simulation. (Note that it by default, and probably exclusively, runs under python 3.) After the data has been loaded, you will see a white (world) map with black lines and dots. Use the scroll wheel to zoom in or out and arrow keys (or WASD) to move.
 
 # Data files
 
