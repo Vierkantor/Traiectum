@@ -7,12 +7,12 @@ class List:
 		self.values = values;
 		self.index = 0;
 		
-		self.surface = pygame.Surface((128, Graphics.height));
+		self.surface = pygame.Surface((128, Graphics.height - 32));
 		
 		self.Redraw();
 	
 	def Draw(self, screen):
-		screen.blit(self.surface, (Graphics.width - 128, 0));
+		screen.blit(self.surface, (Graphics.width - 128, 32));
 	
 	def Redraw(self):
 		self.surface.fill((222, 222, 222));
