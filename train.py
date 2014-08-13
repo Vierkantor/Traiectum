@@ -46,7 +46,12 @@ def SimLoop():
 			elif event.type == pygame.MOUSEBUTTONDOWN:
 				mousePos = mouseX, mouseY = pygame.mouse.get_pos();
 				
-				if event.button == 1: # center on a train
+				if event.button == 1:
+					if Graphics.selectedList and mouseX > Graphics.width - 128:
+						Graphics.selectedList.Click(mousePos);
+						continue;
+					
+					# center on a train
 					worldPos = Graphics.GetWorldPos(mousePos);
 					smallestDistance = 1000;
 				

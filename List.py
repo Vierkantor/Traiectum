@@ -1,5 +1,6 @@
 import pygame;
 
+import Data;
 import Graphics;
 
 class List:
@@ -10,6 +11,9 @@ class List:
 		self.surface = pygame.Surface((128, Graphics.height - 32));
 		
 		self.Redraw();
+	
+	def Click(self, pos):
+		self.Selected((pos[1] - 32) // 16 + self.index);
 	
 	def Draw(self, screen):
 		screen.blit(self.surface, (Graphics.width - 128, 32));
@@ -33,6 +37,9 @@ class List:
 		if self.index > len(self.values):
 			self.index = len(self.values);
 		self.Redraw();
+	
+	def Selected(self, item):
+		pass;
 
 # the stops of the selected train
 class StopsList(List):
@@ -43,3 +50,16 @@ class StopsList(List):
 		
 		self.index = train.order;
 		self.Redraw();
+	
+	def Selected(self, item):
+		if 0 <= item < len(self.values):
+			station = Data.nodes[Data.places[self.train.service[item][1]]].station;
+			if station:
+				Graphics.selectedList = TrainsList(station);
+
+# the trains at this station
+class TrainsList(List):
+	def __init__(self, station):
+		self.station = station;
+		
+		List.__init__(self, [str(service) for service in station.DeparturesFrom(0)]);
