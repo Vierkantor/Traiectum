@@ -8,6 +8,7 @@ import pygame;
 import Data;
 import Filefunc;
 import Graphics;
+import List;
 import Path;
 import Station;
 
@@ -43,8 +44,10 @@ def SimLoop():
 				Filefunc.SaveData();
 				sys.exit();
 			elif event.type == pygame.MOUSEBUTTONDOWN:
+				mousePos = mouseX, mouseY = pygame.mouse.get_pos();
+				
 				if event.button == 1: # center on a train
-					worldPos = Graphics.GetWorldPos(pygame.mouse.get_pos());
+					worldPos = Graphics.GetWorldPos(mousePos);
 					smallestDistance = 1000;
 				
 					# check all trains
@@ -57,10 +60,20 @@ def SimLoop():
 							# center on that train
 							Graphics.following = train;
 							smallestDistance = distance;
-				elif event.button == 4:
-					Graphics.scale = Graphics.scale * 2;
-				elif event.button == 5:
-					Graphics.scale = Graphics.scale / 2;
+					
+					if Graphics.following != None:
+						Graphics.selectedList = List.StopsList(Graphics.following);
+				
+				elif event.button == 4: # scroll up
+					if Graphics.selectedList and mouseX > Graphics.width - 128:
+						Graphics.selectedList.Scroll(-1);
+					else:
+						Graphics.scale = Graphics.scale * 2;
+				elif event.button == 5: # scroll down
+					if Graphics.selectedList and mouseX > Graphics.width - 128:
+						Graphics.selectedList.Scroll(1);
+					else:
+						Graphics.scale = Graphics.scale / 2;
 			elif event.type == pygame.KEYDOWN:
 				if event.key == pygame.K_EQUALS:
 					Data.timeStep *= 2;

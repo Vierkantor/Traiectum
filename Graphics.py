@@ -27,6 +27,9 @@ backgroundDirty = True;
 # screen is initialized when the main module runs (so things can get imported without displaying a screen)
 screen = None;
 
+# lists information such as the trains or where the selected one stops
+selectedList = None;
+
 # move standard parallel to where we are looking
 # to make the equirectangular projection look a bit better
 parallelCorrection = math.cos(center[0] / 180 * math.pi);
@@ -94,24 +97,23 @@ def Draw():
 		if 0 <= pos[0] <= width and 0 <= pos[1] <= height:
 			Data.trains[train].Draw(screen);
 	
-	if following != None:
-		screenPos = GetPos(following.pos);
-		
-		pygame.draw.rect(screen, (255, 255, 255), (screenPos[0], screenPos[1] - 6 * 12, 100, 6 * 12));
-		pygame.draw.rect(screen, (0, 0, 0), (screenPos[0], screenPos[1] - 6 * 12, 100, 6 * 12), 1);
-		offset = -6 * 12;
-		for order in following.service[following.order : following.order + 6]:
-			text = font.render("{}:{} {}".format(int(order[0] // 60), int(order[0] % 60), order[1]), 1, (0, 0, 0));
-			textpos = text.get_rect().move((screenPos[0], screenPos[1] + offset));
-			screen.blit(text, textpos);
-			offset += 12;
+	# draw the interface
 	
-	text = font.render(str(int(Data.frameTime // 60)).zfill(2) + ":" + str(int(Data.frameTime % 60)).zfill(2), 1, (0, 0, 0));
-	textpos = text.get_rect();
+	# top bar
+	pygame.draw.rect(screen, (222, 222, 222), (0, 0, width, 32), 0);
+	pygame.draw.rect(screen, (128, 128, 128), (0, 0, width, 32), 1);
+	
+	# current time
+	text = font.render("{}:{} ({} sec/tick)".format(str(int(Data.frameTime // 60)).zfill(2), str(int(Data.frameTime % 60)).zfill(2), Data.deltaT), 1, (0, 0, 0));
+	textpos = text.get_rect().move((6, 6));
 	screen.blit(text, textpos);
 	
+	# fps
 	text = font.render(str(Data.clock.get_fps()), 1, (0, 0, 0));
-	textpos = text.get_rect().move((0, 12));
+	textpos = text.get_rect().move((6, 18));
 	screen.blit(text, textpos);
+	
+	if selectedList:
+		selectedList.Draw(screen);
 	
 	pygame.display.flip();
