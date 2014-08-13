@@ -28,7 +28,7 @@ class Passenger:
 		stops = [];
 		boarded = False;
 		for stop in Data.services[service]:
-			if last[1].HasPlatform(Data.places[stop[1]]):
+			if last[1].HasPlatform(Data.places[Data.Place(stop[1])]):
 				boarded = True;
 			elif not boarded:
 				continue;
@@ -41,7 +41,7 @@ class Passenger:
 		
 		# find a new station
 		new = random.choice(stops);
-		station = Data.nodes[Data.places[new[1]]].station;
+		station = Data.nodes[Data.places[Data.Place(new[1])]].station;
 		# make sure we actually stop there
 		if station == None:
 			return;
