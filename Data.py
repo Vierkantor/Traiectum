@@ -74,6 +74,9 @@ def NodeName(node):
 	return node;
 
 def Place(place):
+	if isinstance(place, str):
+		return place;
+	
 	if "S".join(place) in places: # check if the platform was defined
 		return "S".join(place);
 	else:
