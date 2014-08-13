@@ -41,19 +41,27 @@ class List:
 	def Selected(self, item):
 		pass;
 
-# the stops of the selected train
+# the stops of the selected train / service
 class StopsList(List):
+	# train: either index for Data.services or Train object
 	def __init__(self, train):
-		self.train = train;
+		if train in Data.services:
+			self.train = None;
+			self.service = Data.services[train];
+		else:
+			self.train = train;
+			self.service = train.service;
 		
-		List.__init__(self, ["{}:{} {}".format(int(order[0] // 60), int(order[0] % 60), order[1]) for order in train.service]);
+		List.__init__(self, ["{}:{} {}".format(int(order[0] // 60), int(order[0] % 60), Data.Place(order[1])) for order in self.service]);
 		
-		self.index = train.order;
-		self.Redraw();
+		# scroll to the current order
+		if self.train:
+			self.index = self.train.order;
+			self.Redraw();
 	
 	def Selected(self, item):
 		if 0 <= item < len(self.values):
-			station = Data.nodes[Data.places[self.train.service[item][1]]].station;
+			station = Data.nodes[Data.places[Data.Place(self.service[item][1])]].station;
 			if station:
 				Graphics.selectedList = TrainsList(station);
 
@@ -61,5 +69,10 @@ class StopsList(List):
 class TrainsList(List):
 	def __init__(self, station):
 		self.station = station;
+		self.departures = list(station.DeparturesFrom(0));
 		
-		List.__init__(self, [str(service) for service in station.DeparturesFrom(0)]);
+		List.__init__(self, [str(service) for service in self.departures]);
+	
+	def Selected(self, item):
+		if 0 <= item < len(self.values) and self.departures[item] in Data.services:
+			Graphics.selectedList = StopsList(self.departures[item]);
