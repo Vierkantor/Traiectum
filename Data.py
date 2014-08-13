@@ -25,7 +25,7 @@ timeStep = 0.5 / 30;
 deltaT = timeStep * 60;
 
 def UpdateTime():
-	global frameTime;
+	global frameTime, deltaT;
 	frameTime += timeStep;
 	deltaT = timeStep * 60;
 	while frameTime > 1560:
