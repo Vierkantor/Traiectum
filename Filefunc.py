@@ -211,7 +211,7 @@ def LoadServices(filename = "servicedata.txt", loadIndicators = True, verify = F
 									place = values[4];
 									platform = values[6];
 									
-									service.append((Data.Time(hours, minutes), (place, platform)));
+									service.Append((Data.Time(hours, minutes), (place, platform)));
 									continue;
 								
 								# or without a platform
@@ -224,7 +224,7 @@ def LoadServices(filename = "servicedata.txt", loadIndicators = True, verify = F
 									minutes = values[2];
 									place = values[4];
 									
-									service.append((Data.Time(hours, minutes), (place, '')));
+									service.Append((Data.Time(hours, minutes), (place, '')));
 									continue;
 								
 								# try matching the antique time format (when it was barely not hardcoded)
@@ -235,7 +235,7 @@ def LoadServices(filename = "servicedata.txt", loadIndicators = True, verify = F
 									minutes = values[5];
 									place = Data.places[values[9]];
 									
-									service.append((Data.Time(hours, minutes), place));
+									service.Append((Data.Time(hours, minutes), place));
 									continue;
 								except Parser.ParseError:
 									pass;
