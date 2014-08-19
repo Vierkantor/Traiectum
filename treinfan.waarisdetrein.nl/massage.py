@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-print("version: 2");
+print("version: 6");
 
 print("services:");
 with open("LM.txt") as emptyTrains:
@@ -17,7 +17,24 @@ with open("LM.txt") as emptyTrains:
 		# check for tuesday
 		if days[1] == 'D':
 			print("\t{}:".format(service));
+			if trainType != "?":
+				print("\t\t[stock: {},]".format(trainType));
 			print("\t\t{}, {}".format(depTime, depPlace));
 			print("\t\t{}, {}".format(arrTime, arrPlace));
 			print("\t:end");
+
+with open("mat.txt") as data:
+	for line in data:
+		fields = line.split("\t");
+		for i in range(0, len(fields) // 3): # format: (days \t service \t type \t)+
+			days = fields[i + 0];
+			service = fields[i + 1];
+			trainType = fields[i + 2];
+			
+			# check for tuesday
+			if days[1] == 'D':
+				print("\t{}:".format(service));
+				if trainType != "?":
+					print("\t\t[stock: {},]".format(trainType));
+				print("\t:end");
 print(":end");
