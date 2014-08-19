@@ -83,7 +83,7 @@ def ParseIdentification(file):
 # a map of Int -> [Bool], footnotes[i][j] indicating that services with footnote i run on day number j
 footnotes = {};
 
-currentDay = 2; # the footnote index of the day we want to simulate
+currentDay = 184; # the footnote index of the day we want to simulate (2014-06-17)
 prevDay = currentDay - 1; # just in case a service runs past the day change
 
 def ParseFootnoteDescription(file):

@@ -1,4 +1,4 @@
-@100,15122013,13122014,0440,IFF uit RITS                  
+@100,15122013,13122014,0460,IFF uit RITS                  
 041,41        ,Largo Recorrido Renfe         ,0000
 083,83        ,Ferrovie dello Stato          ,0000
 020,area      ,Stadsvervoer Oss              ,0000
@@ -20,7 +20,6 @@
 022,gvb       ,GVB                           ,0000
 025,gvu       ,GVU                           ,0000
 501,hermes    ,Hermes                        ,0000
-200,Hispeed   ,NS Hispeed                    ,0400
 850,HSS       ,STENA                         ,0000
 023,htm       ,HTM                           ,0000
 960,int       ,Overig Internationaal         ,0000
@@ -34,6 +33,7 @@
 806,noordne   ,Noordned (OVR)                ,0000
 014,novio     ,Novio                         ,0000
 100,ns        ,NS                            ,0400
+200,NSI       ,NS International              ,0000
 015,oad       ,Oad                           ,0000
 950,oebb      ,Oestereichische Bahn          ,0000
 030,PSD       ,Provinciale Stoombootdiensten ,0000
