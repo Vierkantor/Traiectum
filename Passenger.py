@@ -61,7 +61,7 @@ class Passenger:
 		if len(self.route) == 1:
 			return False;
 		
-		return self.route[1][2] in train.serviceName;
+		return self.route[1][2] in train.serviceNames;
 	
 	def ShouldDisembark(self, node):
 		return node.station == self.route[0][1];

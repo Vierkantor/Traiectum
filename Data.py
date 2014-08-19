@@ -225,7 +225,7 @@ class Train(SimObject.SimObject):
 					self.pos = nodes[self.path[0]].pos;
 				
 		except:
-			print(self.serviceName, self.path, self.service, self.order);
+			print(self.serviceNames, self.path, self.service, self.order);
 			raise;
 	
 	def Draw(self, screen):
