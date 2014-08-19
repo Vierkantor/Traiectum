@@ -16371,6 +16371,7 @@ places:
 	LgS1: 2092
 	LgS2: 2090
 	LgS3: 2094
+	Lille: 1493
 	Lille_Europe: 1493
 	Lin: 322
 	Lis: 618
