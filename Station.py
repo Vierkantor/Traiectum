@@ -3,12 +3,15 @@ import math;
 import random;
 
 import Data;
+import SimObject;
 import Passenger;
+import Service;
 
 stations = {};
 
-class Station:
-	def __init__(self, name):
+class Station(SimObject.SimObject):
+	def __init__(self, attrs, name):
+		SimObject.SimObject.__init__(self, attrs);
 		self.name = name;
 		
 		self.platforms = [];
@@ -34,7 +37,7 @@ class Station:
 	# all the services that leave said node after said time
 	def DeparturesFrom(self, time):
 		for service in self.departures:
-			for stop in Data.services[service]:
+			for stop in Service.services[service].orders:
 				if stop[0] > time and Data.Place(stop[1]) in self.platforms:
 					yield service;
 					break;

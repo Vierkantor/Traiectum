@@ -2,6 +2,7 @@ import pygame;
 
 import Data;
 import Graphics;
+import Service;
 
 class List:
 	def __init__(self, values):
@@ -43,11 +44,11 @@ class List:
 
 # the stops of the selected train / service
 class StopsList(List):
-	# train: either index for Data.services or Train object
+	# train: either a Service's name or Train object
 	def __init__(self, train):
-		if train in Data.services:
+		if train in Service.services:
 			self.train = None;
-			self.service = Data.services[train];
+			self.service = Service.services[train].orders;
 		else:
 			self.train = train;
 			self.service = train.service;
@@ -74,5 +75,5 @@ class TrainsList(List):
 		List.__init__(self, [str(service) for service in self.departures]);
 	
 	def Selected(self, item):
-		if 0 <= item < len(self.values) and self.departures[item] in Data.services:
+		if 0 <= item < len(self.values) and self.departures[item] in Service.services:
 			Graphics.selectedList = StopsList(self.departures[item]);

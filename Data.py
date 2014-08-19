@@ -2,9 +2,11 @@ from __future__ import division;
 import math;
 import random;
 
+import SimObject;
 import Graphics;
 import Path;
 import Passenger;
+import Service;
 	
 def Time(hr = 0, min = 0, sec = 0):
 	if hr < 2:
@@ -44,12 +46,11 @@ def GetLinks(node):
 nodes = {};
 places = {};
 links = {};
-services = {};
 trainCompositions = {};
 trains = {};
 
-def AddLink(begin, end):
-	link = Link(begin, end);
+def AddLink(attrs, begin, end):
+	link = Link(attrs, begin, end);
 	
 	if begin in links:
 		links[begin][end] = link;
@@ -60,10 +61,6 @@ def AddLink(begin, end):
 		links[end][begin] = link;
 	else:
 		links[end] = {begin: link};
-
-# returns a new service that starts the specified amount of time later
-def Add(time, service):
-	return list(map(lambda x: (x[0] + time, x[1]), service));
 
 # find name of node if it exists, else return its number
 def NodeName(node):
@@ -82,25 +79,9 @@ def Place(place):
 	else:
 		return place[0];
 
-# inserts an order into the list (even if the platform doesn't exist)
-def InsertOrder(list, time, place):
-	list.append((time, Place(place)));
-
-# joins a list of orders together
-def Join(list):
-	result = [];
-	InsertOrder(result, 0, services[list[0]][0][1]);
-
-	prev = None;
-	for elem in list:
-		for order in services[elem]:
-			InsertOrder(result, order[0], order[1]);
-	
-	result.append((1560, result[-1][1]));
-	return result;
-
-class Link:
-	def __init__(self, a, b):
+class Link(SimObject.SimObject):
+	def __init__(self, attrs, a, b):
+		SimObject.SimObject.__init__(self, attrs);
 		# ensure a < b
 		if a > b:
 			a, b = b, a;
@@ -113,8 +94,9 @@ class Link:
 	def Draw(self, screen):
 		pygame.draw.line(screen, (0, 0, 0), Graphics.GetPos(nodes[self.a].pos), Graphics.GetPos(nodes[self.b].pos), 1);
 
-class Node:
-	def __init__(self, name, pos):
+class Node(SimObject.SimObject):
+	def __init__(self, attrs, name, pos):
+		SimObject.SimObject.__init__(self, attrs);
 		self.name = name;
 		self.pos = pos;
 		self.station = None;
@@ -125,12 +107,15 @@ class Node:
 		textpos = text.get_rect().move(screenPos);
 		screen.blit(text, textpos);
 
-class Train:
-	def __init__(self, composition, serviceName, service):
+class Train(SimObject.SimObject):
+	def __init__(self, attrs, composition, serviceNames, service):
+		SimObject.SimObject.__init__(self, attrs);
+		
 		self.composition = composition;
-		self.serviceName = serviceName;
+		self.serviceNames = serviceNames;
 		self.service = service;
 		self.order = 0;
+		# start out at our first service's starting position
 		self.pos = nodes[places[self.service[self.order][1]]].pos;
 		self.v = 0;
 		self.distance = 0;
@@ -257,4 +242,4 @@ class Train:
 			screen.blit(text, textpos);
 	
 	def __str__(self):
-		return "Data.Train, composition={0}, serviceName={1}, service={2}".format(str(self.composition), str(self.serviceName), str(self.service));
+		return "Data.Train, composition={0}, serviceNames={1}, service={2}".format(str(self.composition), str(self.serviceNames), str(self.service));

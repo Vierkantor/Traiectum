@@ -4,6 +4,7 @@ import math;
 import random;
 
 import Data;
+import Service;
 import Station;
 
 class Passenger:
@@ -27,7 +28,7 @@ class Passenger:
 		# find all the stops after we can board
 		stops = [];
 		boarded = False;
-		for stop in Data.services[service]:
+		for stop in Service.services[service].orders:
 			if last[1].HasPlatform(Data.places[Data.Place(stop[1])]):
 				boarded = True;
 			elif not boarded:
