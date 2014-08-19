@@ -39,10 +39,6 @@ for fileName in os.listdir("DataSources"):
 	# get all the services in that file
 	Filefunc.LoadServices(filename = os.path.join("DataSources", fileName), loadIndicators = False, verify = True);
 	for service in Service.services:
-		# skip if it's empty
-		if not Service.services[service].orders:
-			continue;
-		
 		# make a secret copy for ourselves
 		if service in services:
 			# add to existing service data
@@ -53,6 +49,12 @@ for fileName in os.listdir("DataSources"):
 		else:
 			services[service] = Service.services[service].orders;
 			attrs[service] = Service.services[service].attrs;
+
+# do some checking and fixing
+for item in list(services.items()):
+	# remove empty services
+	if not item[1]:
+		services.pop(item[0]);
 
 # write it all down
 print("version: 6");
@@ -89,6 +91,13 @@ index = 0;
 while len(servicesByTime) > 0:
 	# add this service to the new schedule
 	schedule = [servicesByTime.pop(0)];
+	
+	# match the types of trains if possible
+	try:
+		stock = attrs[schedule[0][0]]["stock"];
+	except KeyError:
+		stock = False;
+	
 	while True:
 		lastOrder = schedule[-1][1][-1];
 		newIndex = 0;
@@ -97,8 +106,15 @@ while len(servicesByTime) > 0:
 		for newService in servicesByTime:
 			firstOrder = newService[1][0];
 			
+			# check the train types
+			try:
+				newStock = attrs[newService[0]]["stock"];
+			except KeyError:
+				newStock = stock;
+			
 			# if the new service starts later than this one in the same station with the same train
-			if firstOrder[0] > lastOrder[0] and sameStation(firstOrder[1], lastOrder[1]):
+			if firstOrder[0] > lastOrder[0] and sameStation(firstOrder[1], lastOrder[1]) and (not stock or (newStock == stock)):
+				stock = newStock;
 				schedule.append(servicesByTime.pop(newIndex));
 				break;
 			
@@ -107,7 +123,10 @@ while len(servicesByTime) > 0:
 			break;
 	
 	# save the data
-	print("\t{}:".format(index));
+	if stock:
+		print("\t{} {}:".format(stock, index)); # describe the vehicle if possible
+	else:
+		print("\t{}:".format(index));
 	
 	for service in schedule:
 		print("\t\t{}".format(service[0]));
