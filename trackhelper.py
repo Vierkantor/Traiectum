@@ -3,6 +3,7 @@
 import Data;
 import Graphics;
 import Filefunc;
+import Service;
 
 import svgwrite;
 
@@ -58,8 +59,8 @@ while True:
 				print("Node {} ({}) has no links".format(node, Data.NodeName(node)));
 		
 		# find non-existent platforms
-		for service in Data.services:
-			for stop in Data.services[service]:
+		for name in Service.services:
+			for stop in Service.services[name].orders:
 				if stop[1] not in Data.places:
 					print("{} stops at non-existent station {}".format(service, stop[1]));
 	elif command[0] == "r":
