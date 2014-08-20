@@ -29,9 +29,11 @@ def TrainSchedule(serviceNames):
 		except KeyError:
 			print(services);
 	
+	# sort before getting the start and end for the best results
+	result.sort();
+	
 	# add orders for the start and end of the day
-	result.append((0, result[0][1]));
+	result.insert(0, (0, result[0][1]));
 	result.append((1560, result[-1][1]));
 	
-	# make sure the orders are in chronological... order
-	return sorted(result);
+	return result;
